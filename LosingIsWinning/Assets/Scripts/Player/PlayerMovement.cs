@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Data")]
-    public float m_walkSpeed = 500.0f;
+    public float m_walkSpeed = 100.0f;
     public float m_jumpSpeed = 400.0f;
     public float m_fallMultiplier = 2.5f;
+
+    public float m_dashSpeed = 200.0f;
+    public float m_dashTime = 2.0f;
+    private float m_currDashTime = 0.0f;
 
     [Header("States")]
     [Tooltip("Standing on ground will reset jump")]
@@ -20,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool m_startJump = false; //when just press jump
     private bool m_isGrounded = true; //check if on ground
+    private bool m_isDashing = false;
 
     private Vector2 m_dir = Vector2.zero;
 
@@ -32,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         m_rigidBody = GetComponent<Rigidbody2D>();
 
         m_startJump = false;
+        m_isDashing = false;
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
 
         m_currJumps = m_maxJumps;
@@ -48,10 +54,32 @@ public class PlayerMovement : MonoBehaviour
             --m_currJumps;
             m_startJump = true;
         }
-    }
+
+        //for dashing
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isDashing)
+        {
+            m_isDashing = true;
+            m_currDashTime = m_dashTime;
+        }
+
+        if (m_isDashing)
+        {
+            m_currDashTime -= Time.deltaTime;
+            m_isDashing = m_currDashTime > 0.0f; 
+        }
+}
 
     private void FixedUpdate()
     {
+        //press dash
+        if (m_currDashTime > 0.0f)
+        {
+            //TODO, change to curr dir facing not just direction itself
+            Debug.Log("DASH");
+            m_rigidBody.velocity = new Vector2(1.0F * m_dashSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
+            return;
+        }
+
         //press jump
         if (m_startJump)
         {

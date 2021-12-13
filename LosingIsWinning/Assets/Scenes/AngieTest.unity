@@ -297,6 +297,8 @@ MonoBehaviour:
   m_walkSpeed: 200
   m_jumpSpeed: 150
   m_fallMultiplier: 2.5
+  m_dashSpeed: 200
+  m_dashTime: 0.2
   m_groundCheckPos: {fileID: 994387817}
   m_groundCheckRadius: 0.1
   m_groundLayers:
