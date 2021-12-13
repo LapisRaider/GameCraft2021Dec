@@ -57,6 +57,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //do not move when camera still moving
+        if (!PlayerData.Instance.CanMove())
+        {
+            m_inputDir = Vector2.zero;
+            return;
+        }
+            
+
         m_inputDir.x = Input.GetAxisRaw("Horizontal");
         m_inputDir.y = Input.GetAxisRaw("Vertical");
 
@@ -98,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Debug.Log("Jump Bool" + m_startJump);
-        Debug.Log(m_currJumps);
+        //Debug.Log(m_currJumps);
         //press jump
         if (m_startJump)
         {
@@ -113,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //update right left movement
-        Debug.Log(m_inputDir);
         m_rigidBody.velocity = new Vector2(m_inputDir.x * m_walkSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
 
         //if falling
