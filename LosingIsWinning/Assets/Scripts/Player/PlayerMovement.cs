@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float m_dashTime = 2.0f;
     private float m_currDashTime = 0.0f;
 
+    private Vector2 m_inputDir = Vector2.zero;
+    private Vector2 m_faceDir = Vector2.zero; //for animation, dash
+
+    private Rigidbody2D m_rigidBody;
+
     [Header("States")]
     [Tooltip("Standing on ground will reset jump")]
     public Transform m_groundCheckPos; 
@@ -26,10 +31,13 @@ public class PlayerMovement : MonoBehaviour
     [System.NonSerialized] public bool m_isGrounded = true; //check if on ground
     [System.NonSerialized] public bool m_isDashing = false;
 
-    private Vector2 m_inputDir = Vector2.zero;
-    private Vector2 m_faceDir = Vector2.zero; //for animation, dash
+    [Header("Combat")]
+    public Vector2 m_hitOffset = Vector2.zero;
+    public Vector2 m_attackRange = Vector2.zero;
+    public LayerMask m_attackObjectsMask;
 
-    private Rigidbody2D m_rigidBody;
+    public float m_AttackRate = 1.0f;
+    private float m_currAttackTime = 0.0f;
 
 
     // Start is called before the first frame update
@@ -42,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
 
         m_currJumps = m_maxJumps;
+
+        m_currAttackTime = Time.time;
     }
 
     // Update is called once per frame
@@ -56,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
             m_faceDir.x = m_inputDir.x;
         }
 
+        Combat();
+
         //jump
         if (Input.GetButtonDown("Jump") && m_currJumps > 0)
         {
@@ -67,22 +79,21 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isDashing)
         {
             m_isDashing = true;
-            m_currDashTime = m_dashTime;
+            m_currDashTime = Time.time;
         }
 
         if (m_isDashing)
         {
-            m_currDashTime -= Time.deltaTime;
-            m_isDashing = m_currDashTime > 0.0f; 
+            m_isDashing = Time.time - m_currDashTime < m_dashTime; 
         }
-}
+    }
 
     private void FixedUpdate()
     {
         //press dash
-        if (m_currDashTime > 0.0f)
+        if (m_isDashing)
         {
-            m_rigidBody.velocity = new Vector2(m_faceDir.x * m_dashSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
+            m_rigidBody.velocity = new Vector2(m_faceDir.x * m_dashSpeed * Time.fixedDeltaTime, 0.0f);
             return;
         }
 
@@ -102,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //update right left movement
+        Debug.Log(m_inputDir);
         m_rigidBody.velocity = new Vector2(m_inputDir.x * m_walkSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
 
         //if falling
@@ -115,11 +127,56 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(m_groundCheckPos.position, m_groundCheckRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + new Vector3(m_hitOffset.x, 0.0f), new Vector3(m_attackRange.x, m_attackRange.y, 1));
+        Gizmos.DrawWireCube(transform.position + new Vector3(-m_hitOffset.x, 0.0f), new Vector3(m_attackRange.x, m_attackRange.y, 1));
+        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
+        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, -m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
     }
 
     public void resetJump()
     {
         m_isGrounded = true;
         m_currJumps = m_maxJumps;
+    }
+
+    public void Combat()
+    {
+        if (!Input.GetKeyDown(KeyCode.Return))
+            return;
+
+        if (Time.time - m_currAttackTime < m_AttackRate)
+            return;
+
+        m_currAttackTime = Time.time;
+
+        Vector3 hitDir = Vector3.zero;
+        Vector2 hitSize = Vector2.zero;
+        if (!m_isGrounded && m_inputDir.y < 0.0f) //is in air can hit down
+        {
+            hitDir.y = -m_hitOffset.y;
+            hitSize = new Vector2(m_attackRange.y, m_attackRange.x);
+        }
+        else if (m_inputDir.y > 0.0f) //check if player want to hit up
+        {
+            hitDir.y = m_hitOffset.y;
+            hitSize = new Vector2(m_attackRange.y, m_attackRange.x);
+        }
+        else //horizontal attack base on where the player is facing
+        {
+            hitDir.x = m_hitOffset.x * m_faceDir.x;
+            hitSize = new Vector2(m_attackRange.x, m_attackRange.y);
+        }
+
+        Collider2D[] attackObjs = Physics2D.OverlapBoxAll(transform.position + hitDir, hitSize, m_attackObjectsMask);
+        foreach (Collider2D objs in attackObjs)
+        {
+            HitObjs hitObj = objs.GetComponent<HitObjs>();
+            if (hitObj == null)
+                continue;
+
+            hitObj.Hit();
+        }
     }
 }
