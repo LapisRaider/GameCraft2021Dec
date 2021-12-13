@@ -22,9 +22,9 @@ public class PlayerMovement : MonoBehaviour
     public int m_maxJumps = 1;
     private int m_currJumps = 0;
 
-    private bool m_startJump = false; //when just press jump
-    private bool m_isGrounded = true; //check if on ground
-    private bool m_isDashing = false;
+    [System.NonSerialized]public bool m_startJump = false; //when just press jump
+    [System.NonSerialized] public bool m_isGrounded = true; //check if on ground
+    [System.NonSerialized] public bool m_isDashing = false;
 
     private Vector2 m_dir = Vector2.zero;
 
@@ -79,7 +79,8 @@ public class PlayerMovement : MonoBehaviour
             m_rigidBody.velocity = new Vector2(1.0F * m_dashSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
             return;
         }
-
+        //Debug.Log("Jump Bool" + m_startJump);
+        Debug.Log(m_currJumps);
         //press jump
         if (m_startJump)
         {
@@ -107,5 +108,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(m_groundCheckPos.position, m_groundCheckRadius);
+    }
+
+    public void resetJump()
+    {
+        m_isGrounded = true;
+        m_currJumps = m_maxJumps;
     }
 }

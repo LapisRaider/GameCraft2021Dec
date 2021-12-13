@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveableTile : MonoBehaviour
 {
+    public GameObject playerObject;
+
     [Header("Tile Settings")]
     [Header("Target position, starting position of the platform will be the first index")]
     public List<Transform> targetPositions;
@@ -29,6 +31,7 @@ public class MoveableTile : MonoBehaviour
         transform.position = targetPositions[positionIndex].position;
         positionIndex++;
         nextPos = targetPositions[positionIndex].position;
+        
 
         //localTargetPositions
         //Debug.Log("Before_0" + localTargetPositions[0].position);
