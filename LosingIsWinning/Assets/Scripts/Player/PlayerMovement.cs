@@ -22,11 +22,12 @@ public class PlayerMovement : MonoBehaviour
     public int m_maxJumps = 1;
     private int m_currJumps = 0;
 
-    [System.NonSerialized]public bool m_startJump = false; //when just press jump
+    [System.NonSerialized] public bool m_startJump = false; //when just press jump
     [System.NonSerialized] public bool m_isGrounded = true; //check if on ground
     [System.NonSerialized] public bool m_isDashing = false;
 
-    private Vector2 m_dir = Vector2.zero;
+    private Vector2 m_inputDir = Vector2.zero;
+    private Vector2 m_faceDir = Vector2.zero; //for animation, dash
 
     private Rigidbody2D m_rigidBody;
 
@@ -46,9 +47,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_dir.x = Input.GetAxisRaw("Horizontal");
-        m_dir.y = Input.GetAxisRaw("Vertical");
+        m_inputDir.x = Input.GetAxisRaw("Horizontal");
+        m_inputDir.y = Input.GetAxisRaw("Vertical");
 
+        //update for animation
+        if (m_inputDir.x != 0.0f)
+        {
+            m_faceDir.x = m_inputDir.x;
+        }
+
+        //jump
         if (Input.GetButtonDown("Jump") && m_currJumps > 0)
         {
             --m_currJumps;
@@ -74,11 +82,10 @@ public class PlayerMovement : MonoBehaviour
         //press dash
         if (m_currDashTime > 0.0f)
         {
-            //TODO, change to curr dir facing not just direction itself
-            Debug.Log("DASH");
-            m_rigidBody.velocity = new Vector2(1.0F * m_dashSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
+            m_rigidBody.velocity = new Vector2(m_faceDir.x * m_dashSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
             return;
         }
+
         //Debug.Log("Jump Bool" + m_startJump);
         Debug.Log(m_currJumps);
         //press jump
@@ -95,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //update right left movement
-        m_rigidBody.velocity = new Vector2(m_dir.x * m_walkSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
+        m_rigidBody.velocity = new Vector2(m_inputDir.x * m_walkSpeed * Time.fixedDeltaTime, m_rigidBody.velocity.y);
 
         //if falling
         if (m_rigidBody.velocity.y < 0.0f)
