@@ -13,13 +13,18 @@ public class DialogueManager : MonoBehaviour
     public GameObject[] m_choiceBoxButton;
     public TextEffect[] m_choiceBoxesText;
 
+    [Header("Corruption text")]
+    public float m_maxCorruptionFrequency = 0.5f;
+
     //TODO:: REMOVE THIS, TESTING PURPOESE
     public DialogueData testDialogueData;
+    public float TEMP_CORRUPTIONFREQUENCY = 0.0f;
 
     [Header("Text Data")]
     List<Dialogue> m_currDialogues;
     Dialogue m_currDiaOption; //updated when a new option has been picked
     DialogueText m_currText; //updated on new statement
+    string m_fullNewDialogueText = ""; //got updated by the corruption also
 
     int m_currOptionIndex = 0;
     int m_currSentenceIndex = 0;
@@ -48,6 +53,7 @@ public class DialogueManager : MonoBehaviour
         m_currOptionIndex = 0;
         m_currSentenceIndex = 0;
         m_currCharIndex = 0;
+        m_fullNewDialogueText = "";
 
         //reset UI
         m_text.SetText("");
@@ -74,9 +80,7 @@ public class DialogueManager : MonoBehaviour
         m_currDiaOption = m_currDialogues[0];
         m_currText = m_currDiaOption.m_dialogue[0];
 
-        m_text.SetTextEffect(m_currText.m_effect);
-        m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
-        StartCoroutine(m_prevCouroutine);
+        StartPrintText();
     }
 
     public void StartDialogue(DialogueData newDialogue)
@@ -96,9 +100,7 @@ public class DialogueManager : MonoBehaviour
         m_currText = m_currDiaOption.m_dialogue[0];
 
         //start printing
-        m_text.SetTextEffect(m_currText.m_effect);
-        m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
-        StartCoroutine(m_prevCouroutine);
+        StartPrintText();
     }
 
     public void NextSentence()
@@ -106,31 +108,34 @@ public class DialogueManager : MonoBehaviour
         if (m_prevCouroutine != null)
             StopCoroutine(m_prevCouroutine);
 
-        if (m_currCharIndex < m_currText.m_text.Length)
+        if (m_currCharIndex < m_fullNewDialogueText.Length)
         {
             //print out the entire sentence
-            m_currCharIndex = m_currText.m_text.Length;
-            m_text.SetText(m_currText.m_text);
+            m_currCharIndex = m_fullNewDialogueText.Length;
+            m_text.SetText(m_fullNewDialogueText);
         }
         else if (m_currSentenceIndex >= m_currDiaOption.m_dialogue.Count - 1) //check if end
         {
             //or put out the options
             if (m_currDiaOption.m_hasChoice)
             {
+                if (m_choiceBoxButton[0].activeSelf) //if already active dont bother
+                    return;
+
                 // put out options
                 for (int i = 0; i < m_currDiaOption.m_choices.Count; ++i)
                 {
                     m_choiceBoxButton[i].SetActive(true);
                     DialogueText choiceText = m_currDiaOption.m_choices[i].m_Text;
 
-                    m_choiceBoxesText[i].SetText(choiceText.m_text);
+                    string textToPrint = new string(CorruptText(choiceText.m_text.ToCharArray()));
+                    m_choiceBoxesText[i].SetText(textToPrint);
                     m_choiceBoxesText[i].SetTextEffect(choiceText.m_effect);
                 }
             }
             else
             {
-                //close everything
-                CloseDialogue();
+                CloseDialogue(); //close everything
             }
         }
         else //check if sentence is done printing out
@@ -139,13 +144,35 @@ public class DialogueManager : MonoBehaviour
             ++m_currSentenceIndex;
             m_currText = m_currDiaOption.m_dialogue[m_currSentenceIndex];
 
-            m_text.SetTextEffect(m_currText.m_effect);
-            m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
-            StartCoroutine(m_prevCouroutine);
-
-            //TODO
-            //if guy is high, change some of the chars in the text to make it more warped
+            StartPrintText();
         }
+    }
+
+    public void StartPrintText()
+    {
+        m_text.SetTextEffect(m_currText.m_effect);
+
+        char[] textCharArray = m_currText.m_text.ToCharArray();
+        CorruptText(textCharArray);
+        m_fullNewDialogueText = new string(textCharArray);
+
+        m_prevCouroutine = PrintText(textCharArray);
+        StartCoroutine(m_prevCouroutine);
+    }
+
+    public char[] CorruptText(char[] sentence)
+    {
+        //TODO:: should be from Math.Ceil(sentence.Length * Math.Clamp(1.0f - currSanity/fullsanity))
+        //corruptionFrequency = Mathf.Clamp(corruptionFrequency, 0.0f, m_maxCorruption);
+
+        float corruptionFrequency = Mathf.Ceil(sentence.Length * TEMP_CORRUPTIONFREQUENCY);
+        for (int i = 0; i < (int)corruptionFrequency; ++i)
+        {
+            int randomIndex = Random.Range(0, sentence.Length);
+            sentence[randomIndex] = (char)Random.Range(32, 127); //ascii code from ! to ~
+        }
+
+        return sentence;
     }
 
     public void PickOption(int buttonIndex)
@@ -173,9 +200,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         //update the next option and play the starting sentence of the next dialogue
-        m_text.SetTextEffect(m_currText.m_effect);
-        m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
-        StartCoroutine(m_prevCouroutine);
+        StartPrintText();
     }
 
     public void CloseDialogue()
