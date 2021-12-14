@@ -2156,7 +2156,7 @@ MonoBehaviour:
   m_ShockWaveMaterial: {fileID: 2100000, guid: 19ecf1c2a2c073b4f80930a931d29dd1, type: 2}
   m_ShockWaveSize: 0.05
   m_ShockWaveMagnification: -0.75
-  m_StopThreshold: 0.8
+  m_StopThreshold: 0.5
   m_ShockWaveUpdateSpeed: 1
 --- !u!1 &1833628203
 GameObject:
