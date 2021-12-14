@@ -7,12 +7,12 @@ public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
     public GameObject m_dialogueBox;
-    public TextMeshProUGUI m_text;
+    public TextEffect m_text;
     public float m_textSpeed = 0.1f;
 
     [Header("Choices UI")]
     public GameObject[] m_choiceBoxButton;
-    public TextMeshProUGUI[] m_choiceBoxesText;
+    public TextEffect[] m_choiceBoxesText;
 
     //TODO:: REMOVE THIS, TESTING PURPOESE
     public DialogueData testDialogueData;
@@ -51,7 +51,8 @@ public class DialogueManager : MonoBehaviour
         m_currCharIndex = 0;
 
         //reset UI
-        m_text.text = "";
+        m_text.SetText("");
+        m_text.SetTextEffect(DIALOGUE_EFFECTS.NONE);
         foreach (GameObject choiceBox in m_choiceBoxButton)
         {
             choiceBox.gameObject.SetActive(false);
@@ -74,6 +75,7 @@ public class DialogueManager : MonoBehaviour
         m_currDiaOption = m_currDialogues[0];
         m_currText = m_currDiaOption.m_dialogue[0];
 
+        m_text.SetTextEffect(m_currText.m_effect);
         m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
         StartCoroutine(m_prevCouroutine);
     }
@@ -95,6 +97,7 @@ public class DialogueManager : MonoBehaviour
         m_currText = m_currDiaOption.m_dialogue[0];
 
         //start printing
+        m_text.SetTextEffect(m_currText.m_effect);
         m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
         StartCoroutine(m_prevCouroutine);
     }
@@ -108,7 +111,7 @@ public class DialogueManager : MonoBehaviour
         {
             //print out the entire sentence
             m_currCharIndex = m_currText.m_text.Length;
-            m_text.text = m_currText.m_text;
+            m_text.SetText(m_currText.m_text);
         }
         else if (m_currSentenceIndex >= m_currDiaOption.m_dialogue.Count - 1) //check if end
         {
@@ -119,7 +122,10 @@ public class DialogueManager : MonoBehaviour
                 for (int i = 0; i < m_currDiaOption.m_choices.Count; ++i)
                 {
                     m_choiceBoxButton[i].SetActive(true);
-                    m_choiceBoxesText[i].text = m_currDiaOption.m_choices[i].m_Text.m_text;
+                    DialogueText choiceText = m_currDiaOption.m_choices[i].m_Text;
+
+                    m_choiceBoxesText[i].SetText(choiceText.m_text);
+                    m_choiceBoxesText[i].SetTextEffect(choiceText.m_effect);
                 }
             }
             else
@@ -134,16 +140,13 @@ public class DialogueManager : MonoBehaviour
             ++m_currSentenceIndex;
             m_currText = m_currDiaOption.m_dialogue[m_currSentenceIndex];
 
+            m_text.SetTextEffect(m_currText.m_effect);
             m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
             StartCoroutine(m_prevCouroutine);
 
             //TODO
             //if guy is high, change some of the chars in the text to make it more warped
         }
-
-
-        //when option is picked
-        //set currDialogueOption, reset currSentence and currCharIndex
     }
 
     public void PickOption(int buttonIndex)
@@ -171,6 +174,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         //update the next option and play the starting sentence of the next dialogue
+        m_text.SetTextEffect(m_currText.m_effect);
         m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
         StartCoroutine(m_prevCouroutine);
     }
@@ -194,11 +198,11 @@ public class DialogueManager : MonoBehaviour
         if (m_text == null || sentence == null)
             yield break;
 
-        m_text.text = "";
+        m_text.SetText("");
         m_currCharIndex = 0;
         foreach (char letter in sentence)
         {
-            m_text.text += letter;
+            m_text.AddCharToText(letter);
             ++m_currCharIndex;
 
             yield return new WaitForSeconds(m_textSpeed);
