@@ -14,9 +14,10 @@ public class DialogueManager : MonoBehaviour
     public GameObject[] m_choiceBoxButton;
     public TextMeshProUGUI[] m_choiceBoxesText;
 
-
+    //TODO:: REMOVE THIS, TESTING PURPOESE
     public DialogueData testDialogueData;
 
+    [Header("Text Data")]
     List<Dialogue> m_currDialogues;
     Dialogue m_currDiaOption; //updated when a new option has been picked
     DialogueText m_currText; //updated on new statement
@@ -29,7 +30,6 @@ public class DialogueManager : MonoBehaviour
 
     public void Start()
     {
-        m_currDialogues = null;
         ResetDialogue();
     }
 
@@ -58,9 +58,17 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //TODO:: REMOVE THIS, THIS IS FOR TESTING PURPOSES
     public void TESTING()
     {
         ResetDialogue();
+
+        //make UI active
+        if (m_dialogueBox != null)
+            m_dialogueBox.SetActive(true);
+
+        if (m_text != null)
+            m_text.gameObject.SetActive(true);
 
         m_currDialogues = testDialogueData.m_Dialogues;
         m_currDiaOption = m_currDialogues[0];
@@ -74,6 +82,14 @@ public class DialogueManager : MonoBehaviour
     {
         ResetDialogue();
 
+        //make UI active
+        if (m_dialogueBox != null)
+            m_dialogueBox.SetActive(true);
+
+        if (m_text != null)
+            m_text.gameObject.SetActive(true);
+
+        //update text data
         m_currDialogues = newDialogue.m_Dialogues;
         m_currDiaOption = m_currDialogues[0];
         m_currText = m_currDiaOption.m_dialogue[0];
@@ -85,7 +101,8 @@ public class DialogueManager : MonoBehaviour
 
     public void NextSentence()
     {
-        StopCoroutine(m_prevCouroutine);
+        if (m_prevCouroutine != null)
+            StopCoroutine(m_prevCouroutine);
 
         if (m_currCharIndex < m_currText.m_text.Length)
         {
@@ -108,6 +125,7 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 //close everything
+                CloseDialogue();
             }
         }
         else //check if sentence is done printing out
@@ -136,6 +154,9 @@ public class DialogueManager : MonoBehaviour
         //if -1, close dialogue box
         if (m_currOptionIndex == -1)
         {
+            CloseDialogue();
+            //TODO:: can do a smacking also 
+
             return;
         }
 
@@ -152,6 +173,20 @@ public class DialogueManager : MonoBehaviour
         //update the next option and play the starting sentence of the next dialogue
         m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
         StartCoroutine(m_prevCouroutine);
+    }
+
+    public void CloseDialogue()
+    {
+        foreach (GameObject choiceBox in m_choiceBoxButton)
+        {
+            choiceBox.gameObject.SetActive(false);
+        }
+
+        if (m_dialogueBox != null)
+            m_dialogueBox.SetActive(false);
+
+        if (m_text != null)
+            m_text.gameObject.SetActive(false);
     }
 
     IEnumerator PrintText(char[] sentence)
