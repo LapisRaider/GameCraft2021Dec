@@ -17,7 +17,7 @@ public class TextEffect : MonoBehaviour
     Vector3[] m_vertices;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_textMesh = GetComponent<TMP_Text>();
         m_text = GetComponent<TextMeshProUGUI>();

@@ -16,7 +16,7 @@ MonoBehaviour:
   - name: Opening
     m_dialogue:
     - m_text: Hello there
-      m_effect: 0
+      m_effect: 1
     - m_text: hi....
       m_effect: 0
     - m_text: nice weather right?
@@ -27,7 +27,7 @@ MonoBehaviour:
       m_nextDialogueIndex: 1
       m_Text:
         m_text: NO
-        m_effect: 0
+        m_effect: 2
     - name: Good choice
       m_nextDialogueIndex: 2
       m_Text:
@@ -37,7 +37,7 @@ MonoBehaviour:
       m_nextDialogueIndex: 3
       m_Text:
         m_text: Your mom gay
-        m_effect: 0
+        m_effect: 1
   - name: Rude
     m_dialogue:
     - m_text: Rude...
@@ -83,7 +83,7 @@ MonoBehaviour:
   - name: Confusion
     m_dialogue:
     - m_text: Yea, who do u think was with your mom last night
-      m_effect: 0
+      m_effect: 2
     m_hasChoice: 0
     m_choices:
     - name: Bad choice

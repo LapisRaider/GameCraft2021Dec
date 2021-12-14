@@ -685,8 +685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1986381217214e89e1fcc7b28df5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wobbleMagnitude: {x: 1, y: 1}
-  m_shakeMagnitude: {x: 1, y: 1}
+  m_wobbleMagnitude: {x: 3.2, y: 2.4}
+  m_shakeMagnitude: {x: 1.2, y: 1.2}
 --- !u!1 &359585743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,8 +1853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1986381217214e89e1fcc7b28df5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wobbleMagnitude: {x: 1, y: 1}
-  m_shakeMagnitude: {x: 1, y: 1}
+  m_wobbleMagnitude: {x: 3.2, y: 2.4}
+  m_shakeMagnitude: {x: 1.2, y: 1.2}
 --- !u!1 &1078743210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2621,8 +2621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1986381217214e89e1fcc7b28df5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wobbleMagnitude: {x: 1, y: 1}
-  m_shakeMagnitude: {x: 1, y: 1}
+  m_wobbleMagnitude: {x: 3.2, y: 2.4}
+  m_shakeMagnitude: {x: 1.2, y: 1.2}
 --- !u!1 &1520159910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3096,8 +3096,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1986381217214e89e1fcc7b28df5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wobbleMagnitude: {x: 1, y: 1}
-  m_shakeMagnitude: {x: 1, y: 1}
+  m_wobbleMagnitude: {x: 3.2, y: 2.4}
+  m_shakeMagnitude: {x: 1.2, y: 1.2}
 --- !u!1 &1654415355
 GameObject:
   m_ObjectHideFlags: 0
@@ -3707,8 +3707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1986381217214e89e1fcc7b28df5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wobbleMagnitude: {x: 1, y: 1}
-  m_shakeMagnitude: {x: 1, y: 1}
+  m_wobbleMagnitude: {x: 3.2, y: 2.4}
+  m_shakeMagnitude: {x: 1.2, y: 1.2}
 --- !u!1 &1822971761
 GameObject:
   m_ObjectHideFlags: 0
