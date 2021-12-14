@@ -39,11 +39,15 @@ public class PlayerMovement : MonoBehaviour
     public float m_AttackRate = 1.0f;
     private float m_currAttackTime = 0.0f;
 
+    [Header("Effects")]
+    private CameraShake m_CameraShake;
+
 
     // Start is called before the first frame update
     void Start()
     {
         m_rigidBody = GetComponent<Rigidbody2D>();
+        m_CameraShake = Camera.main.GetComponent<CameraShake>();
 
         m_startJump = false;
         m_isDashing = false;
@@ -88,6 +92,9 @@ public class PlayerMovement : MonoBehaviour
         {
             m_isDashing = true;
             m_currDashTime = Time.time;
+
+            if (m_CameraShake != null)
+                m_CameraShake.StartShake();
         }
 
         if (m_isDashing)
