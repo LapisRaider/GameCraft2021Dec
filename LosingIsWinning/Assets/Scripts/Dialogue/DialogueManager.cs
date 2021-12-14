@@ -10,11 +10,16 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI m_text;
     public float m_textSpeed = 0.1f;
 
+    [Header("Choices UI")]
+    public GameObject[] m_choiceBoxButton;
+    public TextMeshProUGUI[] m_choiceBoxesText;
+
+
     public DialogueData testDialogueData;
 
     List<Dialogue> m_currDialogues;
-    Dialogue m_currDiaOption;
-    DialogueText m_currText;
+    Dialogue m_currDiaOption; //updated when a new option has been picked
+    DialogueText m_currText; //updated on new statement
 
     int m_currOptionIndex = 0;
     int m_currSentenceIndex = 0;
@@ -30,13 +35,13 @@ public class DialogueManager : MonoBehaviour
 
     public void ResetDialogue()
     {
+        //reset couroutine
         if (m_prevCouroutine != null)
             StopCoroutine(m_prevCouroutine);
 
         m_prevCouroutine = null;
-
-        m_text.text = "";
-
+       
+        //reset data
         m_currDialogues = null;
         m_currDiaOption = null;
         m_currText = null;
@@ -44,6 +49,13 @@ public class DialogueManager : MonoBehaviour
         m_currOptionIndex = 0;
         m_currSentenceIndex = 0;
         m_currCharIndex = 0;
+
+        //reset UI
+        m_text.text = "";
+        foreach (GameObject choiceBox in m_choiceBoxButton)
+        {
+            choiceBox.gameObject.SetActive(false);
+        }
     }
 
     public void TESTING()
@@ -87,6 +99,11 @@ public class DialogueManager : MonoBehaviour
             if (m_currDiaOption.m_hasChoice)
             {
                 // put out options
+                for (int i = 0; i < m_currDiaOption.m_choices.Count; ++i)
+                {
+                    m_choiceBoxButton[i].SetActive(true);
+                    m_choiceBoxesText[i].text = m_currDiaOption.m_choices[i].m_Text.m_text;
+                }
             }
             else
             {
@@ -111,16 +128,39 @@ public class DialogueManager : MonoBehaviour
         //set currDialogueOption, reset currSentence and currCharIndex
     }
 
+    public void PickOption(int buttonIndex)
+    {
+        //get next dialogue index
+        m_currOptionIndex = m_currDiaOption.m_choices[buttonIndex].m_nextDialogueIndex;
+
+        //if -1, close dialogue box
+        if (m_currOptionIndex == -1)
+        {
+            return;
+        }
+
+        //reset things to the next text
+        m_currDiaOption = m_currDialogues[m_currOptionIndex];
+        m_currSentenceIndex = 0;
+        m_currText = m_currDiaOption.m_dialogue[m_currSentenceIndex];
+        
+        foreach (GameObject choiceBox in m_choiceBoxButton)
+        {
+            choiceBox.gameObject.SetActive(false);
+        }
+
+        //update the next option and play the starting sentence of the next dialogue
+        m_prevCouroutine = PrintText(m_currText.m_text.ToCharArray());
+        StartCoroutine(m_prevCouroutine);
+    }
+
     IEnumerator PrintText(char[] sentence)
     {
         if (m_text == null || sentence == null)
             yield break;
 
-
         m_text.text = "";
         m_currCharIndex = 0;
-        Debug.Log("text printing " + m_text.text);
-        Debug.Log("text " + sentence.ToString());
         foreach (char letter in sentence)
         {
             m_text.text += letter;

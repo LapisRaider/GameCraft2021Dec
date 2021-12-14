@@ -24,6 +24,27 @@ MonoBehaviour:
     m_hasChoice: 1
     m_choices:
     - name: Bad choice
+      m_nextDialogueIndex: 1
+      m_Text:
+        m_text: NO
+        m_effect: 0
+    - name: Good choice
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: YUP
+        m_effect: 0
+    - name: Err
+      m_nextDialogueIndex: 3
+      m_Text:
+        m_text: Your mom gay
+        m_effect: 0
+  - name: Rude
+    m_dialogue:
+    - m_text: Rude...
+      m_effect: 0
+    m_hasChoice: 0
+    m_choices:
+    - name: Bad choice
       m_nextDialogueIndex: -1
       m_Text:
         m_text: NO
@@ -38,9 +59,30 @@ MonoBehaviour:
       m_Text:
         m_text: Your mom gay
         m_effect: 0
-  - name: Rude
+  - name: Agre
     m_dialogue:
-    - m_text: Rude...
+    - m_text: Yea man agreed
+      m_effect: 0
+    m_hasChoice: 0
+    m_choices:
+    - name: Bad choice
+      m_nextDialogueIndex: -1
+      m_Text:
+        m_text: NO
+        m_effect: 0
+    - name: Good choice
+      m_nextDialogueIndex: -1
+      m_Text:
+        m_text: YUP
+        m_effect: 0
+    - name: Err
+      m_nextDialogueIndex: -1
+      m_Text:
+        m_text: Your mom gay
+        m_effect: 0
+  - name: Confusion
+    m_dialogue:
+    - m_text: Yea, who do u think was with your mom last night
       m_effect: 0
     m_hasChoice: 0
     m_choices:
