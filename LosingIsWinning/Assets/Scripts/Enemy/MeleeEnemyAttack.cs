@@ -8,17 +8,17 @@ public class MeleeEnemyAttack : MonoBehaviour
     public bool startAttack = false;
     public List<BoxCollider2D> m_hitboxes;
 
-    // When m_hitboxTimer reaches m_hitboxTime, a new hitbox will be made
+    // When m_hitboxTimer reaches m_hitboxTime, the melee hitbox will disappear
     // Need to play test and change values accordingly
-    static float HITBOX_START_TIME = 0.1f;
+    static float HITBOX_LIFETIME = 0.1f; // The bigger the value, the longer the hitbox will stay on the screen
     public float m_hitboxTimer;
     public float m_hitboxTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_hitboxTimer = HITBOX_START_TIME;
-        m_hitboxTime = HITBOX_START_TIME;
+        m_hitboxTimer = HITBOX_LIFETIME;
+        m_hitboxTime = HITBOX_LIFETIME;
         
         foreach (var hitbox in m_hitboxes)
         {
@@ -30,8 +30,8 @@ public class MeleeEnemyAttack : MonoBehaviour
     {
         startAttack = false;
 
-        m_hitboxTimer = HITBOX_START_TIME;
-        m_hitboxTime = HITBOX_START_TIME;
+        m_hitboxTimer = HITBOX_LIFETIME;
+        m_hitboxTime = HITBOX_LIFETIME;
 
         foreach (var hitbox in m_hitboxes)
         {

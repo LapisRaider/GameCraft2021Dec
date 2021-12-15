@@ -20,7 +20,6 @@ public class GroundSlamEnemyAttack : MonoBehaviour
     static float HITBOX_TRAVEL_SPEED = 3;
     public float m_hitboxTravelTimer;
     public float m_hitboxTravelTime;
-    public float m_hitboxTravelSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +29,6 @@ public class GroundSlamEnemyAttack : MonoBehaviour
 
         m_hitboxTravelTimer = 0;
         m_hitboxTravelTime = HITBOX_TRAVEL_TIME;
-        m_hitboxTravelSpeed = HITBOX_TRAVEL_SPEED;
 
         foreach (var hitbox in m_hitboxes)
         {
@@ -85,7 +83,7 @@ public class GroundSlamEnemyAttack : MonoBehaviour
                 else
                 {
                     m_hitboxTravelTimer += Time.deltaTime;
-                    gameObject.transform.position += new Vector3(-1, 0, 0) * Time.deltaTime * m_hitboxTravelSpeed;
+                    gameObject.transform.position += new Vector3(-1, 0, 0) * Time.deltaTime * HITBOX_TRAVEL_SPEED;
                 }
             }
             else
