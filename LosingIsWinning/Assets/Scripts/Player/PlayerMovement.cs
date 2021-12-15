@@ -146,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
         if (m_isGrounded) //reset number of jumps
         {
-            if (m_currJumps < PlayerData.Instance.m_maxJumps && m_rigidBody.velocity.y == 0.0f)
+            if (m_currJumps < PlayerData.Instance.m_maxJumps && Mathf.Abs(m_rigidBody.velocity.y) <= Mathf.Epsilon)
             {
                 ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.LAND);
                 m_currJumps = PlayerData.Instance.m_maxJumps;
