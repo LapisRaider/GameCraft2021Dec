@@ -358,7 +358,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 320
-        width: 160
+        width: 640
         height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -377,9 +377,9 @@ TextureImporter:
       name: FG ENVIRONMENT TILESET 1_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 320
-        width: 160
+        x: 0
+        y: 160
+        width: 640
         height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -398,9 +398,9 @@ TextureImporter:
       name: FG ENVIRONMENT TILESET 1_2
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
-        width: 160
+        x: 0
+        y: 0
+        width: 640
         height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -411,195 +411,6 @@ TextureImporter:
       bones: []
       spriteID: 49eac20b049d2c8c0800000000000000
       internalID: -3980380248785244524
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_3
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c9bb84365b7abca0800000000000000
-      internalID: -6000347943338788409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dfea31111c2a0cff0800000000000000
-      internalID: -17835448410591491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec2d5fb4701c95910800000000000000
-      internalID: 1826703360958780110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_6
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba115419f6ad8f130800000000000000
-      internalID: 3600868074796159403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_7
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e854ba266947e5390800000000000000
-      internalID: -7827690913074035314
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: af93bbe13f51716b0800000000000000
-      internalID: -5325763900405499398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_9
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1fefa1ba320810970800000000000000
-      internalID: 8719391244248874737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_10
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35d266d7bfa15df50800000000000000
-      internalID: 6905455271085485395
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FG ENVIRONMENT TILESET 1_11
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41ce905f947a92060800000000000000
-      internalID: 6929253437771738132
       vertices: []
       indices: 
       edges: []
