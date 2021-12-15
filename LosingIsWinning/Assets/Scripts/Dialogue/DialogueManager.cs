@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : SingletonBase<DialogueManager>
 {
     [Header("Dialogue UI")]
     public GameObject m_dialogueBox;
@@ -31,6 +31,10 @@ public class DialogueManager : MonoBehaviour
     int m_currCharIndex = 0;
 
     IEnumerator m_prevCouroutine = null;
+
+    //delegates
+    [HideInInspector] public delegate void DialogueFinishDelegate(int lastDiOption);
+    [HideInInspector] public DialogueFinishDelegate m_dialogueFinishCallback;
 
     public void Start()
     {
@@ -83,7 +87,7 @@ public class DialogueManager : MonoBehaviour
         StartPrintText();
     }
 
-    public void StartDialogue(DialogueData newDialogue)
+    public void StartDialogue(DialogueData newDialogue, int currDialogueOption = 0)
     {
         ResetDialogue();
 
@@ -96,7 +100,8 @@ public class DialogueManager : MonoBehaviour
 
         //update text data
         m_currDialogues = newDialogue.m_Dialogues;
-        m_currDiaOption = m_currDialogues[0];
+        m_currOptionIndex = currDialogueOption;
+        m_currDiaOption = m_currDialogues[currDialogueOption];
         m_currText = m_currDiaOption.m_dialogue[0];
 
         //start printing
@@ -107,6 +112,9 @@ public class DialogueManager : MonoBehaviour
     {
         if (m_prevCouroutine != null)
             StopCoroutine(m_prevCouroutine);
+
+        if (m_currDiaOption == null)
+            return;
 
         if (m_currCharIndex < m_fullNewDialogueText.Length)
         {
@@ -215,6 +223,9 @@ public class DialogueManager : MonoBehaviour
 
         if (m_text != null)
             m_text.gameObject.SetActive(false);
+
+        if (m_dialogueFinishCallback != null)
+            m_dialogueFinishCallback.Invoke(m_currOptionIndex);
     }
 
     IEnumerator PrintText(char[] sentence)
