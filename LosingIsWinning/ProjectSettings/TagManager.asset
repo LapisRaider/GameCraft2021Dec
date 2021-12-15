@@ -43,3 +43,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: MiddleGround
+    uniqueID: 3318120919
+    locked: 0
+  - name: Particle
+    uniqueID: 241180069
+    locked: 0
+  - name: Player
+    uniqueID: 2814794981
+    locked: 0
+  - name: New Layer
+    uniqueID: 269702795
+    locked: 0

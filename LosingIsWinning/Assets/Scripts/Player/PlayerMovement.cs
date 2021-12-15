@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         {
             --m_currJumps;
             m_startJump = true;
+            ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.JUMP);
         }
 
         //for dashing
@@ -123,7 +124,11 @@ public class PlayerMovement : MonoBehaviour
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
         if (m_isGrounded) //reset number of jumps
         {
-            m_currJumps = PlayerData.Instance.m_maxJumps;
+            if (m_currJumps < PlayerData.Instance.m_maxJumps && m_rigidBody.velocity.y == 0.0f)
+            {
+                ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.JUMP);
+                m_currJumps = PlayerData.Instance.m_maxJumps;
+            }
         }
 
         //update right left movement
