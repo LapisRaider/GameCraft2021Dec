@@ -19,6 +19,7 @@ public class MeleeEnemyAnimController : MonoBehaviour
 
     public void runAttack()
     {
+        // 2nd one lmao
         enemyController.Attack();
     }
 

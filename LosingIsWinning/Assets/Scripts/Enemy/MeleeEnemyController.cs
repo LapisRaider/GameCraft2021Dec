@@ -91,17 +91,13 @@ public class MeleeEnemyController : MonoBehaviour
                 break;
             case MELEE_STATES.STATE_MORPHED_IDLE:
                 {
-                    Debug.Log("IN IDLE");
-
                     m_attackTimer += Time.deltaTime;
 
                     if (m_attackTimer >= m_attackTime)
                     {
                         m_attackTimer = 0;
                         m_currState = MELEE_STATES.STATE_MORPHED_ATTACKING;
-                        m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
-                        //m_morphedGO.GetComponent<Animator>().SetTrigger("Attacking");
-                        Attack();
+                        m_morphedGO.GetComponent<Animator>().SetBool("Attack", true); 
                     }
                 }
                 break;
@@ -114,21 +110,15 @@ public class MeleeEnemyController : MonoBehaviour
 
     public void Attack()
     {
-        //Debug.Log(m_morphedGO.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).)
-
-                Debug.Log("IN ATTACK");
                 m_attackGO.transform.position = transform.position;
                 m_attackGO.SetActive(true);
                 m_attackGO.GetComponent<MeleeEnemyAttack>().startAttack = true;
                 m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
-        // m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
-        //_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
     }
 
     public void EndAttack()
     {
         m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
-        //m_attackGO.SetActive(false);
         m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
     }
 
