@@ -1063,11 +1063,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daca85db7e4bc5c44a2d03b6bdd51f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_walkSpeed: 120.68
-  m_jumpSpeed: 200
-  m_fallMultiplier: 2.5
-  m_dashSpeed: 200
-  m_dashTime: 0.2
+  m_walkSpeed: 180
+  m_jumpSpeed: 220
+  m_fallMultiplier: 3.5
+  m_dashSpeed: 300
+  m_dashTime: 0.3
   m_groundCheckPos: {fileID: 1580887982}
   m_groundCheckRadius: 0.1
   m_groundLayers:
@@ -1117,7 +1117,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
