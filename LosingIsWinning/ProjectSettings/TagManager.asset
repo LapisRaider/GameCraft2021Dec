@@ -43,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3838415141
+    locked: 0
   - name: GhostTrail
     uniqueID: 3719374751
     locked: 0
@@ -55,6 +58,6 @@ TagManager:
   - name: MiddleGround
     uniqueID: 3318120919
     locked: 0
-  - name: New Layer
+  - name: Foreground
     uniqueID: 269702795
     locked: 0
