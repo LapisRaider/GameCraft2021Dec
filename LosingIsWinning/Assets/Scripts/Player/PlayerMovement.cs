@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float m_dashSpeed = 200.0f;
     public float m_dashTime = 2.0f;
     private float m_currDashTime = 0.0f;
+    private float m_prevGravity = 0.5f;
 
     private Vector2 m_inputDir = Vector2.zero;
     private Vector2 m_faceDir = Vector2.zero; //for animation, dash
@@ -55,10 +56,10 @@ public class PlayerMovement : MonoBehaviour
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
 
         m_currJumps = PlayerData.Instance.m_maxJumps;
-
         m_currAttackTime = Time.time;
-
         m_currGhostTime = Time.time;
+
+        m_prevGravity = m_rigidBody.gravityScale;
     }
 
     // Update is called once per frame
@@ -101,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
             if (m_CameraShake != null)
                 m_CameraShake.StartShake();
 
+            m_rigidBody.gravityScale = 0.0f;
             ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
         }
 
@@ -115,6 +117,10 @@ public class PlayerMovement : MonoBehaviour
             }
 
             m_isDashing = currTime - m_currDashTime < m_dashTime; 
+            if (!m_isDashing)
+            {
+                m_rigidBody.gravityScale = m_prevGravity;
+            }
         }
     }
 
