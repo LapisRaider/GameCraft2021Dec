@@ -53,4 +53,5 @@ public class ParticleEffectObjectPooler : SingletonBase<ParticleEffectObjectPool
 public enum PARTICLE_EFFECT_TYPE
 {
     JUMP,
+    LAND,
 }

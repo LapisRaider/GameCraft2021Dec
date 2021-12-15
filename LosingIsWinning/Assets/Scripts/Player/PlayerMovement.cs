@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (m_currJumps < PlayerData.Instance.m_maxJumps && m_rigidBody.velocity.y == 0.0f)
             {
-                ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.JUMP);
+                ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.LAND);
                 m_currJumps = PlayerData.Instance.m_maxJumps;
             }
         }
