@@ -120,14 +120,15 @@ public class MeleeEnemyController : MonoBehaviour
                 m_attackGO.transform.position = transform.position;
                 m_attackGO.SetActive(true);
                 m_attackGO.GetComponent<MeleeEnemyAttack>().startAttack = true;
-               // m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
-               //_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
+                m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
+        // m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
+        //_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
     }
 
     public void EndAttack()
     {
         m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
-        m_attackGO.SetActive(false);
+        //m_attackGO.SetActive(false);
         m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
     }
 
