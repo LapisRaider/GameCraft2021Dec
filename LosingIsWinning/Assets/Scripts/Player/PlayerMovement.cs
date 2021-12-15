@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     public float m_currGhostTime = 0.0f;
     private CameraShake m_CameraShake;
 
+    private SpriteRenderer m_spriteRenderer;
+    private Animator m_Animator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
         m_faceDir = new Vector2(1 , 0);
 
         m_prevGravity = m_rigidBody.gravityScale;
+
+        m_Animator = GetComponent<Animator>();
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -81,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if (m_inputDir.x != 0.0f && !m_isDashing)
         {
             m_faceDir.x = m_inputDir.x;
+            m_spriteRenderer.flipX = m_faceDir.x < 0;
         }
 
         Combat();
@@ -123,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
                 m_rigidBody.gravityScale = m_prevGravity;
             }
         }
+
+        UpdateAnimation();
     }
 
     private void FixedUpdate()
@@ -147,8 +156,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //Debug.Log("Jump Bool" + m_startJump);
-        //Debug.Log(m_currJumps);
         //press jump
         if (m_startJump)
         {
@@ -221,5 +228,12 @@ public class PlayerMovement : MonoBehaviour
 
             hitObj.Hit();
         }
+    }
+
+    public void UpdateAnimation()
+    {
+        m_Animator.SetBool("MovingX", m_inputDir.x != 0.0f);
+        m_Animator.SetBool("Falling", m_rigidBody.velocity.y < 0.0f);
+        m_Animator.SetBool("Jumping", m_rigidBody.velocity.y < 0.0f);
     }
 }
