@@ -95,6 +95,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (m_CameraShake != null)
                 m_CameraShake.StartShake();
+
+            ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.DASH);
         }
 
         if (m_isDashing)
