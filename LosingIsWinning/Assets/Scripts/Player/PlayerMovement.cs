@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         m_currJumps = PlayerData.Instance.m_maxJumps;
         m_currAttackTime = Time.time;
         m_currGhostTime = Time.time;
+        m_faceDir = new Vector2(1 , 0);
 
         m_prevGravity = m_rigidBody.gravityScale;
     }
