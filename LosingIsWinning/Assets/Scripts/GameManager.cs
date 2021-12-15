@@ -8,6 +8,7 @@ public class GameManager : SingletonBase<GameManager>
     // Need to play test and change values accordingly
     static int m_SANITY_LOST_PER_CAST = 1;
 
+    public GameObject m_player;
     // How long the sanity will last for one use.
     public float m_SanityTimer = 45.0f;
     // Used to keep track of the time
