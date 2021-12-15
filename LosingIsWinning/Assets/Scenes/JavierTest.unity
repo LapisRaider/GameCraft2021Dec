@@ -829,6 +829,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bDontDestroyOnLoad: 0
   m_player: {fileID: 15180152}
+  m_SanityTimer: 45
+  m_CurrentSanityTimer: 0
 --- !u!4 &391469467
 Transform:
   m_ObjectHideFlags: 0
@@ -1527,8 +1529,6 @@ GameObject:
   - component: {fileID: 1214743794}
   - component: {fileID: 1214743793}
   - component: {fileID: 1214743792}
-  - component: {fileID: 1214743791}
-  - component: {fileID: 1214743790}
   m_Layer: 0
   m_Name: ProjectileEnemy[Morphed]
   m_TagString: Untagged
@@ -1536,37 +1536,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1214743790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214743789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ae706cbad451b844baaa8e03b05b548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &1214743791
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214743789}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3f089ca44e14e9f48ac32bc5c748f912, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &1214743792
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1936,7 +1905,6 @@ GameObject:
   - component: {fileID: 1634484373}
   - component: {fileID: 1634484372}
   - component: {fileID: 1634484371}
-  - component: {fileID: 1634484370}
   m_Layer: 0
   m_Name: ProjectileEnemy[Normal]
   m_TagString: Untagged
@@ -1944,25 +1912,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1634484370
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634484369}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3f089ca44e14e9f48ac32bc5c748f912, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &1634484371
 BoxCollider2D:
   m_ObjectHideFlags: 0
