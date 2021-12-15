@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     private float m_currAttackTime = 0.0f;
 
     [Header("Effects")]
+    public float m_ghostFrequency = 0.2f;
+    public float m_currGhostTime = 0.0f;
     private CameraShake m_CameraShake;
 
 
@@ -55,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
         m_currJumps = PlayerData.Instance.m_maxJumps;
 
         m_currAttackTime = Time.time;
+
+        m_currGhostTime = Time.time;
     }
 
     // Update is called once per frame
@@ -67,12 +71,12 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
             
-
+    
         m_inputDir.x = Input.GetAxisRaw("Horizontal");
         m_inputDir.y = Input.GetAxisRaw("Vertical");
 
         //update for animation
-        if (m_inputDir.x != 0.0f)
+        if (m_inputDir.x != 0.0f && !m_isDashing)
         {
             m_faceDir.x = m_inputDir.x;
         }
@@ -92,16 +96,25 @@ public class PlayerMovement : MonoBehaviour
         {
             m_isDashing = true;
             m_currDashTime = Time.time;
+            m_currGhostTime = m_currDashTime;
 
             if (m_CameraShake != null)
                 m_CameraShake.StartShake();
 
-            ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.DASH);
+            ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
         }
 
         if (m_isDashing)
         {
-            m_isDashing = Time.time - m_currDashTime < m_dashTime; 
+            float currTime = Time.time;
+            if (currTime - m_currGhostTime >= m_ghostFrequency)
+            {
+                GameObject obj = ObjectPooler.Instance.FetchGO("GhostPlayer");
+                obj.transform.position = transform.position;
+                m_currGhostTime = currTime;
+            }
+
+            m_isDashing = currTime - m_currDashTime < m_dashTime; 
         }
     }
 

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooler : MonoBehaviour
+public class ObjectPooler : SingletonBase<ObjectPooler>
 {
-    public static ObjectPooler Instance = null;
-
     //// Class to store the Pooling
     //[System.Serializable]
     //public class PoolerTemplate
@@ -31,13 +29,6 @@ public class ObjectPooler : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        Instance = this;
-
         // Transfer from list to dictionary
         foreach (ObjectPoolerItem item in listOfPools)
         {
@@ -50,6 +41,7 @@ public class ObjectPooler : MonoBehaviour
             for (int i = 0; i < dictionaryOfPools[item.name].amountToCreate; ++i)
             {
                 GameObject newObj = Instantiate(dictionaryOfPools[item.name].prefabToCreate);
+                newObj.transform.parent = transform;
                 newObj.SetActive(false);
                 // Add to own list to keep track
                 dictionaryOfPools[item.name].listOfCreatedObjects.Add(newObj);
@@ -81,6 +73,7 @@ public class ObjectPooler : MonoBehaviour
         for (int i = 0; i < dictionaryOfPools[newKey].amountToAdd; ++i)
         {
             GameObject newObj = Instantiate(dictionaryOfPools[newKey].prefabToCreate);
+            newObj.transform.parent = transform;
             newObj.SetActive(false);
             dictionaryOfPools[newKey].listOfCreatedObjects.Add(newObj);
         }
