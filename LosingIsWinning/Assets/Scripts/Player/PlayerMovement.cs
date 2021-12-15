@@ -23,8 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform m_groundCheckPos; 
     public float m_groundCheckRadius;
     public LayerMask m_groundLayers;
-
-    public int m_maxJumps = 1;
+    
     private int m_currJumps = 0;
 
     [System.NonSerialized] public bool m_startJump = false; //when just press jump
@@ -53,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         m_isDashing = false;
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
 
-        m_currJumps = m_maxJumps;
+        m_currJumps = PlayerData.Instance.m_maxJumps;
 
         m_currAttackTime = Time.time;
     }
@@ -124,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
         if (m_isGrounded) //reset number of jumps
         {
-            m_currJumps = m_maxJumps;
+            m_currJumps = PlayerData.Instance.m_maxJumps;
         }
 
         //update right left movement
@@ -152,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
     public void resetJump()
     {
         m_isGrounded = true;
-        m_currJumps = m_maxJumps;
+        m_currJumps = PlayerData.Instance.m_maxJumps;
     }
 
     public void Combat()
