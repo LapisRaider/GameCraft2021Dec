@@ -26,7 +26,7 @@ public class ProjectileEnemyAnimController : MonoBehaviour
 
     public void endAttack()
     {
-        controller.endAttack();
+        //controller.endAttack();
     }
 
 }
