@@ -133,6 +133,19 @@ public class PlayerMovement : MonoBehaviour
             m_rigidBody.velocity = new Vector2(m_faceDir.x * m_dashSpeed * Time.fixedDeltaTime, 0.0f);
             return;
         }
+        
+        m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
+        if (m_isGrounded) //reset number of jumps
+        {
+            Debug.Log("a " + Mathf.Abs(m_rigidBody.velocity.y));
+            if (m_currJumps < PlayerData.Instance.m_maxJumps && !m_startJump)
+            {
+                Debug.Log("b " + m_currJumps);
+
+                ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.LAND);
+                m_currJumps = PlayerData.Instance.m_maxJumps;
+            }
+        }
 
         //Debug.Log("Jump Bool" + m_startJump);
         //Debug.Log(m_currJumps);
@@ -141,16 +154,6 @@ public class PlayerMovement : MonoBehaviour
         {
             m_rigidBody.velocity = Vector2.up * m_jumpSpeed * Time.fixedDeltaTime;
             m_startJump = false;
-        }
-
-        m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
-        if (m_isGrounded) //reset number of jumps
-        {
-            if (m_currJumps < PlayerData.Instance.m_maxJumps && Mathf.Abs(m_rigidBody.velocity.y) <= Mathf.Epsilon)
-            {
-                ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.LAND);
-                m_currJumps = PlayerData.Instance.m_maxJumps;
-            }
         }
 
         //update right left movement
