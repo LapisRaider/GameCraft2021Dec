@@ -97,7 +97,8 @@ public class ProjectileEnemyController : MonoBehaviour
                     {
                         m_attackTimer = 0;
                         m_currState = PROJECTILE_STATES.STATE_MORPHED_ATTACKING;
-                        Attack();
+                        m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+                        //Attack();
                     }
                 }
                 break;
@@ -114,6 +115,13 @@ public class ProjectileEnemyController : MonoBehaviour
         m_attackGO.SetActive(true);
         m_attackGO.GetComponent<ProjectileEnemyAttack>().startAttack = true;
         m_currState = PROJECTILE_STATES.STATE_MORPHED_IDLE;
+    }
+
+    public void EndAttack()
+    {
+        m_currState = PROJECTILE_STATES.STATE_MORPHED_IDLE;
+        m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
+
     }
 
     public void StartMorphing()

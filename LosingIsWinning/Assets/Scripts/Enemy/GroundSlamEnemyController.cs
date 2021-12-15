@@ -97,6 +97,7 @@ public class GroundSlamEnemyController : MonoBehaviour
                     {
                         m_attackTimer = 0;
                         m_currState = GROUNDSLAM_STATES.STATE_MORPHED_ATTACKING;
+                        m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
                         //Attack();
                     }
                 }
@@ -119,6 +120,7 @@ public class GroundSlamEnemyController : MonoBehaviour
     public void endAttack()
     {
         m_currState = GROUNDSLAM_STATES.STATE_MORPHED_IDLE;
+        m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
         //m_morphedGO.GetComponent<Animator>()
     }    
 

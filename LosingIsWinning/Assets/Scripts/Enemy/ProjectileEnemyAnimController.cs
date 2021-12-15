@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundSlamAnimController : MonoBehaviour
+public class ProjectileEnemyAnimController : MonoBehaviour
 {
-    GroundSlamEnemyController controller;
+    ProjectileEnemyController controller;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponentInParent<GroundSlamEnemyController>();
+        controller = GetComponentInParent<ProjectileEnemyController>();
+
     }
 
     // Update is called once per frame
@@ -27,4 +28,5 @@ public class GroundSlamAnimController : MonoBehaviour
     {
         controller.endAttack();
     }
+
 }
