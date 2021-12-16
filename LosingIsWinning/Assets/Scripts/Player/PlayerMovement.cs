@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float m_bounceForce = 2.0f;
     private bool m_bounceUpAttack = false;
-    
+
 
     [Header("Effects")]
     public float m_ghostFrequency = 0.2f;
@@ -55,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator m_Animator;
 
     private bool m_AttackAnimDone = true;
+
+    public SpriteRenderer m_slashRightFX;
+    public GameObject m_slashUpFX;
 
     [Header("Damage Player")]
     public float m_invicibleTime = 0.2f;
@@ -270,11 +273,24 @@ public class PlayerMovement : MonoBehaviour
         {
             hitDir.y = m_hitOffset.y;
             hitSize = new Vector2(m_attackRange.y, m_attackRange.x);
+
+            if (m_slashUpFX != null)
+            {
+                m_slashUpFX.transform.position = transform.position + hitDir;
+                m_slashUpFX.SetActive(true);
+            }
         }
         else //horizontal attack base on where the player is facing
         {
             hitDir.x = m_hitOffset.x * m_faceDir.x;
             hitSize = new Vector2(m_attackRange.x, m_attackRange.y);
+
+            if (m_slashRightFX != null)
+            {
+                m_slashRightFX.flipX = m_faceDir.x < 0.0f;
+                m_slashRightFX.gameObject.transform.position = transform.position + hitDir;
+                m_slashRightFX.gameObject.SetActive(true);
+            }
         }
 
         m_hitDir = hitDir;
