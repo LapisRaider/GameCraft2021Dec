@@ -10,6 +10,8 @@ public class Dialogue
 
     public bool m_hasChoice = false;
     public List<DialogueChoice> m_choices = new List<DialogueChoice>();
+
+    public bool m_hitPlayerAfter = false;
 }
 
 [System.Serializable]

@@ -37,6 +37,10 @@ public class DialogueManager : SingletonBase<DialogueManager>
     [HideInInspector] public delegate void DialogueFinishDelegate(int lastDiOption);
     [HideInInspector] public DialogueFinishDelegate m_dialogueFinishCallback;
 
+    [HideInInspector] public delegate void AngryAtPlayer();
+    [HideInInspector] public AngryAtPlayer m_angryPlayerCallback;
+
+
     public void Start()
     {
         ResetDialogue();
@@ -196,8 +200,6 @@ public class DialogueManager : SingletonBase<DialogueManager>
         if (m_currOptionIndex == -1)
         {
             CloseDialogue();
-            //TODO:: can do a smacking also 
-
             return;
         }
 
@@ -217,6 +219,12 @@ public class DialogueManager : SingletonBase<DialogueManager>
 
     public void CloseDialogue()
     {
+        if (m_currDiaOption.m_hitPlayerAfter)
+        {
+            if (m_angryPlayerCallback != null)
+                m_angryPlayerCallback.Invoke();
+        }
+
         foreach (GameObject choiceBox in m_choiceBoxButton)
         {
             choiceBox.gameObject.SetActive(false);

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5075545520428781053}
   - component: {fileID: 5075545520428781052}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: NPC 1
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3875480880145916874, guid: bd1b71b509ae7ea469d138eb1232a763, type: 3}
+  m_Sprite: {fileID: 9131005567460290503, guid: 16f30b7872477a84b82be210feec38ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 5075545520428781051}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5b9ffaf345b32dc4c872d2b968a0bb49, type: 2}
+  m_Controller: {fileID: 22100000, guid: 547f7f64cae314c4eb95c21881f07e8c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -117,18 +117,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022034049, y: 0.18750072}
+  m_Offset: {x: 0.055908978, y: 0.09715104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 2.0625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6169488, y: 1.3750014}
+  m_Size: {x: 1.9255868, y: 2.2634397}
   m_EdgeRadius: 0
 --- !u!114 &5075545520428781052
 MonoBehaviour:
@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NpcDialogue: {fileID: 0}
-  m_rememberPrevDia: 1
+  m_rememberPrevDia: 0
   m_hitForce: 2
