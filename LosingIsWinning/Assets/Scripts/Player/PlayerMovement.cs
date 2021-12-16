@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float m_prevGravity = 0.5f;
 
     private Vector2 m_inputDir = Vector2.zero;
-    private Vector2 m_faceDir = Vector2.zero; //for animation, dash
+    [HideInInspector] public Vector2 m_faceDir = Vector2.zero; //for animation, dash
 
     private Rigidbody2D m_rigidBody;
 

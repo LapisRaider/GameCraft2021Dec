@@ -44,6 +44,11 @@ public class Player : SingletonBase<Player>
         m_movement.PlayerKnockBack(dir, force);
     }
 
+    public bool GetPlayerFaceDir()
+    {
+        return m_movement.m_faceDir.x < 0;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Interactable"))

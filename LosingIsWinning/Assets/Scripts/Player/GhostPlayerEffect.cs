@@ -17,8 +17,7 @@ public class GhostPlayerEffect : MonoBehaviour
     private void OnEnable()
     {
         m_currAlpha = m_startingAlpha;
-
-        //TODO:: set sprite image to player curr image
+        m_sprite.flipX = Player.Instance.GetPlayerFaceDir(); //set to curr player face dir
     }
 
     private void Update()
