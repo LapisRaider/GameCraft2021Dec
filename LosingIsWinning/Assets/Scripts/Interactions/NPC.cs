@@ -3,6 +3,7 @@
 public class NPC : Interactiables
 {
     public DialogueData m_NpcDialogue;
+    public bool m_rememberPrevDia = false;
     public float m_hitForce = 1.0f;
 
     private Animator m_animator;
@@ -27,7 +28,7 @@ public class NPC : Interactiables
         if (m_spriteRenderer != null)
             m_spriteRenderer.flipX = m_dirX > 0;
 
-        DialogueManager.Instance.StartDialogue(m_NpcDialogue, m_lastDialogue);
+        DialogueManager.Instance.StartDialogue(m_NpcDialogue, m_rememberPrevDia ? m_lastDialogue : 0);
         DialogueManager.Instance.m_dialogueFinishCallback += DialogueFinish;
         DialogueManager.Instance.m_angryPlayerCallback += NPCAngry;
 
