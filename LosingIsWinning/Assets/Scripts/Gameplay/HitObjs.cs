@@ -32,6 +32,11 @@ public class HitObjs : MonoBehaviour
 
     public bool Hit()
     {
+        if (m_HasBeenHit)
+        {
+            return false;
+        }
+
         if (m_spriteRenderer == null)
             return false;
 

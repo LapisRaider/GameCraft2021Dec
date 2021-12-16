@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Combat")]
     public Vector2 m_hitOffset = Vector2.zero;
+    public Vector2 m_hitEffectOffset = Vector2.zero;
     public Vector2 m_attackRange = Vector2.zero;
     public LayerMask m_attackObjectsMask;
 
@@ -142,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         Combat();
         if (!m_AttackAnimDone) //only when attack anim done can do this
         {
-            m_inputDir.x = 0.0f;
+            //m_inputDir.x = 0.0f;
             CheckHitAnything();
             UpdateAnimation();
             return;
@@ -200,6 +201,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (m_bounceUpAttack)
         {
+            GameObject obj = ObjectPooler.Instance.FetchGO("ExplodeFX");
+
+            if (obj != null)
+                obj.transform.position = transform.position + m_hitDir;
+
             m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, m_bounceForce);
             m_bounceUpAttack = false;
         }
@@ -244,6 +250,10 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + new Vector3(-m_hitOffset.x, 0.0f), new Vector3(m_attackRange.x, m_attackRange.y, 1));
         Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
         Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, -m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
+
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, -m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
     }
 
     public void resetJump()
@@ -277,8 +287,14 @@ public class PlayerMovement : MonoBehaviour
             if (m_slashUpFX != null)
             {
                 m_slashUpFX.transform.position = transform.position + hitDir;
+                m_slashUpFX.transform.position += new Vector3(0, m_hitEffectOffset.y);
                 m_slashUpFX.SetActive(true);
             }
+        }
+        else if (m_inputDir.y < 0.0f) //check if player want to hit down
+        {
+            hitDir.y = -m_hitOffset.y;
+            hitSize = new Vector2(m_attackRange.y, m_attackRange.x);
         }
         else //horizontal attack base on where the player is facing
         {
@@ -289,12 +305,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_slashRightFX.flipX = m_faceDir.x < 0.0f;
                 m_slashRightFX.gameObject.transform.position = transform.position + hitDir;
+                m_slashRightFX.gameObject.transform.position += new Vector3(m_hitEffectOffset.x * m_faceDir.x, 0);
                 m_slashRightFX.gameObject.SetActive(true);
             }
         }
 
         m_hitDir = hitDir;
-        m_hitSize = hitDir;
+        m_hitSize = hitSize;
 
         m_Animator.SetTrigger("Attack");
         m_AttackAnimDone = false;
@@ -302,7 +319,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckHitAnything()
     {
-        Collider2D[] attackObjs = Physics2D.OverlapBoxAll(transform.position + m_hitDir, m_hitSize, m_attackObjectsMask);
+        Collider2D[] attackObjs = Physics2D.OverlapBoxAll(transform.position + m_hitDir, m_hitSize, 0, m_attackObjectsMask);
         foreach (Collider2D objs in attackObjs)
         {
             HitObjs hitObj = objs.GetComponent<HitObjs>();
@@ -314,10 +331,6 @@ public class PlayerMovement : MonoBehaviour
                 if (m_hitDir.y < 0.0f)
                 {
                     m_bounceUpAttack = true;
-                    GameObject obj = ObjectPooler.Instance.FetchGO("ExplodeFX");
-
-                    if (obj != null)
-                        obj.transform.position = transform.position + m_hitDir;
                 }
             }
         }
