@@ -11,6 +11,7 @@ public class NPC : Interactiables
     {
         DialogueManager.Instance.StartDialogue(m_NpcDialogue, m_lastDialogue);
         DialogueManager.Instance.m_dialogueFinishCallback += DialogueFinish;
+        m_interactionFinish = false;
     }
 
     public void DialogueFinish(int lastDialogueOption)

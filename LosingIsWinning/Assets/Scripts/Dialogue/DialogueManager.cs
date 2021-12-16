@@ -17,7 +17,6 @@ public class DialogueManager : SingletonBase<DialogueManager>
     public float m_maxCorruptionFrequency = 0.5f;
 
     //TODO:: REMOVE THIS, TESTING PURPOESE
-    public DialogueData testDialogueData;
     public float TEMP_CORRUPTIONFREQUENCY = 0.0f;
 
     [Header("Text Data")]
@@ -32,6 +31,8 @@ public class DialogueManager : SingletonBase<DialogueManager>
 
     IEnumerator m_prevCouroutine = null;
 
+    bool m_dialogueOver = true;
+
     //delegates
     [HideInInspector] public delegate void DialogueFinishDelegate(int lastDiOption);
     [HideInInspector] public DialogueFinishDelegate m_dialogueFinishCallback;
@@ -39,6 +40,23 @@ public class DialogueManager : SingletonBase<DialogueManager>
     public void Start()
     {
         ResetDialogue();
+
+        //make UI inactive
+        if (m_dialogueBox != null)
+            m_dialogueBox.SetActive(false);
+
+        if (m_text != null)
+            m_text.gameObject.SetActive(false);
+
+        m_dialogueOver = true;
+    }
+
+    public void Update()
+    {
+        if (!m_dialogueOver && Input.GetKeyDown(KeyCode.Return))
+        {
+            NextSentence();
+        }
     }
 
     public void ResetDialogue()
@@ -68,25 +86,6 @@ public class DialogueManager : SingletonBase<DialogueManager>
         }
     }
 
-    //TODO:: REMOVE THIS, THIS IS FOR TESTING PURPOSES
-    public void TESTING()
-    {
-        ResetDialogue();
-
-        //make UI active
-        if (m_dialogueBox != null)
-            m_dialogueBox.SetActive(true);
-
-        if (m_text != null)
-            m_text.gameObject.SetActive(true);
-
-        m_currDialogues = testDialogueData.m_Dialogues;
-        m_currDiaOption = m_currDialogues[0];
-        m_currText = m_currDiaOption.m_dialogue[0];
-
-        StartPrintText();
-    }
-
     public void StartDialogue(DialogueData newDialogue, int currDialogueOption = 0)
     {
         ResetDialogue();
@@ -103,6 +102,8 @@ public class DialogueManager : SingletonBase<DialogueManager>
         m_currOptionIndex = currDialogueOption;
         m_currDiaOption = m_currDialogues[currDialogueOption];
         m_currText = m_currDiaOption.m_dialogue[0];
+
+        m_dialogueOver = false;
 
         //start printing
         StartPrintText();
@@ -186,6 +187,9 @@ public class DialogueManager : SingletonBase<DialogueManager>
     public void PickOption(int buttonIndex)
     {
         //get next dialogue index
+        if (m_currDiaOption == null)
+            return;
+
         m_currOptionIndex = m_currDiaOption.m_choices[buttonIndex].m_nextDialogueIndex;
 
         //if -1, close dialogue box
@@ -226,6 +230,8 @@ public class DialogueManager : SingletonBase<DialogueManager>
 
         if (m_dialogueFinishCallback != null)
             m_dialogueFinishCallback.Invoke(m_currOptionIndex);
+
+        m_dialogueOver = true;
     }
 
     IEnumerator PrintText(char[] sentence)
