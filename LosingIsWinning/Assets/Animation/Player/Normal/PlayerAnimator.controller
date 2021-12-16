@@ -1129,7 +1129,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: MovingVert
     m_EventTreshold: -0.2
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: Jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
