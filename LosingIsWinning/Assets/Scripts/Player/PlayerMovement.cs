@@ -233,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
     public void UpdateAnimation()
     {
         m_Animator.SetBool("MovingX", m_inputDir.x != 0.0f);
-        m_Animator.SetBool("Falling", m_rigidBody.velocity.y < 0.0f);
-        m_Animator.SetBool("Jumping", m_rigidBody.velocity.y < 0.0f);
+        m_Animator.SetBool("Falling", m_rigidBody.velocity.y < 0.0f && !m_isGrounded);
+        m_Animator.SetBool("Jumping", m_rigidBody.velocity.y > 0.0f && !m_isGrounded);
     }
 }
