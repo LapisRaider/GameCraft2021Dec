@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : SingletonBase<Player>
 {
     Interactiables m_currInteraction;
     bool m_InteractionStarted = false;
 
+    PlayerMovement m_movement;
+
     // Start is called before the first frame update
-    void Start()
+    public override void Awake()
     {
         m_currInteraction = null;
+        m_movement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -21,6 +24,7 @@ public class Player : MonoBehaviour
             if (m_currInteraction == null || m_currInteraction.InteractionFinish())
             {
                 PlayerData.Instance.EnableActions(true);
+                m_InteractionStarted = false;
             }
 
             return;
@@ -33,6 +37,11 @@ public class Player : MonoBehaviour
             PlayerData.Instance.EnableActions(false); //make player unable to move
             m_InteractionStarted = true;
         }
+    }
+
+    public void HurtPlayer(Vector2 dir, float force = 1.0f)
+    {
+        m_movement.PlayerKnockBack(dir, force);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
