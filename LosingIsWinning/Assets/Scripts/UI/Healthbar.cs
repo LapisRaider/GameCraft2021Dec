@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Healthbar : MonoBehaviour
+public class Healthbar : SingletonBase<Healthbar>
 {
     public Slider m_slider;
     //public Rect
@@ -21,8 +21,13 @@ public class Healthbar : MonoBehaviour
             m_slider.value = health;
     }
 
-    public void ShakeBar()
+    public void LoseHealth()
     {
         m_animator.SetTrigger("Shake");
+    }
+
+    public void GainHealth()
+    {
+        //m_animator.SetTrigger("Shake");
     }
 }

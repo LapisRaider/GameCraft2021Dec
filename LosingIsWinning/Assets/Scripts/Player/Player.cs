@@ -39,9 +39,10 @@ public class Player : SingletonBase<Player>
         }
     }
 
-    public void HurtPlayer(Vector2 dir, float force = 1.0f)
+    public void HurtPlayer(Vector2 dir, float force = 1.0f, int sanityDamage = 0)
     {
         m_movement.PlayerKnockBack(dir, force);
+        GameManager.Instance.TakeSanityDamage(sanityDamage);
     }
 
     public bool GetPlayerFaceDir()

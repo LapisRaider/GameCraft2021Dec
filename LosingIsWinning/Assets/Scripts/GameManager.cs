@@ -70,6 +70,9 @@ public class GameManager : SingletonBase<GameManager>
         {
             // Lost again
         }
+
+        Healthbar.Instance.SetHealth(PlayerData.Instance.m_currSanityMeter / PlayerData.Instance.m_maxSanityMeter);
+        Healthbar.Instance.LoseHealth();
     }
 
     public void GainSanity(int sanityGain)
@@ -81,5 +84,8 @@ public class GameManager : SingletonBase<GameManager>
         {
             PlayerData.Instance.m_currSanityMeter = PlayerData.Instance.m_maxSanityMeter;
         }
+
+        Healthbar.Instance.SetHealth(PlayerData.Instance.m_currSanityMeter / PlayerData.Instance.m_maxSanityMeter);
+        Healthbar.Instance.GainHealth();
     }
 }
