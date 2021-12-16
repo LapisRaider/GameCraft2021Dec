@@ -1,0 +1,706 @@
+fileFormatVersion: 2
+guid: bfbf3594e742bf249b721a3b6b567d61
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5083304513570391629
+    second: ENVIRONMENT TILESET 2_0
+  - first:
+      213: 536254718727782715
+    second: ENVIRONMENT TILESET 2_1
+  - first:
+      213: -712988401367302611
+    second: ENVIRONMENT TILESET 2_2
+  - first:
+      213: -5102327090859040100
+    second: ENVIRONMENT TILESET 2_3
+  - first:
+      213: -9056423727331840193
+    second: ENVIRONMENT TILESET 2_4
+  - first:
+      213: 9208520018311107034
+    second: ENVIRONMENT TILESET 2_5
+  - first:
+      213: 2266547392352873927
+    second: ENVIRONMENT TILESET 2_6
+  - first:
+      213: -3589282295388378095
+    second: ENVIRONMENT TILESET 2_7
+  - first:
+      213: 6625365016902604412
+    second: ENVIRONMENT TILESET 2_8
+  - first:
+      213: 8546363172353049461
+    second: ENVIRONMENT TILESET 2_9
+  - first:
+      213: 7759458611621969862
+    second: ENVIRONMENT TILESET 2_10
+  - first:
+      213: 3864550807686435569
+    second: ENVIRONMENT TILESET 2_11
+  - first:
+      213: 2270992308093751601
+    second: ENVIRONMENT TILESET 2_12
+  - first:
+      213: -3362252842107486412
+    second: ENVIRONMENT TILESET 2_13
+  - first:
+      213: -1847245061497774515
+    second: ENVIRONMENT TILESET 2_14
+  - first:
+      213: -925362825361450033
+    second: ENVIRONMENT TILESET 2_15
+  - first:
+      213: 6955310350620921656
+    second: ENVIRONMENT TILESET 2_16
+  - first:
+      213: -8201097078659025925
+    second: ENVIRONMENT TILESET 2_17
+  - first:
+      213: -6973791843677160398
+    second: ENVIRONMENT TILESET 2_18
+  - first:
+      213: -7361788564617559285
+    second: ENVIRONMENT TILESET 2_19
+  - first:
+      213: -5700695191872896520
+    second: ENVIRONMENT TILESET 2_20
+  - first:
+      213: 900050621752988033
+    second: ENVIRONMENT TILESET 2_21
+  - first:
+      213: -2826965440931730952
+    second: ENVIRONMENT TILESET 2_22
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 480
+        width: 50
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b93f773a797479b0800000000000000
+      internalID: -5083304513570391629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 480
+        width: 53
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3185e253d8217700800000000000000
+      internalID: 536254718727782715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_2
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 480
+        width: 135
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e378793d4fa16f0800000000000000
+      internalID: -712988401367302611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_3
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 480
+        width: 95
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c92ae7d4b84e039b0800000000000000
+      internalID: -5102327090859040100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_4
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 480
+        width: 96
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3f67fc5a9e115280800000000000000
+      internalID: -9056423727331840193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_5
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 320
+        width: 105
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad1d186fa2c3bcf70800000000000000
+      internalID: 9208520018311107034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_6
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 320
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cde7cb38d4647f10800000000000000
+      internalID: 2266547392352873927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_7
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 320
+        width: 94
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ce6c8e4ce403ec0800000000000000
+      internalID: -3589282295388378095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_8
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 320
+        width: 56
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7697c3516602fb50800000000000000
+      internalID: 6625365016902604412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_9
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 160
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57385915608ca9670800000000000000
+      internalID: 8546363172353049461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_10
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 160
+        width: 44
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cfb213fe722fab60800000000000000
+      internalID: 7759458611621969862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_11
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 160
+        width: 150
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f2599cfb74a1a530800000000000000
+      internalID: 3864550807686435569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_12
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 160
+        width: 60
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1319293d87f248f10800000000000000
+      internalID: 2270992308093751601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_13
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 160
+        width: 53
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43fb225aad0e651d0800000000000000
+      internalID: -3362252842107486412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_14
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 160
+        width: 27
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e945857644d56e0800000000000000
+      internalID: -1847245061497774515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_15
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 160
+        width: 53
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb9af1c9637823f0800000000000000
+      internalID: -925362825361450033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_16
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 160
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83f8b5fb9e9368060800000000000000
+      internalID: 6955310350620921656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_17
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 0
+        width: 53
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3f80288a9df2e80800000000000000
+      internalID: -8201097078659025925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_18
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 126
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23c3b14544d183f90800000000000000
+      internalID: -6973791843677160398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_19
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 0
+        width: 131
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03007e0e4ca5d990800000000000000
+      internalID: -7361788564617559285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_20
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 0
+        width: 17
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f183a33def03e0b0800000000000000
+      internalID: -5700695191872896520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_21
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 0
+        width: 38
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181d475954f9d7c00800000000000000
+      internalID: 900050621752988033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENVIRONMENT TILESET 2_22
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 0
+        width: 125
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f965fcc8e994c8d0800000000000000
+      internalID: -2826965440931730952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: f69e4db3f88ff3743af1b4b898c068c4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

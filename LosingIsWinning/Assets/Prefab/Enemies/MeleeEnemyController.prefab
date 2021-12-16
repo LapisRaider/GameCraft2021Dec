@@ -426,7 +426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3955910623877945465
 Transform:
   m_ObjectHideFlags: 0
@@ -465,11 +465,12 @@ MonoBehaviour:
   m_dmg: 0
   m_attackTimer: 0
   m_attackTime: 3
-  m_groundDetection: {fileID: 0}
-  m_speed: 0
-  m_distance: 0
-  m_patrolTimer: 0
-  m_patrolTime: 0
+  m_groundDetection: {fileID: 4494005089105724451}
+  m_speed: 2
+  m_distance: 0.5
+  m_patrolTime: 5
+  m_detectionRange: 1.5
+  m_attackRange: 0.5
 --- !u!1 &3955910624516452207
 GameObject:
   m_ObjectHideFlags: 0

@@ -146,50 +146,24 @@ public class GroundSlamEnemyController : MonoBehaviour
             default:
                 break;
         }
-
-        // If its patroling to move
-        if (m_moving)
-        {
-            // Move 
-
-        }
     }
+
+
 
     public void Attack()
     {
         m_attackGO.transform.position = transform.position;
         m_attackGO.SetActive(true);
         m_attackGO.GetComponent<GroundSlamEnemyAttack>().startAttack = true;
-        m_currState = GROUNDSLAM_STATES.STATE_MORPHED_IDLE;
+       // m_currState = GROUNDSLAM_STATES.STATE_MORPHED_IDLE;
     }
 
     public void endAttack()
     {
         m_currState = GROUNDSLAM_STATES.STATE_MORPHED_IDLE;
         m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
-        //m_morphedGO.GetComponent<Animator>()
-    }    
-
-    public void StartMorphing()
-    {
-        m_normalGO.SetActive(false);
-        m_morphedGO.SetActive(true);
-
-        // When done with morphing
-        m_currState = GROUNDSLAM_STATES.STATE_MORPHED_IDLE;
-
-    }
-
-    public void StartUnmorphing()
-    {
         m_attackTimer = 0;
-
-        m_normalGO.SetActive(true);
-        m_morphedGO.SetActive(false);
-        m_attackGO.GetComponent<GroundSlamEnemyAttack>().ResetAll();
-
-        // When done with unmorphing
-        m_currState = GROUNDSLAM_STATES.STATE_NORMAL;
+        //m_morphedGO.GetComponent<Animator>()
     }
 
     public void CheckForPlayer()
@@ -197,8 +171,8 @@ public class GroundSlamEnemyController : MonoBehaviour
         RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_detectionRange, ~gameObject.layer);
         RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_detectionRange, ~gameObject.layer);
 
-        Debug.DrawRay(transform.position, (Vector2.right * m_detectionRange), Color.red);
-        Debug.DrawRay(transform.position, (Vector2.left * m_detectionRange), Color.red);
+        //Debug.DrawRay(transform.position, (Vector2.right * m_detectionRange), Color.red);
+        //  Debug.DrawRay(transform.position, (Vector2.left * m_detectionRange), Color.red);
         if (hitInfoRight.collider == true)
         {
             Debug.Log(hitInfoRight.collider.gameObject.name);
@@ -222,17 +196,6 @@ public class GroundSlamEnemyController : MonoBehaviour
             }
         }
     }
-    public void RotateLeft()
-    {
-        transform.eulerAngles = new Vector3(0, -180, 0);
-        m_movingRight = false;
-    }
-
-    public void RotateRight()
-    {
-        transform.eulerAngles = new Vector3(0, 0, 0);
-        m_movingRight = true;
-    }
 
     public void IdleMovement()
     {
@@ -243,19 +206,24 @@ public class GroundSlamEnemyController : MonoBehaviour
             // Get the bottom and right hit info 
             // Checks if theres a wall infront or a drop below
             RaycastHit2D hitInfoDown = Physics2D.Raycast(m_groundDetection.position, Vector2.down, m_distance);
+            Debug.DrawRay(m_groundDetection.position, (Vector2.down * m_distance), Color.green);
+            Debug.Log(m_groundDetection.position);
             RaycastHit2D hitInfoForward;
             if (m_movingRight)
             {
                 hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.right, m_distance);
-                //Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
-
+                Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
+                //Debug.Log("Testing Right");
             }
             else
             {
                 hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.left, m_distance);
+               // Debug.Log("Testing Left");
 
-                //Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
+                Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
             }
+
+            //Debug.Log(hitInfoForward.collider.gameObject);
             // Down collider did not hit anything
             // If forward collider hit something, it means there is smth infront of it
             if (hitInfoForward.collider == true && hitInfoForward.collider.gameObject.tag == "Map")
@@ -363,4 +331,40 @@ public class GroundSlamEnemyController : MonoBehaviour
         }
 
     }
+
+
+
+    public void StartMorphing()
+    {
+        m_normalGO.SetActive(false);
+        m_morphedGO.SetActive(true);
+
+        // When done with morphing
+        m_currState = GROUNDSLAM_STATES.STATE_MORPHED_IDLE;
+
+    }
+
+    public void StartUnmorphing()
+    {
+        m_attackTimer = 0;
+
+        m_normalGO.SetActive(true);
+        m_morphedGO.SetActive(false);
+        m_attackGO.GetComponent<GroundSlamEnemyAttack>().ResetAll();
+
+        // When done with unmorphing
+        m_currState = GROUNDSLAM_STATES.STATE_NORMAL;
+    }
+    public void RotateLeft()
+    {
+        transform.eulerAngles = new Vector3(0, -180, 0);
+        m_movingRight = false;
+    }
+
+    public void RotateRight()
+    {
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        m_movingRight = true;
+    }
+
 }

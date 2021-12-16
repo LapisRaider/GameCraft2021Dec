@@ -205,18 +205,20 @@ public class MeleeEnemyController : MonoBehaviour
             // Get the bottom and right hit info 
             // Checks if theres a wall infront or a drop below
             RaycastHit2D hitInfoDown = Physics2D.Raycast(m_groundDetection.position, Vector2.down, m_distance);
+            Debug.DrawRay(m_groundDetection.position, (Vector2.down * m_distance), Color.green);
+
             RaycastHit2D hitInfoForward;
             if (m_movingRight)
             {
                 hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.right, m_distance);
-                //Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
+                Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
 
             }
             else
             {
                 hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.left, m_distance);
 
-                //Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
+                Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
             }
 
             // Down collider did not hit anything
