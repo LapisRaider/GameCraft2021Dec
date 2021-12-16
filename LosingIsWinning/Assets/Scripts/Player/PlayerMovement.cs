@@ -89,19 +89,17 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        UpdateAnimation();
-
         //do not move when camera still moving
         if (!PlayerData.Instance.CanMove())
         {
             m_inputDir = Vector2.zero;
+            UpdateAnimation();
             return;
         }
             
-    
         m_inputDir.x = Input.GetAxisRaw("Horizontal");
         m_inputDir.y = Input.GetAxisRaw("Vertical");
-
+ 
         //update for animation
         if (m_inputDir.x != 0.0f && !m_isDashing)
         {
@@ -135,7 +133,9 @@ public class PlayerMovement : MonoBehaviour
 
             m_rigidBody.gravityScale = 0.0f;
             ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
-        } 
+        }
+
+        UpdateAnimation();
     }
 
     private void FixedUpdate()
