@@ -47,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer m_spriteRenderer;
     private Animator m_Animator;
 
+    private bool m_AttackAnimDone = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
 
         m_Animator = GetComponent<Animator>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
+
+        m_AttackAnimDone = true;
     }
 
     // Update is called once per frame
@@ -108,8 +112,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Combat();
-        if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!m_AttackAnimDone) //only when attack anim done can do this
         {
+            m_inputDir.x = 0.0f;
+            UpdateAnimation();
             return;
         }
 
@@ -150,10 +156,10 @@ public class PlayerMovement : MonoBehaviour
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
         if (m_isGrounded) //reset number of jumps
         {
-            Debug.Log("a " + Mathf.Abs(m_rigidBody.velocity.y));
+            //Debug.Log("a " + Mathf.Abs(m_rigidBody.velocity.y));
             if (m_currJumps < PlayerData.Instance.m_maxJumps && !m_startJump)
             {
-                Debug.Log("b " + m_currJumps);
+                //Debug.Log("b " + m_currJumps);
 
                 ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.LAND);
                 m_currJumps = PlayerData.Instance.m_maxJumps;
@@ -234,6 +240,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         m_Animator.SetTrigger("Attack");
+        m_AttackAnimDone = false;
     }
 
     public void UpdateAnimation()
@@ -244,5 +251,11 @@ public class PlayerMovement : MonoBehaviour
         m_Animator.SetBool("Falling", m_rigidBody.velocity.y < 0.0f && !m_isGrounded);
         m_Animator.SetBool("Jumping", m_rigidBody.velocity.y > 0.0f && !m_isGrounded);
         m_Animator.SetBool("IsDashing", m_isDashing);
+        m_Animator.SetBool("IsGround", m_isGrounded);
+    }
+
+    public void FinishAttackAnim()
+    {
+        m_AttackAnimDone = true;
     }
 }
