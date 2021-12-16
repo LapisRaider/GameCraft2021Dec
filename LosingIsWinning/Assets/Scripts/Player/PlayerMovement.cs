@@ -232,11 +232,14 @@ public class PlayerMovement : MonoBehaviour
 
             hitObj.Hit();
         }
+
+        m_Animator.SetTrigger("Attack");
     }
 
     public void UpdateAnimation()
     {
         m_Animator.SetBool("MovingX", m_inputDir.x != 0.0f);
+        m_Animator.SetBool("MovingY", m_inputDir.y != 0.0f);
         m_Animator.SetBool("Falling", m_rigidBody.velocity.y < 0.0f && !m_isGrounded);
         m_Animator.SetBool("Jumping", m_rigidBody.velocity.y > 0.0f && !m_isGrounded);
     }
