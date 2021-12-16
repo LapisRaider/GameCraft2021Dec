@@ -72,6 +72,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (m_isDashing)
+        {
+            float currTime = Time.time;
+            if (currTime - m_currGhostTime >= m_ghostFrequency)
+            {
+                GameObject obj = ObjectPooler.Instance.FetchGO("GhostPlayer");
+                obj.transform.position = transform.position;
+                m_currGhostTime = currTime;
+            }
+
+            m_isDashing = currTime - m_currDashTime < m_dashTime;
+            if (!m_isDashing)
+            {
+                m_rigidBody.gravityScale = m_prevGravity;
+            }
+        }
+
+        UpdateAnimation();
+
         //do not move when camera still moving
         if (!PlayerData.Instance.CanMove())
         {
@@ -116,26 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
             m_rigidBody.gravityScale = 0.0f;
             ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
-        }
-
-        if (m_isDashing)
-        {
-            float currTime = Time.time;
-            if (currTime - m_currGhostTime >= m_ghostFrequency)
-            {
-                GameObject obj = ObjectPooler.Instance.FetchGO("GhostPlayer");
-                obj.transform.position = transform.position;
-                m_currGhostTime = currTime;
-            }
-
-            m_isDashing = currTime - m_currDashTime < m_dashTime; 
-            if (!m_isDashing)
-            {
-                m_rigidBody.gravityScale = m_prevGravity;
-            }
-        }
-
-        UpdateAnimation();
+        } 
     }
 
     private void FixedUpdate()
@@ -240,6 +240,7 @@ public class PlayerMovement : MonoBehaviour
     {
         m_Animator.SetBool("MovingX", m_inputDir.x != 0.0f);
         m_Animator.SetBool("MovingY", m_inputDir.y != 0.0f);
+        m_Animator.SetFloat("MovingVert", m_inputDir.y);
         m_Animator.SetBool("Falling", m_rigidBody.velocity.y < 0.0f && !m_isGrounded);
         m_Animator.SetBool("Jumping", m_rigidBody.velocity.y > 0.0f && !m_isGrounded);
     }
