@@ -315,7 +315,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     m_bounceUpAttack = true;
                     GameObject obj = ObjectPooler.Instance.FetchGO("ExplodeFX");
-                    obj.transform.position = transform.position + m_hitDir;
+
+                    if (obj != null)
+                        obj.transform.position = transform.position + m_hitDir;
                 }
             }
         }

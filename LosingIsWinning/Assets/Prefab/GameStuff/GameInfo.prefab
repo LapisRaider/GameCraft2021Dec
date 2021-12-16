@@ -49,6 +49,7 @@ MonoBehaviour:
   - {fileID: 1097636981575321187, guid: f8d7d6fa5e6c98341b5de2059d02211b, type: 3}
   - {fileID: 7588893179858692606, guid: 3f9b51a2ca656a74bb75b535632050c4, type: 3}
   - {fileID: 8928305436890912162, guid: 52752de7a86c38d4ca40c465826cdad1, type: 3}
+  - {fileID: 7210991742689071013, guid: 852acd75100604e4fb9b82aabbfca75d, type: 3}
   m_amtToCreate: 2
 --- !u!114 &2010359214308162916
 MonoBehaviour:
