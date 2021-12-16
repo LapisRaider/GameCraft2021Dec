@@ -243,5 +243,6 @@ public class PlayerMovement : MonoBehaviour
         m_Animator.SetFloat("MovingVert", m_inputDir.y);
         m_Animator.SetBool("Falling", m_rigidBody.velocity.y < 0.0f && !m_isGrounded);
         m_Animator.SetBool("Jumping", m_rigidBody.velocity.y > 0.0f && !m_isGrounded);
+        m_Animator.SetBool("IsDashing", m_isDashing);
     }
 }
