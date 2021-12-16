@@ -140,6 +140,11 @@ public class PlayerMovement : MonoBehaviour
         //jump
         if (Input.GetButtonDown("Jump") && m_currJumps > 0)
         {
+            if (m_currJumps != PlayerData.Instance.m_maxJumps)
+            {
+                m_Animator.SetTrigger("SecondJump");
+            }
+
             --m_currJumps;
             m_startJump = true;
             ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.JUMP);
