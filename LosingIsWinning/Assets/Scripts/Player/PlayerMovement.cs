@@ -91,6 +91,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Combat();
+        if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            return;
+        }
 
         //jump
         if (Input.GetButtonDown("Jump") && m_currJumps > 0)
