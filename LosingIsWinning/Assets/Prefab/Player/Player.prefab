@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480172315
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1c150bc805b4a0047abc9cab98332a40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_walkSpeed: 180
-  m_jumpSpeed: 210
-  m_fallMultiplier: 4
+  m_jumpSpeed: 275
+  m_fallMultiplier: 2
   m_dashSpeed: 300
   m_dashTime: 0.3
   m_groundCheckPos: {fileID: 4804558606140678135}
@@ -166,6 +166,10 @@ MonoBehaviour:
   m_AttackRate: 0.27
   m_ghostFrequency: 0.08
   m_currGhostTime: 0
+  m_invicibleTime: 0.6
+  m_flickerTime: 0.1
+  m_hurtSprite: {fileID: 6938082337742348203, guid: 704078429f02ab9478be9c658b4bbd51, type: 3}
+  m_hurtSpriteTime: 0.25
 --- !u!114 &4804558605197846512
 MonoBehaviour:
   m_ObjectHideFlags: 0

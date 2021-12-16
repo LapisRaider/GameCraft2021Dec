@@ -49,6 +49,17 @@ public class PlayerMovement : MonoBehaviour
 
     private bool m_AttackAnimDone = true;
 
+    [Header("Damage Player")]
+    public float m_invicibleTime = 0.2f;
+    public float m_flickerTime = 0.1f;
+    public Sprite m_hurtSprite;
+    public float m_hurtSpriteTime = 0.1f; //how long to show hurt sprite
+
+    private bool m_takeDamage = true;
+    private float m_currInvincibleTime;
+
+    private bool m_applyKnockBack = false;
+    private Vector2 m_knockBackForce = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +82,10 @@ public class PlayerMovement : MonoBehaviour
         m_spriteRenderer = GetComponent<SpriteRenderer>();
 
         m_AttackAnimDone = true;
+        m_currInvincibleTime = Time.time;
+        m_takeDamage = true;
+
+        m_applyKnockBack = false;
     }
 
     // Update is called once per frame
@@ -100,6 +115,9 @@ public class PlayerMovement : MonoBehaviour
             UpdateAnimation();
             return;
         }
+
+        if (m_applyKnockBack)
+            return;
             
         m_inputDir.x = Input.GetAxisRaw("Horizontal");
         m_inputDir.y = Input.GetAxisRaw("Vertical");
@@ -141,6 +159,11 @@ public class PlayerMovement : MonoBehaviour
             ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
         }
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            PlayerKnockBack(new Vector2(1.0f, 1.0f), 1.0f);
+        }
+
         UpdateAnimation();
     }
 
@@ -150,6 +173,12 @@ public class PlayerMovement : MonoBehaviour
         if (m_isDashing)
         {
             m_rigidBody.velocity = new Vector2(m_faceDir.x * m_dashSpeed * Time.fixedDeltaTime, 0.0f);
+            return;
+        }
+
+        if (m_applyKnockBack)
+        {
+            m_rigidBody.velocity = m_knockBackForce;
             return;
         }
         
@@ -257,5 +286,43 @@ public class PlayerMovement : MonoBehaviour
     public void FinishAttackAnim()
     {
         m_AttackAnimDone = true;
+    }
+
+    public void PlayerKnockBack(Vector2 dir, float force = 1.0f)
+    {
+        if (!m_takeDamage)
+            return;
+
+        m_takeDamage = false;
+        m_applyKnockBack = true;
+        m_knockBackForce = dir * force;
+        StartCoroutine(Invincibility());
+
+        m_spriteRenderer.sprite = m_hurtSprite; //change sprite to temp hurt sprite
+        m_Animator.enabled = false;
+        Invoke("ChangeHurtSprite", m_hurtSpriteTime);
+    }
+
+    IEnumerator Invincibility()
+    {
+        m_currInvincibleTime = Time.time;
+        while (Time.time - m_currInvincibleTime < m_invicibleTime)
+        {
+            //make player flicker in and out
+            m_spriteRenderer.enabled = !m_spriteRenderer.enabled;
+
+            yield return new WaitForSeconds(m_flickerTime);
+        }
+
+        m_spriteRenderer.enabled = true;
+        m_takeDamage = true;
+
+        yield return null;
+    }
+
+    public void ChangeHurtSprite()
+    {
+        m_Animator.enabled = true;
+        m_applyKnockBack = false;
     }
 }
