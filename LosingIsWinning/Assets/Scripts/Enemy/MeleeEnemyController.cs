@@ -12,6 +12,7 @@ public class MeleeEnemyController : MonoBehaviour
         STATE_UNMORPHING,
         STATE_MORPHING,
         STATE_MORPHED_IDLE,
+        STATE_MORPHED_CHASE,
         STATE_MORPHED_ATTACKING,
         STATE_MORPHED_DEATH,
     }
@@ -31,6 +32,20 @@ public class MeleeEnemyController : MonoBehaviour
     static float ATT_TIME = 2;
     public float m_attackTimer;
     public float m_attackTime;
+
+    [Header("Movement variables")]
+    public Transform m_groundDetection;
+    public float m_speed;
+    [Tooltip("For raycasting")]
+    public float m_distance;
+    [Tooltip("How long they patrol and idle for")]
+    public float m_patrolTime;
+    [Header("Player Detection")]
+    public float m_detectionRange;
+
+    bool m_movingRight = true;
+    bool m_moving;
+    float m_patrolTimer;
 
 
     // Call this function when the player decides to lose sanity or when the duration ends
@@ -91,14 +106,30 @@ public class MeleeEnemyController : MonoBehaviour
                 break;
             case MELEE_STATES.STATE_MORPHED_IDLE:
                 {
-                    m_attackTimer += Time.deltaTime;
+                    //m_attackTimer += Time.deltaTime;
 
-                    if (m_attackTimer >= m_attackTime)
+                    //if (m_attackTimer >= m_attackTime)
+                    //{
+                    //    m_attackTimer = 0;
+                    //    m_currState = MELEE_STATES.STATE_MORPHED_ATTACKING;
+                    //    m_morphedGO.GetComponent<Animator>().SetBool("Attack", true); 
+                    //}
+
+                    m_patrolTimer += Time.deltaTime;
+
+                    if (m_patrolTimer >= m_patrolTime)
                     {
-                        m_attackTimer = 0;
-                        m_currState = MELEE_STATES.STATE_MORPHED_ATTACKING;
-                        m_morphedGO.GetComponent<Animator>().SetBool("Attack", true); 
+                        m_patrolTimer = 0;
+                        // Toggle the moving bool
+                        m_moving = !m_moving;
                     }
+
+                    IdleMovement();
+                }
+                break;
+            case MELEE_STATES.STATE_MORPHED_CHASE:
+                {
+
                 }
                 break;
             case MELEE_STATES.STATE_MORPHED_ATTACKING:
@@ -106,20 +137,109 @@ public class MeleeEnemyController : MonoBehaviour
             default:
                 break;
         }
+
     }
 
     public void Attack()
     {
-                m_attackGO.transform.position = transform.position;
-                m_attackGO.SetActive(true);
-                m_attackGO.GetComponent<MeleeEnemyAttack>().startAttack = true;
-                m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
+        m_attackGO.transform.position = transform.position;
+        m_attackGO.SetActive(true);
+        m_attackGO.GetComponent<MeleeEnemyAttack>().startAttack = true;
+        m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
     }
 
     public void EndAttack()
     {
         m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
         m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
+    }
+
+    public void CheckForPlayer()
+    {
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_detectionRange);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_detectionRange);
+
+        if (hitInfoRight.collider == true)
+        {
+            if (hitInfoRight.collider.gameObject.tag == "Player")
+            {
+                m_currState = MELEE_STATES.STATE_MORPHED_CHASE;
+    
+            }
+        }
+        else if (hitInfoLeft.collider == true)
+        {
+            if (hitInfoLeft.collider.gameObject.tag == "Player")
+            {
+                m_currState = MELEE_STATES.STATE_MORPHED_CHASE;
+                m_patrolTimer = 0.0f;
+            }
+        }
+    }
+
+    public void IdleMovement()
+    {
+        if (m_moving)
+        {
+            transform.Translate(Vector2.right * m_speed * Time.deltaTime);
+
+            // Get the bottom and right hit info 
+            // Checks if theres a wall infront or a drop below
+            RaycastHit2D hitInfoDown = Physics2D.Raycast(m_groundDetection.position, Vector2.down, m_distance);
+            RaycastHit2D hitInfoForward;
+            if (m_movingRight)
+            {
+                hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.right, m_distance);
+                Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
+            }
+            else
+            {
+                hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.left, m_distance);
+                Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
+            }
+            // Down collider did not hit anything
+            // If forward collider hit something, it means there is smth infront of it
+            if (hitInfoForward.collider == true && hitInfoForward.collider.gameObject.tag == "Map")
+            {
+                if (m_movingRight)
+                {
+                    RotateLeft();
+                }
+                else
+                {
+                    RotateRight();
+                }
+            }
+            else if (hitInfoDown.collider == false)
+            {
+                if (m_movingRight)
+                {
+                    RotateLeft();
+                }
+                else
+                {
+                    RotateRight();
+                }
+            }
+        }
+
+    }
+
+    public void ChasingMovement()
+    {
+
+    }
+
+    public void RotateLeft()
+    {
+        transform.eulerAngles = new Vector3(0, -180, 0);
+        m_movingRight = false;
+    }
+
+    public void RotateRight()
+    {
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        m_movingRight = true;
     }
 
     public void StartMorphing()
@@ -129,7 +249,6 @@ public class MeleeEnemyController : MonoBehaviour
 
         // When done with morphing
         m_currState = MELEE_STATES.STATE_MORPHED_IDLE;
-
     }
 
     public void StartUnmorphing()

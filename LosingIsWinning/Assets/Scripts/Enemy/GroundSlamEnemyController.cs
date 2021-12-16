@@ -12,10 +12,13 @@ public class GroundSlamEnemyController : MonoBehaviour
         STATE_UNMORPHING,
         STATE_MORPHING,
         STATE_MORPHED_IDLE,
+        STATE_MORPHED_PATROL,
+        STATE_MORPHED_CHASE,
         STATE_MORPHED_ATTACKING,
         STATE_MORPHED_DEATH,
     }
 
+    [Header("AI Variables")]
     public GameObject m_normalGO;
     public GameObject m_morphedGO;
     public GameObject m_attackGO;
@@ -32,6 +35,15 @@ public class GroundSlamEnemyController : MonoBehaviour
     public float m_attackTimer;
     public float m_attackTime;
 
+    [Header("Movement variables")]
+    public Transform m_groundDetection;
+    public float m_speed;
+    [Tooltip("For raycasting")]
+    public float m_distance;
+    float m_patrolTimer;
+    public float m_patrolTime;
+    private bool m_movingRight;
+    private bool m_moving;
 
     // Call this function when the player decides to lose sanity or when the duration ends
     public void SetMorphing(bool _morphing)
@@ -91,21 +103,53 @@ public class GroundSlamEnemyController : MonoBehaviour
                 break;
             case GROUNDSLAM_STATES.STATE_MORPHED_IDLE:
                 {
-                    m_attackTimer += Time.deltaTime;
+                    //m_attackTimer += Time.deltaTime;
 
-                    if (m_attackTimer >= m_attackTime)
+                    //if (m_attackTimer >= m_attackTime)
+                    //{
+                    //    m_attackTimer = 0;
+                    //    m_currState = GROUNDSLAM_STATES.STATE_MORPHED_ATTACKING;
+                    //    m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+                    //    //Attack();
+                    //}
+                    m_patrolTimer += Time.deltaTime;
+
+                    if (m_patrolTimer >= m_patrolTime)
                     {
-                        m_attackTimer = 0;
-                        m_currState = GROUNDSLAM_STATES.STATE_MORPHED_ATTACKING;
-                        m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
-                        //Attack();
+                        m_patrolTimer = 0;
+                        // Toggle the moving bool
+                        m_moving = !m_moving;
                     }
                 }
                 break;
+            case GROUNDSLAM_STATES.STATE_MORPHED_PATROL:
+                {
+                    m_patrolTimer += Time.deltaTime;
+
+                    if (m_patrolTimer >= m_patrolTime)
+                    {
+                        m_patrolTimer = 0;
+                        // Toggle the moving bool
+                        m_moving = !m_moving;
+                    }
+                }
+                break;
+            case GROUNDSLAM_STATES.STATE_MORPHED_CHASE:
+                {
+
+                }
+                break; 
             case GROUNDSLAM_STATES.STATE_MORPHED_ATTACKING:
                 break;
             default:
                 break;
+        }
+
+        // If its patroling to move
+        if (m_moving)
+        {
+            // Move 
+
         }
     }
 
