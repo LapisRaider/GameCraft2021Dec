@@ -39,9 +39,16 @@ public class PlayerMovement : MonoBehaviour
     public float m_AttackRate = 1.0f;
     private float m_currAttackTime = 0.0f;
 
+    private Vector3 m_hitDir = Vector2.zero;
+    private Vector2 m_hitSize = Vector2.zero;
+
+    public float m_bounceForce = 2.0f;
+    private bool m_bounceUpAttack = false;
+    
+
     [Header("Effects")]
     public float m_ghostFrequency = 0.2f;
-    public float m_currGhostTime = 0.0f;
+    private float m_currGhostTime = 0.0f;
     private CameraShake m_CameraShake;
 
     private SpriteRenderer m_spriteRenderer;
@@ -133,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
         if (!m_AttackAnimDone) //only when attack anim done can do this
         {
             m_inputDir.x = 0.0f;
+            CheckHitAnything();
             UpdateAnimation();
             return;
         }
@@ -185,6 +193,12 @@ public class PlayerMovement : MonoBehaviour
         {
             m_rigidBody.velocity = m_knockBackForce;
             return;
+        }
+
+        if (m_bounceUpAttack)
+        {
+            m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, m_bounceForce);
+            m_bounceUpAttack = false;
         }
         
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
@@ -263,18 +277,30 @@ public class PlayerMovement : MonoBehaviour
             hitSize = new Vector2(m_attackRange.x, m_attackRange.y);
         }
 
-        Collider2D[] attackObjs = Physics2D.OverlapBoxAll(transform.position + hitDir, hitSize, m_attackObjectsMask);
+        m_hitDir = hitDir;
+        m_hitSize = hitDir;
+
+        m_Animator.SetTrigger("Attack");
+        m_AttackAnimDone = false;
+    }
+
+    public void CheckHitAnything()
+    {
+        Collider2D[] attackObjs = Physics2D.OverlapBoxAll(transform.position + m_hitDir, m_hitSize, m_attackObjectsMask);
         foreach (Collider2D objs in attackObjs)
         {
             HitObjs hitObj = objs.GetComponent<HitObjs>();
             if (hitObj == null)
                 continue;
 
-            hitObj.Hit();
+            if (hitObj.Hit())
+            {
+                if (m_hitDir.y < 0.0f)
+                {
+                    m_bounceUpAttack = true;
+                }
+            }
         }
-
-        m_Animator.SetTrigger("Attack");
-        m_AttackAnimDone = false;
     }
 
     public void UpdateAnimation()

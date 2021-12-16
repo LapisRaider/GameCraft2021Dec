@@ -30,14 +30,16 @@ public class HitObjs : MonoBehaviour
         }
     }
 
-    public void Hit()
+    public bool Hit()
     {
         if (m_spriteRenderer == null)
-            return;
+            return false;
 
         m_HasBeenHit = true;
         m_CurrFlashTime = Time.time;
 
         m_spriteRenderer.color = m_HitColor;
+
+        return true;
     }
 }
