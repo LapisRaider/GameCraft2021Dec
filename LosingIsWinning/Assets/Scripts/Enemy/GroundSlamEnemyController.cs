@@ -12,7 +12,6 @@ public class GroundSlamEnemyController : MonoBehaviour
         STATE_UNMORPHING,
         STATE_MORPHING,
         STATE_MORPHED_IDLE,
-        STATE_MORPHED_PATROL,
         STATE_MORPHED_CHASE,
         STATE_MORPHED_ATTACKING,
         STATE_MORPHED_DEATH,
@@ -40,10 +39,15 @@ public class GroundSlamEnemyController : MonoBehaviour
     public float m_speed;
     [Tooltip("For raycasting")]
     public float m_distance;
-    float m_patrolTimer;
+    [Tooltip("How long they patrol and idle for")]
     public float m_patrolTime;
-    private bool m_movingRight;
-    private bool m_moving;
+    [Header("Player Detection")]
+    public float m_detectionRange;
+    public float m_attackRange;
+
+    bool m_movingRight = true;
+    bool m_moving;
+    float m_patrolTimer;
 
     // Call this function when the player decides to lose sanity or when the duration ends
     public void SetMorphing(bool _morphing)
@@ -120,26 +124,24 @@ public class GroundSlamEnemyController : MonoBehaviour
                         // Toggle the moving bool
                         m_moving = !m_moving;
                     }
-                }
-                break;
-            case GROUNDSLAM_STATES.STATE_MORPHED_PATROL:
-                {
-                    m_patrolTimer += Time.deltaTime;
-
-                    if (m_patrolTimer >= m_patrolTime)
-                    {
-                        m_patrolTimer = 0;
-                        // Toggle the moving bool
-                        m_moving = !m_moving;
-                    }
+                    CheckForPlayer();
+                    IdleMovement();
                 }
                 break;
             case GROUNDSLAM_STATES.STATE_MORPHED_CHASE:
                 {
-
+                    CheckForPlayer();
+                    ChasingMovement();
                 }
                 break; 
             case GROUNDSLAM_STATES.STATE_MORPHED_ATTACKING:
+                m_attackTimer += Time.deltaTime;
+
+                if (m_attackTimer >= m_attackTime)
+                {
+                    m_attackTimer = 0;
+                    m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+                }
                 break;
             default:
                 break;
@@ -188,5 +190,177 @@ public class GroundSlamEnemyController : MonoBehaviour
 
         // When done with unmorphing
         m_currState = GROUNDSLAM_STATES.STATE_NORMAL;
+    }
+
+    public void CheckForPlayer()
+    {
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_detectionRange, ~gameObject.layer);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_detectionRange, ~gameObject.layer);
+
+        Debug.DrawRay(transform.position, (Vector2.right * m_detectionRange), Color.red);
+        Debug.DrawRay(transform.position, (Vector2.left * m_detectionRange), Color.red);
+        if (hitInfoRight.collider == true)
+        {
+            Debug.Log(hitInfoRight.collider.gameObject.name);
+
+            if (hitInfoRight.collider.gameObject.tag == "Player")
+            {
+                m_currState = GROUNDSLAM_STATES.STATE_MORPHED_CHASE;
+                m_patrolTimer = 0.0f;
+                RotateRight();
+            }
+        }
+        else if (hitInfoLeft.collider == true)
+        {
+            Debug.Log(hitInfoLeft.collider.gameObject.name);
+
+            if (hitInfoLeft.collider.gameObject.tag == "Player")
+            {
+                m_currState = GROUNDSLAM_STATES.STATE_MORPHED_CHASE;
+                m_patrolTimer = 0.0f;
+                RotateLeft();
+            }
+        }
+    }
+    public void RotateLeft()
+    {
+        transform.eulerAngles = new Vector3(0, -180, 0);
+        m_movingRight = false;
+    }
+
+    public void RotateRight()
+    {
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        m_movingRight = true;
+    }
+
+    public void IdleMovement()
+    {
+        if (m_moving)
+        {
+            transform.Translate(Vector2.right * m_speed * Time.deltaTime);
+
+            // Get the bottom and right hit info 
+            // Checks if theres a wall infront or a drop below
+            RaycastHit2D hitInfoDown = Physics2D.Raycast(m_groundDetection.position, Vector2.down, m_distance);
+            RaycastHit2D hitInfoForward;
+            if (m_movingRight)
+            {
+                hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.right, m_distance);
+                //Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
+
+            }
+            else
+            {
+                hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.left, m_distance);
+
+                //Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
+            }
+            // Down collider did not hit anything
+            // If forward collider hit something, it means there is smth infront of it
+            if (hitInfoForward.collider == true && hitInfoForward.collider.gameObject.tag == "Map")
+            {
+                if (m_movingRight)
+                {
+                    RotateLeft();
+                }
+                else
+                {
+                    RotateRight();
+                }
+            }
+            else if (hitInfoDown.collider == false)
+            {
+                if (m_movingRight)
+                {
+                    RotateLeft();
+                }
+                else
+                {
+                    RotateRight();
+                }
+            }
+
+        }
+    }
+
+    public void ChasingMovement()
+    {
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_attackRange, ~gameObject.layer);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_attackRange, ~gameObject.layer);
+
+        if (hitInfoRight.collider == true && hitInfoRight.collider.gameObject.tag == "Player")
+        {
+            // if they are facing left
+            if (m_movingRight == false)
+            {
+                RotateRight();
+            }
+
+            m_currState = GROUNDSLAM_STATES.STATE_MORPHED_ATTACKING;
+            m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+            m_patrolTimer = 0.0f;
+            m_moving = false;
+        }
+        else if (hitInfoLeft.collider == true && hitInfoLeft.collider.gameObject.tag == "Player")
+        {
+            // If they facing left
+            if (m_movingRight == true)
+            {
+                RotateLeft();
+            }
+
+            m_currState = GROUNDSLAM_STATES.STATE_MORPHED_ATTACKING;
+            m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+            m_patrolTimer = 0.0f;
+            m_moving = false;
+        }
+        else
+        {
+            // no player in range
+            m_moving = true;
+        }
+
+
+        // else just move towards the player
+        if (m_moving)
+        {
+            transform.Translate(Vector2.right * m_speed * Time.deltaTime);
+
+            // Get the bottom and right hit info 
+            // Checks if theres a wall infront or a drop below
+            RaycastHit2D hitInfoDown = Physics2D.Raycast(m_groundDetection.position, Vector2.down, m_distance);
+            RaycastHit2D hitInfoForward;
+            if (m_movingRight)
+            {
+                hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.right, m_distance);
+                //Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
+
+            }
+            else
+            {
+                hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.left, m_distance);
+
+                //Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
+            }
+            // Down collider did not hit anything
+            // If forward collider hit something, it means there is smth infront of it
+            // If it did hit then it means the player ran
+            if (hitInfoForward.collider == true && hitInfoForward.collider.gameObject.tag == "Map")
+            {
+                m_currState = GROUNDSLAM_STATES.STATE_MORPHED_IDLE;
+                m_patrolTimer = 0.0f;
+                m_moving = false;
+
+            }
+            else if (hitInfoDown.collider == false)
+            {
+                m_currState = GROUNDSLAM_STATES.STATE_MORPHED_IDLE;
+                m_patrolTimer = 0.0f;
+                m_moving = false;
+
+            }
+        }
+
     }
 }

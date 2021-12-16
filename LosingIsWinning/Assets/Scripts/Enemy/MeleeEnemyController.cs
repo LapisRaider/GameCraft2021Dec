@@ -218,6 +218,7 @@ public class MeleeEnemyController : MonoBehaviour
 
                 //Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
             }
+
             // Down collider did not hit anything
             // If forward collider hit something, it means there is smth infront of it
             if (hitInfoForward.collider == true && hitInfoForward.collider.gameObject.tag == "Map")
