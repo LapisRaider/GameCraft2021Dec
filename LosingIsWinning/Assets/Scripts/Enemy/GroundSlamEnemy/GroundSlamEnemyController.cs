@@ -58,6 +58,8 @@ public class GroundSlamEnemyController : MonoBehaviour
     bool m_attacking;
     float m_patrolTimer;
 
+    Vector3 originalPosition;
+
     // Call this function when the player decides to lose sanity or when the duration ends
     public void SetMorphing(bool _morphing)
     {
@@ -79,7 +81,7 @@ public class GroundSlamEnemyController : MonoBehaviour
 
         m_attackTimer = 0;
         m_attackTime = ATT_TIME;
-
+        originalPosition = transform.position;
         m_normalGO.SetActive(true);
         m_morphedGO.SetActive(false);
         m_attackGO.SetActive(false);
@@ -426,7 +428,7 @@ public class GroundSlamEnemyController : MonoBehaviour
     public void StartUnmorphing()
     {
         m_attackTimer = 0;
-
+        originalPosition = transform.position;
         m_normalGO.SetActive(true);
         m_morphedGO.SetActive(false);
         m_attackGO.GetComponent<GroundSlamEnemyAttack>().ResetAll();
@@ -464,7 +466,11 @@ public class GroundSlamEnemyController : MonoBehaviour
 
     public void Dead()
     {
-        gameObject.SetActive(false);
+        transform.position = originalPosition;
+        m_normalGO.SetActive(true);
+        m_morphedGO.SetActive(false);
+        m_attackGO.SetActive(false);
+        m_smokeGO.GetComponent<ParticleSystem>().Play();
     }
 
 }
