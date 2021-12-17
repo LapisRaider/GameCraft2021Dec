@@ -22,7 +22,7 @@ public class HitObjs : MonoBehaviour
     {
         if (!m_HasBeenHit)
             return;
-
+        
         if (Time.time - m_CurrFlashTime > m_HitFlashTime)
         {
             m_spriteRenderer.color = Color.white;
