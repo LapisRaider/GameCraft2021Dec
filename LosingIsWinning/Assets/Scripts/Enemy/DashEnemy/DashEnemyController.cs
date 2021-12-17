@@ -43,6 +43,13 @@ public class DashEnemyController : MonoBehaviour
     [Header("Movement variables")]
     public Transform m_groundDetection;
     public float m_speed;
+    public float m_dashSpeed = 200.0f;
+    public float m_dashCooldown = 1.0f;
+    private float m_currDashTime = 0.0f;
+    private float m_prevGravity = 0.5f;
+    private float m_currDashCooldown = 0.0f;
+    public float m_dashTime = 2.0f;
+
     [Tooltip("For raycasting")]
     public float m_distance;
     [Tooltip("How long they patrol and idle for")]
@@ -51,10 +58,14 @@ public class DashEnemyController : MonoBehaviour
     public float m_detectionRange;
     public float m_attackRange;
 
+
     [System.NonSerialized] public bool m_movingRight = true;
     bool m_moving;
     bool m_attacking;
+    bool m_isDashing = false;
     float m_patrolTimer;
+    Rigidbody2D m_rigidBody;
+
 
     public void SetMorphing(bool _morphing)
     {
@@ -81,6 +92,7 @@ public class DashEnemyController : MonoBehaviour
         m_morphedGO.SetActive(false);
         m_attackGO.SetActive(false);
         m_currState = DASH_STATES.STATE_NORMAL;
+        m_rigidBody = GetComponent<Rigidbody2D>();
     }
 
 
@@ -188,13 +200,37 @@ public class DashEnemyController : MonoBehaviour
                 }
                 break;
             case DASH_STATES.STATE_MORPHED_ATTACKING:
-                m_attackTimer += Time.deltaTime;
 
-                if (m_attackTimer >= m_attackTime)
+                // if it isnt attacking
+                if (m_isDashing == false)
                 {
-                    m_attackTimer = 0;
-                    m_attacking = true;
-                    // m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+                    // If it can dash
+                    if (Time.time - m_currDashCooldown > m_dashCooldown)
+                    {
+                        m_morphedGO.GetComponent<Animator>().SetTrigger("AttackTrigger");
+                        //Attack();
+                        //m_attacking = true;
+                    }
+                    else
+                    {
+                        // if cant dash yet, continue to chase
+                        m_currState = DASH_STATES.STATE_MORPHED_CHASE;
+                    }
+                }
+
+                if (m_isDashing)
+                {
+                    Debug.Log("Is dashing");
+                    float currTime = Time.time;
+                    m_isDashing = currTime - m_currDashTime < m_dashTime;
+                    if (!m_isDashing)
+                    {
+                        m_rigidBody.gravityScale = m_prevGravity;
+                        m_currState = DASH_STATES.STATE_MORPHED_IDLE;
+                       //m_attacking = false;
+                        //m_attackTimer = 0;
+                        m_currDashCooldown = Time.time;
+                    }
                 }
 
                 break;
@@ -202,40 +238,67 @@ public class DashEnemyController : MonoBehaviour
                 break;
         }
 
-        UpdateAnimations();
+       // UpdateAnimations();
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_isDashing)
+        {
+            Vector2 m_faceDir;
+
+            if (m_movingRight)
+            {
+                m_faceDir = Vector2.right;
+            }
+            else
+            {
+                m_faceDir = Vector2.left;
+            }
+            Debug.Log(m_faceDir.x);
+
+            m_rigidBody.velocity = new Vector2(m_faceDir.x * m_dashSpeed * Time.fixedDeltaTime, 0.0f);
+            return;
+        }
     }
 
     public void UpdateAnimations()
     {
-        m_morphedGO.GetComponent<Animator>().SetBool("Attack", m_attacking);
-        m_morphedGO.GetComponent<Animator>().SetBool("isMoving", m_moving);
+        //m_morphedGO.GetComponent<Animator>().SetBool("Attack", m_attacking);
+        //m_morphedGO.GetComponent<Animator>().SetBool("isMoving", m_moving);
     }
 
     public void Attack()
     {
         // Do the fancy dash shit here
-        m_attackGO.transform.position = transform.position;
-        m_attackGO.SetActive(true);
-        // Debug.Log("In controller script " + m_movingRight);
-        m_attackGO.GetComponent<MeleeEnemyAttack>().startAttack = true;
-        m_attackGO.GetComponent<MeleeEnemyAttack>().m_movingRight = m_movingRight;
+
+        m_isDashing = true;
+        m_rigidBody.gravityScale = 0.0f;
+        m_currDashTime = Time.time;
+
+        //m_attackGO.transform.position = transform.position;
+        //m_attackGO.SetActive(true);
+        //// Debug.Log("In controller script " + m_movingRight);
+        //m_attackGO.GetComponent<MeleeEnemyAttack>().startAttack = true;
+        //m_attackGO.GetComponent<MeleeEnemyAttack>().m_movingRight = m_movingRight;
         //m_currState = MELEE_STATES.STATE_MORPHED_CHASE;
     }
 
     public void EndAttack()
     {
-        m_currState = DASH_STATES.STATE_MORPHED_CHASE;
-        m_attacking = false;
-        // m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
-        m_attackTimer = 0;
+        //m_currState = DASH_STATES.STATE_MORPHED_CHASE;
+        //m_attacking = false;
+        //// m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
+        //m_attackTimer = 0;
     }
     public void CheckForPlayer()
     {
-        Vector3 centerPosition = transform.position - new Vector3(0, 0.5f, 0);
+        //Debug.Log("Testing");
+        Vector3 centerPosition = transform.position;
         RaycastHit2D hitInfoRight = Physics2D.Raycast(centerPosition, Vector2.right, m_detectionRange);
         RaycastHit2D hitInfoLeft = Physics2D.Raycast(centerPosition, Vector2.left, m_detectionRange);
-        Debug.DrawRay(centerPosition, (Vector2.right * m_detectionRange), Color.red);
-        Debug.DrawRay(centerPosition, (Vector2.left * m_detectionRange), Color.red);
+        Debug.DrawRay(centerPosition, (Vector2.right * m_detectionRange), Color.green);
+        Debug.DrawRay(centerPosition, (Vector2.left * m_detectionRange), Color.green);
 
 
         if (hitInfoRight.collider == true)
@@ -331,7 +394,7 @@ public class DashEnemyController : MonoBehaviour
             }
 
             m_currState = DASH_STATES.STATE_MORPHED_ATTACKING;
-            m_attacking = true;
+            //m_attacking = true;
             // m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
             m_patrolTimer = 0.0f;
             m_moving = false;
@@ -346,7 +409,7 @@ public class DashEnemyController : MonoBehaviour
 
             m_currState = DASH_STATES.STATE_MORPHED_ATTACKING;
             // m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
-            m_attacking = true;
+           // m_attacking = true;
             m_patrolTimer = 0.0f;
             m_moving = false;
         }
