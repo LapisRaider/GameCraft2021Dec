@@ -10,6 +10,11 @@ public class NPC : Interactiables
     [Header("UI stuff")]
     public GameObject m_speechBox;
 
+    [Header("Block Player")]
+    public bool m_blockPlayer = false;
+    public Collider2D m_collider;
+    private bool m_gotAngry = false;
+
     private Animator m_animator;
     private SpriteRenderer m_spriteRenderer;
 
@@ -22,6 +27,7 @@ public class NPC : Interactiables
         base.Start();
         m_animator = GetComponent<Animator>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
+        m_collider = GetComponent<Collider2D>();
         m_dirX = 1.0f;
     }
 
@@ -32,10 +38,11 @@ public class NPC : Interactiables
         if (m_spriteRenderer != null)
             m_spriteRenderer.flipX = m_dirX > 0;
 
-        DialogueManager.Instance.StartDialogue(m_NpcDialogue, m_rememberPrevDia ? m_lastDialogue : 0);
+        DialogueManager.Instance.StartDialogue(m_NpcDialogue, m_rememberPrevDia && m_blockPlayer ? m_lastDialogue : 0);
         DialogueManager.Instance.m_dialogueFinishCallback += DialogueFinish;
         DialogueManager.Instance.m_angryPlayerCallback += NPCAngry;
 
+        m_gotAngry = false;
         m_interactionFinish = false;
     }
 
@@ -45,12 +52,19 @@ public class NPC : Interactiables
         m_lastDialogue = lastDialogueOption;
         DialogueManager.Instance.m_dialogueFinishCallback -= DialogueFinish;
         DialogueManager.Instance.m_angryPlayerCallback -= NPCAngry;
+
+        if (!m_gotAngry && m_blockPlayer)
+        {
+            m_collider.isTrigger = true;
+            m_blockPlayer = false;
+        }
     }
 
     public void NPCAngry()
     {
         //smack player
         Player.Instance.HurtPlayer(new Vector2(m_dirX, 1.0f), m_hitForce);
+        m_gotAngry = true;
 
         if (m_animator != null)
             m_animator.SetTrigger("Attack");
