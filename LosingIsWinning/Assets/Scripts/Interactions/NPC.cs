@@ -38,7 +38,7 @@ public class NPC : Interactiables
         if (m_spriteRenderer != null)
             m_spriteRenderer.flipX = m_dirX > 0;
 
-        DialogueManager.Instance.StartDialogue(m_NpcDialogue, m_rememberPrevDia && m_blockPlayer ? m_lastDialogue : 0);
+        DialogueManager.Instance.StartDialogue(m_NpcDialogue, m_rememberPrevDia && !m_blockPlayer ? m_lastDialogue : 0);
         DialogueManager.Instance.m_dialogueFinishCallback += DialogueFinish;
         DialogueManager.Instance.m_angryPlayerCallback += NPCAngry;
 
