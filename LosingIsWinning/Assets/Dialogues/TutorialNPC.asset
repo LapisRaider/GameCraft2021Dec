@@ -58,6 +58,8 @@ MonoBehaviour:
       m_effect: 1
     - m_text: Gonna make you strong~
       m_effect: 1
+    - m_text: '[You receive a strange herb called....catnip? What''s that?]'
+      m_effect: 1
     m_hasChoice: 0
     m_choices:
     - name: Doubt

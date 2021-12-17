@@ -22,6 +22,9 @@ public class NPC : Interactiables
 
     private float m_dirX;
 
+    [Header("HACKS")]
+    public bool m_givePowerup = false;
+
     public override void Start()
     {
         base.Start();
@@ -56,6 +59,13 @@ public class NPC : Interactiables
         {
             m_collider.SetActive(false);
             m_blockPlayer = false;
+
+            //THIS IS A HACK, REMOVE IF CAN
+            if (m_givePowerup)
+            {
+                //TODO:: CALL ALLOW PLAYER EAT CATNIP
+                m_givePowerup = false;
+            }
         }
     }
 
