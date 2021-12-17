@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float m_currDashTime = 0.0f;
     private float m_prevGravity = 0.5f;
 
+    private bool m_lockFaceDir = false;
     private Vector2 m_inputDir = Vector2.zero;
     [HideInInspector] public Vector2 m_faceDir = Vector2.zero; //for animation, dash
 
@@ -27,8 +28,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform m_groundCheckPos; 
     public float m_groundCheckRadius;
     public LayerMask m_groundLayers;
-    
+
     private int m_currJumps = 0;
+    private int m_currDashes = 0;
 
     [System.NonSerialized] public bool m_startJump = false; //when just press jump
     [System.NonSerialized] public bool m_isGrounded = true; //check if on ground
@@ -87,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
         m_currDashCooldown = Time.time;
         m_currJumps = PlayerData.Instance.m_maxJumps;
+        m_currDashes = PlayerData.Instance.m_maxDashes;
         m_currAttackTime = Time.time;
         m_currGhostTime = Time.time;
         m_faceDir = new Vector2(1 , 0);
@@ -141,14 +144,20 @@ public class PlayerMovement : MonoBehaviour
         //update for animation
         if (m_inputDir.x != 0.0f && !m_isDashing)
         {
-            m_faceDir.x = m_inputDir.x;
+            if (!m_lockFaceDir)
+            {
+                m_faceDir.x = m_inputDir.x;
+            }
             m_spriteRenderer.flipX = m_faceDir.x < 0;
         }
 
         Combat();
         if (!m_AttackAnimDone) //only when attack anim done can do this
         {
-            //m_inputDir.x = 0.0f;
+            if (m_isGrounded)
+            {
+                m_inputDir.x = 0.0f;
+            }
             CheckHitAnything();
             UpdateAnimation();
             return;
@@ -168,19 +177,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //for dashing
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isDashing)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !m_isDashing)
         {
-            if (Time.time - m_currDashCooldown > m_dashCooldown)
+
+            if (m_currDashes > 0)
             {
-                m_isDashing = true;
-                m_currDashTime = Time.time;
-                m_currGhostTime = m_currDashTime;
+                if (Time.time - m_currDashCooldown > m_dashCooldown)
+                {
+                    --m_currDashes;
+                    m_isDashing = true;
+                    m_currDashTime = Time.time;
+                    m_currGhostTime = m_currDashTime;
 
-                if (m_CameraShake != null)
-                    m_CameraShake.StartShake();
+                    if (m_CameraShake != null)
+                        m_CameraShake.StartShake();
 
-                m_rigidBody.gravityScale = 0.0f;
-                ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
+                    m_rigidBody.gravityScale = 0.0f;
+                    ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
+                }
             }
         }
 
@@ -224,10 +238,13 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("a " + Mathf.Abs(m_rigidBody.velocity.y));
             if (m_currJumps < PlayerData.Instance.m_maxJumps && !m_startJump)
             {
-                //Debug.Log("b " + m_currJumps);
-
                 ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.LAND);
                 m_currJumps = PlayerData.Instance.m_maxJumps;
+            }
+
+            if (m_currDashes < PlayerData.Instance.m_maxDashes)
+            {
+                m_currDashes = PlayerData.Instance.m_maxDashes;
             }
         }
 
@@ -274,10 +291,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!Input.GetKeyDown(KeyCode.Return))
             return;
-
+       
         if (Time.time - m_currAttackTime < m_AttackRate)
             return;
 
+        m_lockFaceDir = true;
         m_currAttackTime = Time.time;
 
         Vector3 hitDir = Vector3.zero;
@@ -320,7 +338,7 @@ public class PlayerMovement : MonoBehaviour
 
         m_hitDir = hitDir;
         m_hitSize = hitSize;
-
+        
         m_Animator.SetTrigger("Attack");
         m_AttackAnimDone = false;
     }
@@ -357,6 +375,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void FinishAttackAnim()
     {
+        m_lockFaceDir = false;
         m_AttackAnimDone = true;
     }
 

@@ -9,6 +9,7 @@ public class PlayerData : SingletonBase<PlayerData>
     // Modify under SaveFile.cs
 
     public int m_maxJumps;
+    public int m_maxDashes;
     public int m_maxSanityMeter;
     public int m_currSanityMeter;
     public int m_sanityAbility;
@@ -21,6 +22,7 @@ public class PlayerData : SingletonBase<PlayerData>
     void Start()
     {
         m_maxJumps = 1;
+        m_maxDashes = 1;
         m_maxSanityMeter = 15;
         m_currSanityMeter = m_maxSanityMeter;
         m_sanityAbility = 1;
