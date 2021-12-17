@@ -176,6 +176,8 @@ public class ProjectileEnemyController : MonoBehaviour
 
     public void TakeDamage()
     {
+        Debug.Log("HIT");
+        m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
 
     }
 
