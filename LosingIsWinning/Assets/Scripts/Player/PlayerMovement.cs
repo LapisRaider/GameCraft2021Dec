@@ -211,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
         //press dash
         if (m_isDashing)
         {
+            Debug.Log(m_faceDir.x);
             m_rigidBody.velocity = new Vector2(m_faceDir.x * m_dashSpeed * Time.fixedDeltaTime, 0.0f);
             return;
         }
