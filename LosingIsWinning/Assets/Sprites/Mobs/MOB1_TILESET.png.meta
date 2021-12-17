@@ -1,0 +1,1063 @@
+fileFormatVersion: 2
+guid: 8f8a344c4ceb9994d927e30c0a82c52c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 488597817474343589
+    second: MOB1_TILESET_0
+  - first:
+      213: 4134000627098938159
+    second: MOB1_TILESET_1
+  - first:
+      213: -8670897374379527053
+    second: MOB1_TILESET_2
+  - first:
+      213: -4731839672102120068
+    second: MOB1_TILESET_3
+  - first:
+      213: 3524503907807018647
+    second: MOB1_TILESET_4
+  - first:
+      213: 7754661228124893674
+    second: MOB1_TILESET_5
+  - first:
+      213: 2137317623495782068
+    second: MOB1_TILESET_6
+  - first:
+      213: 356052194573016119
+    second: MOB1_TILESET_7
+  - first:
+      213: -3004289903915003477
+    second: MOB1_TILESET_8
+  - first:
+      213: 598314671409801175
+    second: MOB1_TILESET_9
+  - first:
+      213: 6075923069325001351
+    second: MOB1_TILESET_10
+  - first:
+      213: -273722146347283162
+    second: MOB1_TILESET_11
+  - first:
+      213: 5886220015111595401
+    second: MOB1_TILESET_12
+  - first:
+      213: -880490379557199049
+    second: MOB1_TILESET_13
+  - first:
+      213: 2620998581789674388
+    second: MOB1_TILESET_14
+  - first:
+      213: 2454654171157040373
+    second: MOB1_TILESET_15
+  - first:
+      213: -2912840431530752919
+    second: MOB1_TILESET_16
+  - first:
+      213: -4801689857457106342
+    second: MOB1_TILESET_17
+  - first:
+      213: 5449653214054558465
+    second: MOB1_TILESET_18
+  - first:
+      213: -3038406098166111524
+    second: MOB1_TILESET_19
+  - first:
+      213: -2682665116584695816
+    second: MOB1_TILESET_20
+  - first:
+      213: -576008776391959546
+    second: MOB1_TILESET_21
+  - first:
+      213: -2707961317595235078
+    second: MOB1_TILESET_22
+  - first:
+      213: 6650409879857244145
+    second: MOB1_TILESET_23
+  - first:
+      213: 6957492147247353708
+    second: MOB1_TILESET_0
+  - first:
+      213: -4769316051272923830
+    second: MOB1_TILESET_1
+  - first:
+      213: 1346990453163368954
+    second: MOB1_TILESET_2
+  - first:
+      213: -1372272708455368284
+    second: MOB1_TILESET_3
+  - first:
+      213: -122007948784961464
+    second: MOB1_TILESET_4
+  - first:
+      213: -1261947561840558888
+    second: MOB1_TILESET_5
+  - first:
+      213: 1215859801651594098
+    second: MOB1_TILESET_6
+  - first:
+      213: 6862769331319468144
+    second: MOB1_TILESET_7
+  - first:
+      213: -8013314111882033234
+    second: MOB1_TILESET_8
+  - first:
+      213: 5266324403502625455
+    second: MOB1_TILESET_9
+  - first:
+      213: 5464689708494287500
+    second: MOB1_TILESET_10
+  - first:
+      213: 4635245809501632233
+    second: MOB1_TILESET_11
+  - first:
+      213: 3987687580090998618
+    second: MOB1_TILESET_12
+  - first:
+      213: -5784358471642684056
+    second: MOB1_TILESET_13
+  - first:
+      213: -2002278185191192568
+    second: MOB1_TILESET_14
+  - first:
+      213: -7706701907941467789
+    second: MOB1_TILESET_15
+  - first:
+      213: 7103124473435565023
+    second: MOB1_TILESET_16
+  - first:
+      213: 7432992719487604672
+    second: MOB1_TILESET_17
+  - first:
+      213: 1081153112054481248
+    second: MOB1_TILESET_18
+  - first:
+      213: -7682634876575825608
+    second: MOB1_TILESET_19
+  - first:
+      213: -1299706698218955966
+    second: MOB1_TILESET_20
+  - first:
+      213: 4031297225757525294
+    second: MOB1_TILESET_21
+  - first:
+      213: -4422830860187759212
+    second: MOB1_TILESET_22
+  - first:
+      213: -4239071314065359240
+    second: MOB1_TILESET_23
+  - first:
+      213: 3119946590758876027
+    second: MOB1_TILESET_24
+  - first:
+      213: 8094867580642916093
+    second: MOB1_TILESET_25
+  - first:
+      213: 7538462256858149248
+    second: MOB1_TILESET_26
+  - first:
+      213: -2634743448692773168
+    second: MOB1_TILESET_27
+  - first:
+      213: 8007139760293065684
+    second: MOB1_TILESET_28
+  - first:
+      213: -5869164406446739746
+    second: MOB1_TILESET_29
+  - first:
+      213: -2913028096482237557
+    second: MOB1_TILESET_30
+  - first:
+      213: -5332551435656052801
+    second: MOB1_TILESET_31
+  - first:
+      213: 36384449423353587
+    second: MOB1_TILESET_32
+  - first:
+      213: -941683164829136503
+    second: MOB1_TILESET_33
+  - first:
+      213: 4108886854435260419
+    second: MOB1_TILESET_34
+  - first:
+      213: -927213511052642639
+    second: MOB1_TILESET_35
+  - first:
+      213: 5373375996614155011
+    second: MOB1_TILESET_36
+  - first:
+      213: 4452571213443591510
+    second: MOB1_TILESET_37
+  - first:
+      213: -6471151774803541216
+    second: MOB1_TILESET_38
+  - first:
+      213: 4035156711071162376
+    second: MOB1_TILESET_39
+  - first:
+      213: 2465224378475780603
+    second: MOB1_TILESET_40
+  - first:
+      213: 2899531379765798898
+    second: MOB1_TILESET_41
+  - first:
+      213: 9074433173192472906
+    second: MOB1_TILESET_42
+  - first:
+      213: -1520369542244266030
+    second: MOB1_TILESET_43
+  - first:
+      213: 7808679997910469975
+    second: MOB1_TILESET_44
+  - first:
+      213: -7293121966082345108
+    second: MOB1_TILESET_45
+  - first:
+      213: -2326505140111967481
+    second: MOB1_TILESET_46
+  - first:
+      213: -526703798737006495
+    second: MOB1_TILESET_47
+  - first:
+      213: 5990869500134614554
+    second: MOB1_TILESET_48
+  - first:
+      213: -1122454780943306745
+    second: MOB1_TILESET_49
+  - first:
+      213: -1256647686995577777
+    second: MOB1_TILESET_50
+  - first:
+      213: -4922025806463196306
+    second: MOB1_TILESET_51
+  - first:
+      213: -2451794657623138368
+    second: MOB1_TILESET_52
+  - first:
+      213: 3334633284833193189
+    second: MOB1_TILESET_53
+  - first:
+      213: 9126376268512409215
+    second: MOB1_TILESET_54
+  - first:
+      213: 530251560212851694
+    second: MOB1_TILESET_55
+  - first:
+      213: -6458054483519705785
+    second: MOB1_TILESET_56
+  - first:
+      213: 2309702305221343287
+    second: MOB1_TILESET_57
+  - first:
+      213: 566908604513700094
+    second: MOB1_TILESET_58
+  - first:
+      213: 7625354544295148304
+    second: MOB1_TILESET_59
+  - first:
+      213: -2157268977234851620
+    second: MOB1_TILESET_60
+  - first:
+      213: 1030543571114316811
+    second: MOB1_TILESET_61
+  - first:
+      213: 1111723489276540693
+    second: MOB1_TILESET_62
+  - first:
+      213: 2034427569903469509
+    second: MOB1_TILESET_63
+  - first:
+      213: -6864964519132636101
+    second: MOB1_TILESET_64
+  - first:
+      213: -1572007093815192576
+    second: MOB1_TILESET_65
+  - first:
+      213: 8948754692701449901
+    second: MOB1_TILESET_66
+  - first:
+      213: -7422405748941467374
+    second: MOB1_TILESET_67
+  - first:
+      213: 500246863341574288
+    second: MOB1_TILESET_68
+  - first:
+      213: -8261017880445221087
+    second: MOB1_TILESET_69
+  - first:
+      213: -3706896597330333983
+    second: MOB1_TILESET_70
+  - first:
+      213: 2728426574410848787
+    second: MOB1_TILESET_71
+  - first:
+      213: -8066027356608043523
+    second: MOB1_TILESET_72
+  - first:
+      213: -4715501897110343678
+    second: MOB1_TILESET_73
+  - first:
+      213: 5201678236452756588
+    second: MOB1_TILESET_74
+  - first:
+      213: -2049084303629407231
+    second: MOB1_TILESET_75
+  - first:
+      213: 346706360618123620
+    second: MOB1_TILESET_76
+  - first:
+      213: -2679708509502787779
+    second: MOB1_TILESET_77
+  - first:
+      213: -9043872826566851350
+    second: MOB1_TILESET_78
+  - first:
+      213: 2908694106445157097
+    second: MOB1_TILESET_79
+  - first:
+      213: 3712523565243978106
+    second: MOB1_TILESET_80
+  - first:
+      213: 363933785288293586
+    second: MOB1_TILESET_81
+  - first:
+      213: -8575484650174626806
+    second: MOB1_TILESET_82
+  - first:
+      213: 2583541660547317343
+    second: MOB1_TILESET_83
+  - first:
+      213: 1204217861087584890
+    second: MOB1_TILESET_84
+  - first:
+      213: 430138322899022150
+    second: MOB1_TILESET_85
+  - first:
+      213: -463962564564401136
+    second: MOB1_TILESET_86
+  - first:
+      213: -9513276324396963
+    second: MOB1_TILESET_87
+  - first:
+      213: -2688369322837254514
+    second: MOB1_TILESET_88
+  - first:
+      213: 7269609770249784065
+    second: MOB1_TILESET_89
+  - first:
+      213: 5046732402510014846
+    second: MOB1_TILESET_90
+  - first:
+      213: 6673461417335755012
+    second: MOB1_TILESET_91
+  - first:
+      213: -1669189702292384355
+    second: MOB1_TILESET_92
+  - first:
+      213: -1521550289725009856
+    second: MOB1_TILESET_93
+  - first:
+      213: -9094241541725412721
+    second: MOB1_TILESET_94
+  - first:
+      213: 7689022140500016764
+    second: MOB1_TILESET_95
+  - first:
+      213: -3134361209612464063
+    second: MOB1_TILESET_96
+  - first:
+      213: -2578680428778542964
+    second: MOB1_TILESET_97
+  - first:
+      213: -5984510623236661557
+    second: MOB1_TILESET_98
+  - first:
+      213: 3096528859153769861
+    second: MOB1_TILESET_99
+  - first:
+      213: -6373038982932598622
+    second: MOB1_TILESET_100
+  - first:
+      213: -4711268922073438750
+    second: MOB1_TILESET_101
+  - first:
+      213: 7594294401891317595
+    second: MOB1_TILESET_102
+  - first:
+      213: 2497785076515861313
+    second: MOB1_TILESET_103
+  - first:
+      213: 1212067490499372299
+    second: MOB1_TILESET_104
+  - first:
+      213: -7626762959965046344
+    second: MOB1_TILESET_105
+  - first:
+      213: -4574085730997807085
+    second: MOB1_TILESET_106
+  - first:
+      213: 8786812197980450433
+    second: MOB1_TILESET_107
+  - first:
+      213: 2312311700702586840
+    second: MOB1_TILESET_108
+  - first:
+      213: -5165258816455989064
+    second: MOB1_TILESET_109
+  - first:
+      213: 3818439231099470266
+    second: MOB1_TILESET_110
+  - first:
+      213: 7720178356676716722
+    second: MOB1_TILESET_111
+  - first:
+      213: 3869173089711956734
+    second: MOB1_TILESET_112
+  - first:
+      213: 3927218800691190622
+    second: MOB1_TILESET_113
+  - first:
+      213: 1669872328165928276
+    second: MOB1_TILESET_114
+  - first:
+      213: -3076120919319215881
+    second: MOB1_TILESET_115
+  - first:
+      213: -5629699091700013396
+    second: MOB1_TILESET_116
+  - first:
+      213: 6347482479085343824
+    second: MOB1_TILESET_117
+  - first:
+      213: -6380692947727543532
+    second: MOB1_TILESET_118
+  - first:
+      213: -3362637672466059985
+    second: MOB1_TILESET_119
+  - first:
+      213: 905282601343489752
+    second: MOB1_TILESET_120
+  - first:
+      213: 1099441470403459300
+    second: MOB1_TILESET_121
+  - first:
+      213: -5255800165271646102
+    second: MOB1_TILESET_122
+  - first:
+      213: -109930647059380415
+    second: MOB1_TILESET_123
+  - first:
+      213: -5995987224688277757
+    second: MOB1_TILESET_124
+  - first:
+      213: 4740996942156752108
+    second: MOB1_TILESET_125
+  - first:
+      213: -6633588082496739856
+    second: MOB1_TILESET_126
+  - first:
+      213: 6832015860640484138
+    second: MOB1_TILESET_127
+  - first:
+      213: 3948749058732435773
+    second: MOB1_TILESET_128
+  - first:
+      213: 4656021503271335074
+    second: MOB1_TILESET_129
+  - first:
+      213: 2623282792742974043
+    second: MOB1_TILESET_130
+  - first:
+      213: -3788702492622220602
+    second: MOB1_TILESET_131
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MOB1_TILESET_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6f8f3cde3afd8060800000000000000
+      internalID: 6957492147247353708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a450f4ef15cffcdb0800000000000000
+      internalID: -4769316051272923830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af125a43ea871b210800000000000000
+      internalID: 1346990453163368954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a9fd850e35b4fce0800000000000000
+      internalID: -1372272708455368284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1000
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 848f5e0ca6a8e4ef0800000000000000
+      internalID: -122007948784961464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dcb25be069ac7ee0800000000000000
+      internalID: -1261947561840558888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 273ce163c0a9fd010800000000000000
+      internalID: 1215859801651594098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 070fdb8a8547d3f50800000000000000
+      internalID: 6862769331319468144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea785a7854dfac090800000000000000
+      internalID: -8013314111882033234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2bebe842eb51940800000000000000
+      internalID: 5266324403502625455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c82f882365a76db40800000000000000
+      internalID: 5464689708494287500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_11
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e676f15183b35040800000000000000
+      internalID: 4635245809501632233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_12
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5f9f86f9bc175730800000000000000
+      internalID: 3987687580090998618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_13
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865673ced94d9bfa0800000000000000
+      internalID: -5784358471642684056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8084a2e599a7634e0800000000000000
+      internalID: -2002278185191192568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdba28a131e539260800000000000000
+      internalID: 7103124473435565023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_17
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c79f172f7b472760800000000000000
+      internalID: 7432992719487604672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_18
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061c0d7f607010f00800000000000000
+      internalID: 1081153112054481248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_19
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831cbaab84cc16590800000000000000
+      internalID: -7682634876575825608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b9674e4a386fde0800000000000000
+      internalID: -1299706698218955966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB1_TILESET_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e258b45d77b02f730800000000000000
+      internalID: 4031297225757525294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 287dc1714ee02e040a42f88726b37c5b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

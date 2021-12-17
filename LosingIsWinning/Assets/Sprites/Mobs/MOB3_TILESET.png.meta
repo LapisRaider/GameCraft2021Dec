@@ -1,124 +1,58 @@
 fileFormatVersion: 2
-guid: bfbf3594e742bf249b721a3b6b567d61
+guid: 01c09b0a78a52c0479626c1ab54d8c52
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5083304513570391629
-    second: ENVIRONMENT TILESET 2_0
+      213: 12680690465761730
+    second: MOB3_TILESET_0
   - first:
-      213: 536254718727782715
-    second: ENVIRONMENT TILESET 2_1
+      213: 3272513369755022112
+    second: MOB3_TILESET_1
   - first:
-      213: -712988401367302611
-    second: ENVIRONMENT TILESET 2_2
+      213: 3152060725695369248
+    second: MOB3_TILESET_2
   - first:
-      213: -5102327090859040100
-    second: ENVIRONMENT TILESET 2_3
+      213: -4831278499910633345
+    second: MOB3_TILESET_3
   - first:
-      213: -9056423727331840193
-    second: ENVIRONMENT TILESET 2_4
+      213: -1044261384451288637
+    second: MOB3_TILESET_4
   - first:
-      213: 9208520018311107034
-    second: ENVIRONMENT TILESET 2_5
+      213: 4322751079424375058
+    second: MOB3_TILESET_5
   - first:
-      213: 2266547392352873927
-    second: ENVIRONMENT TILESET 2_6
+      213: -1060676726195262073
+    second: MOB3_TILESET_6
   - first:
-      213: -3589282295388378095
-    second: ENVIRONMENT TILESET 2_7
+      213: -8863455039994290558
+    second: MOB3_TILESET_7
   - first:
-      213: 6625365016902604412
-    second: ENVIRONMENT TILESET 2_8
+      213: 1234263866969348980
+    second: MOB3_TILESET_8
   - first:
-      213: 8546363172353049461
-    second: ENVIRONMENT TILESET 2_9
+      213: -8440139231567711953
+    second: MOB3_TILESET_9
   - first:
-      213: 7759458611621969862
-    second: ENVIRONMENT TILESET 2_10
+      213: -3739958078715988550
+    second: MOB3_TILESET_10
   - first:
-      213: 3864550807686435569
-    second: ENVIRONMENT TILESET 2_11
+      213: -7380433323016955531
+    second: MOB3_TILESET_11
   - first:
-      213: 2270992308093751601
-    second: ENVIRONMENT TILESET 2_12
+      213: 8282471814643146250
+    second: MOB3_TILESET_12
   - first:
-      213: -3362252842107486412
-    second: ENVIRONMENT TILESET 2_13
+      213: -213962095366570447
+    second: MOB3_TILESET_13
   - first:
-      213: -1847245061497774515
-    second: ENVIRONMENT TILESET 2_14
+      213: 4383326015092554539
+    second: MOB3_TILESET_14
   - first:
-      213: -925362825361450033
-    second: ENVIRONMENT TILESET 2_15
+      213: -907524511340189285
+    second: MOB3_TILESET_15
   - first:
-      213: 6955310350620921656
-    second: ENVIRONMENT TILESET 2_16
-  - first:
-      213: -8201097078659025925
-    second: ENVIRONMENT TILESET 2_17
-  - first:
-      213: -6973791843677160398
-    second: ENVIRONMENT TILESET 2_18
-  - first:
-      213: -7361788564617559285
-    second: ENVIRONMENT TILESET 2_19
-  - first:
-      213: -5700695191872896520
-    second: ENVIRONMENT TILESET 2_20
-  - first:
-      213: 900050621752988033
-    second: ENVIRONMENT TILESET 2_21
-  - first:
-      213: -2826965440931730952
-    second: ENVIRONMENT TILESET 2_22
-  - first:
-      213: 3534145708685009472
-    second: ENVIRONMENT TILESET 2_0
-  - first:
-      213: -2869051190345003362
-    second: ENVIRONMENT TILESET 2_1
-  - first:
-      213: 892669436318967845
-    second: ENVIRONMENT TILESET 2_2
-  - first:
-      213: -4811363007242399504
-    second: ENVIRONMENT TILESET 2_3
-  - first:
-      213: -3631101238727657030
-    second: ENVIRONMENT TILESET 2_4
-  - first:
-      213: -5693957001921525278
-    second: ENVIRONMENT TILESET 2_5
-  - first:
-      213: -6796739116963916188
-    second: ENVIRONMENT TILESET 2_6
-  - first:
-      213: -2563692575521886023
-    second: ENVIRONMENT TILESET 2_7
-  - first:
-      213: -4011825893144008175
-    second: ENVIRONMENT TILESET 2_8
-  - first:
-      213: 7271952536288989471
-    second: ENVIRONMENT TILESET 2_9
-  - first:
-      213: 2543500872814427388
-    second: ENVIRONMENT TILESET 2_10
-  - first:
-      213: -6910972558994133621
-    second: ENVIRONMENT TILESET 2_11
-  - first:
-      213: -190495823722847759
-    second: ENVIRONMENT TILESET 2_12
-  - first:
-      213: 1937949141697274668
-    second: ENVIRONMENT TILESET 2_13
-  - first:
-      213: -7800547686677400493
-    second: ENVIRONMENT TILESET 2_14
-  - first:
-      213: -4201500308251813352
-    second: ENVIRONMENT TILESET 2_15
+      213: 8319078488354321279
+    second: MOB3_TILESET_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -254,7 +188,112 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_0
+      name: MOB3_TILESET_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c9e7b2550d0d2000800000000000000
+      internalID: 12680690465761730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB3_TILESET_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 023f6fe329d4a6d20800000000000000
+      internalID: 3272513369755022112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB3_TILESET_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0205889978e5ebb20800000000000000
+      internalID: 3152060725695369248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB3_TILESET_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7838d13dc9d3fcb0800000000000000
+      internalID: -4831278499910633345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB3_TILESET_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c19f17bdc90281f0800000000000000
+      internalID: -1044261384451288637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB3_TILESET_5
       rect:
         serializedVersion: 2
         x: 0
@@ -268,14 +307,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04224ae1ccecb0130800000000000000
-      internalID: 3534145708685009472
+      spriteID: 219b68d243f7dfb30800000000000000
+      internalID: 4322751079424375058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_1
+      name: MOB3_TILESET_6
       rect:
         serializedVersion: 2
         x: 160
@@ -289,14 +328,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9e031da4251f28d0800000000000000
-      internalID: -2869051190345003362
+      spriteID: 78d6b912328b741f0800000000000000
+      internalID: -1060676726195262073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_2
+      name: MOB3_TILESET_7
       rect:
         serializedVersion: 2
         x: 320
@@ -310,14 +349,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 528e3ad6f16636c00800000000000000
-      internalID: 892669436318967845
+      spriteID: 28e9e7a0a9eaef480800000000000000
+      internalID: -8863455039994290558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_3
+      name: MOB3_TILESET_8
       rect:
         serializedVersion: 2
         x: 480
@@ -331,14 +370,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f09cdb26da9a3db0800000000000000
-      internalID: -4811363007242399504
+      spriteID: 47bdec5927cf02110800000000000000
+      internalID: 1234263866969348980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_4
+      name: MOB3_TILESET_9
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f21719f261a9eda80800000000000000
+      internalID: -8440139231567711953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB3_TILESET_10
       rect:
         serializedVersion: 2
         x: 0
@@ -352,14 +412,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab9382a69acbb9dc0800000000000000
-      internalID: -3631101238727657030
+      spriteID: ab5f74b41fff81cc0800000000000000
+      internalID: -3739958078715988550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_5
+      name: MOB3_TILESET_11
       rect:
         serializedVersion: 2
         x: 160
@@ -373,14 +433,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e98e1e46400bf0b0800000000000000
-      internalID: -5693957001921525278
+      spriteID: 5795e15fefe639990800000000000000
+      internalID: -7380433323016955531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_6
+      name: MOB3_TILESET_12
       rect:
         serializedVersion: 2
         x: 320
@@ -394,14 +454,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4661d56a8c12da1a0800000000000000
-      internalID: -6796739116963916188
+      spriteID: a0e5df5ab3041f270800000000000000
+      internalID: 8282471814643146250
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_7
+      name: MOB3_TILESET_13
       rect:
         serializedVersion: 2
         x: 480
@@ -415,14 +475,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b036b28f2feb6cd0800000000000000
-      internalID: -2563692575521886023
+      spriteID: 13ef64e9b9ad70df0800000000000000
+      internalID: -213962095366570447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_8
+      name: MOB3_TILESET_14
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2bf15079c3b4dc30800000000000000
+      internalID: 4383326015092554539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MOB3_TILESET_15
       rect:
         serializedVersion: 2
         x: 0
@@ -436,77 +517,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11aef621b912358c0800000000000000
-      internalID: -4011825893144008175
+      spriteID: b99ab94e343d763f0800000000000000
+      internalID: -907524511340189285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_9
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f119105ad4a2be460800000000000000
-      internalID: 7271952536288989471
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_10
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cfcfff951945c4320800000000000000
-      internalID: 2543500872814427388
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_11
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8daea0d21b4710a0800000000000000
-      internalID: -6910972558994133621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_12
+      name: MOB3_TILESET_16
       rect:
         serializedVersion: 2
         x: 0
@@ -520,71 +538,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f1edcfbe093b5df0800000000000000
-      internalID: -190495823722847759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_13
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c23a3a70a7af4ea10800000000000000
-      internalID: 1937949141697274668
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_14
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35439124533eeb390800000000000000
-      internalID: -7800547686677400493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ENVIRONMENT TILESET 2_15
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81ad4faeab541b5c0800000000000000
-      internalID: -4201500308251813352
+      spriteID: f73f3fc0fcd437370800000000000000
+      internalID: 8319078488354321279
       vertices: []
       indices: 
       edges: []
@@ -592,7 +547,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f69e4db3f88ff3743af1b4b898c068c4
+    spriteID: 5e516fdae07cda443890987d469c5c09
     internalID: 0
     vertices: []
     indices: 
