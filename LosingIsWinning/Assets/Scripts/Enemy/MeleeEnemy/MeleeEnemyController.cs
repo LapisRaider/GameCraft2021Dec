@@ -180,11 +180,12 @@ public class MeleeEnemyController : MonoBehaviour
 
     public void CheckForPlayer()
     {
-        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_detectionRange, ~gameObject.layer);
-        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_detectionRange, ~gameObject.layer);
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_detectionRange);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_detectionRange);
 
-       // Debug.DrawRay(transform.position, (Vector2.right * m_detectionRange), Color.red);
+        //Debug.DrawRay(transform.position, (Vector2.right * m_detectionRange), Color.red);
         //Debug.DrawRay(transform.position, (Vector2.left * m_detectionRange), Color.red);
+        
         if (hitInfoRight.collider == true)
         {
             //Debug.Log(hitInfoRight.collider.gameObject.name);
@@ -265,10 +266,10 @@ public class MeleeEnemyController : MonoBehaviour
     public void ChasingMovement()
     {
 
-        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_attackRange, ~gameObject.layer);
-        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_attackRange, ~gameObject.layer);
-        Debug.DrawRay(transform.position, (Vector2.right * m_attackRange), Color.red);
-        Debug.DrawRay(transform.position, (Vector2.left * m_attackRange), Color.red);
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_attackRange);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_attackRange);
+        //Debug.DrawRay(transform.position, (Vector2.right * m_attackRange), Color.red);
+       // Debug.DrawRay(transform.position, (Vector2.left * m_attackRange), Color.red);
 
         if (hitInfoRight.collider == true && hitInfoRight.collider.gameObject.tag == "Player")
         {
@@ -377,5 +378,11 @@ public class MeleeEnemyController : MonoBehaviour
 
         // When done with unmorphing
         m_currState = MELEE_STATES.STATE_NORMAL;
+    }
+
+    public void TakeDamage()
+    {
+        Debug.Log("Damage Taken");
+        m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
     }
 }
