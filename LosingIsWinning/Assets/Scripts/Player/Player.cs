@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Player : SingletonBase<Player>
 {
+    [Header("Animation stuff")]
+    Animator m_playerAnimator;
+    public RuntimeAnimatorController m_insaneAnimator;
+    public RuntimeAnimatorController m_normalAnimator;
+
     Interactiables m_currInteraction;
     bool m_InteractionStarted = false;
 
@@ -14,6 +19,7 @@ public class Player : SingletonBase<Player>
     {
         m_currInteraction = null;
         m_movement = GetComponent<PlayerMovement>();
+        m_playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,6 +43,14 @@ public class Player : SingletonBase<Player>
             PlayerData.Instance.EnableActions(false); //make player unable to move
             m_InteractionStarted = true;
         }
+    }
+
+    public void SetInsane(bool insane)
+    {
+        if (insane)
+            m_playerAnimator.runtimeAnimatorController = m_insaneAnimator;
+        else
+            m_playerAnimator.runtimeAnimatorController = m_normalAnimator;
     }
 
     public void HurtPlayer(Vector2 dir, float force = 1.0f, int sanityDamage = 0)

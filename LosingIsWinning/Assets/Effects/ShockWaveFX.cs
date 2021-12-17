@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ShockWaveFX : MonoBehaviour
+public class ShockWaveFX : SingletonBase<ShockWaveFX>
 {
     public Material m_ShockWaveMaterial;
     public float m_ShockWaveSize = 0.1f;

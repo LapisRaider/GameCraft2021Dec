@@ -29,6 +29,8 @@ public class GameManager : SingletonBase<GameManager>
             if (m_CurrentSanityTimer <= 0.0f)
             {
                 PlayerData.Instance.m_isInsane = false;
+                Healthbar.Instance.InsaneMode(false);
+                Player.Instance.SetInsane(false);
                 m_CurrentSanityTimer = 0.0f;
             }
         }
@@ -44,6 +46,10 @@ public class GameManager : SingletonBase<GameManager>
         // Check if it isnt enabled
         if (!PlayerData.Instance.m_isInsane)
         {
+            Healthbar.Instance.InsaneMode(true);
+            ShockWaveFX.Instance.StartShockWave();
+            Player.Instance.SetInsane(true);
+
             // Deduct the sanity meter and set the timer
             TakeSanityDamage(m_SANITY_LOST_PER_CAST);
             //PlayerData.Instance.m_currSanityMeter -= m_SANITY_LOST_PER_CAST;
@@ -60,6 +66,7 @@ public class GameManager : SingletonBase<GameManager>
         {
             // Im not sure if they use it when its already on, will it reset the timer and drain the sanity
             // Or will it not be allowed to be used until the timer is up 
+            //Healthbar.Instance.InsaneMode(false);
         }
     }
 
