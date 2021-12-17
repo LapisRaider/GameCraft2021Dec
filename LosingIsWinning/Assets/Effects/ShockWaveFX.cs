@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShockWaveFX : MonoBehaviour
@@ -24,11 +23,6 @@ public class ShockWaveFX : MonoBehaviour
     {
         if (m_prevResolution.width != Screen.currentResolution.width || m_prevResolution.height != Screen.currentResolution.height)
             ResetResolution();
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            StartShockWave();
-        }
     }
 
     public void StartShockWave()
