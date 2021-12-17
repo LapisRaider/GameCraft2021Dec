@@ -231,7 +231,7 @@ MonoBehaviour:
   m_hitForce: 2
   m_speechBox: {fileID: 4222733137232790246}
   m_blockPlayer: 1
-  m_collider: {fileID: 6735460102418130215}
+  m_collider: {fileID: 7220279966812667072}
 --- !u!1 &7220279966812667072
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +272,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7220279966812667072}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 427f97206c92e5049bda747570096f1d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

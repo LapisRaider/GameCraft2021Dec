@@ -12,7 +12,7 @@ public class NPC : Interactiables
 
     [Header("Block Player")]
     public bool m_blockPlayer = false;
-    public Collider2D m_collider;
+    public GameObject m_collider;
     private bool m_gotAngry = false;
 
     private Animator m_animator;
@@ -27,7 +27,6 @@ public class NPC : Interactiables
         base.Start();
         m_animator = GetComponent<Animator>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
-        m_collider = GetComponent<Collider2D>();
         m_dirX = 1.0f;
     }
 
@@ -55,7 +54,7 @@ public class NPC : Interactiables
 
         if (!m_gotAngry && m_blockPlayer)
         {
-            m_collider.isTrigger = true;
+            m_collider.SetActive(false);
             m_blockPlayer = false;
         }
     }

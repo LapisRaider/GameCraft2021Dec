@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_instructionText: Press [Space] to jump
   m_textObj: {fileID: 2646687326029372063}
-  m_printTime: 0.01
+  m_printTime: 0.02
 --- !u!61 &2646687326544928029
 BoxCollider2D:
   m_ObjectHideFlags: 0

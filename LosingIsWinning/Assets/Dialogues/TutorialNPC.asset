@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9daea61a9526ae3409a952f208de099e, type: 3}
+  m_Name: TutorialNPC
+  m_EditorClassIdentifier: 
+  m_Dialogues:
+  - name: Intro
+    m_dialogue:
+    - m_text: Hey kiddddddd ~
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: HELLO!
+      m_nextDialogueIndex: 1
+      m_Text:
+        m_text: Hi Mister!
+        m_effect: 0
+    - name: You don't look so good
+      m_nextDialogueIndex: 3
+      m_Text:
+        m_text: Are you alright? You don't look well
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: 
+    m_dialogue:
+    - m_text: You're such a great kid. Let me tell you a little secret.
+      m_effect: 1
+    - m_text: Listen kid you can't make that jump with your current skills.
+      m_effect: 1
+    - m_text: You need this!
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: Doubt
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: What's that?
+        m_effect: 0
+    - name: COOL
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: COOL! What is it?
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: 
+    m_dialogue:
+    - m_text: Trust me kid, this is a super powerup. Like mushrooms in that Bario
+        game.
+      m_effect: 1
+    - m_text: Gonna make you strong~
+      m_effect: 1
+    m_hasChoice: 0
+    m_choices:
+    - name: Doubt
+      m_nextDialogueIndex: 0
+      m_Text:
+        m_text: What's that?
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: 
+    m_dialogue:
+    - m_text: Yupppp I'm good kid, GREAT EVEN~
+      m_effect: 1
+    - m_text: Listen kid you can't make that jump with your current skills.
+      m_effect: 1
+    - m_text: You need this!
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: Doubt
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: What's that?
+        m_effect: 0
+    - name: Is it safe?
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: Is that safe?
+        m_effect: 0
+    m_hitPlayerAfter: 0
