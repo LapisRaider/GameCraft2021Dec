@@ -19,6 +19,7 @@ public class ProjectileEnemyController : MonoBehaviour
     public GameObject m_normalGO;
     public GameObject m_morphedGO;
     public GameObject m_attackGO;
+    public GameObject m_smokeGO;
 
     // Need to play test and change values accordingly
     static int HP = 2;
@@ -91,6 +92,8 @@ public class ProjectileEnemyController : MonoBehaviour
                 break;
             case PROJECTILE_STATES.STATE_MORPHING:
                 {
+                    m_smokeGO.GetComponent<ParticleSystem>().Play();
+
                     StartMorphing();
                     m_morphedGO.GetComponent<Animator>().SetBool("Morph", true);
                 }
