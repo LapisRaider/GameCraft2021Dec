@@ -21,6 +21,7 @@ public class GroundSlamEnemyController : MonoBehaviour
     public GameObject m_normalGO;
     public GameObject m_morphedGO;
     public GameObject m_attackGO;
+    public GameObject m_smokeGO;
 
     // Need to play test and change values accordingly
     static int HP = 5;
@@ -33,6 +34,13 @@ public class GroundSlamEnemyController : MonoBehaviour
     static float ATT_TIME = 2;
     public float m_attackTimer;
     public float m_attackTime;
+
+    [Header("Smoke things")]
+    public float m_TimeToSwap;
+    public float m_smokeTime;
+    float m_timer;
+    bool m_smokePlayed;
+    bool m_isMorphing = false;
 
     [Header("Movement variables")]
     public Transform m_groundDetection;
@@ -81,16 +89,37 @@ public class GroundSlamEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Testing purposes
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            SetMorphing(true);
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            SetMorphing(false);
-        }
+        //// Testing purposes
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    SetMorphing(true);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Mouse1))
+        //{
+        //    SetMorphing(false);
+        //}
 
+        if (PlayerData.Instance.m_isInsane)
+        {
+            // They need to swap
+            if (m_isMorphing == false)
+            {
+                m_isMorphing = true;
+                m_smokePlayed = false;
+                m_timer = 0.0f;
+                SetMorphing(true);
+            }
+        }
+        else
+        {
+            if (m_isMorphing)
+            {
+                m_isMorphing = false;
+                m_smokePlayed = false;
+                m_timer = 0.0f;
+                SetMorphing(false);
+            }
+        }
 
         switch (m_currState)
         {
@@ -98,14 +127,46 @@ public class GroundSlamEnemyController : MonoBehaviour
                 break;
             case GROUNDSLAM_STATES.STATE_UNMORPHING:
                 {
-                    StartUnmorphing();
-                    m_morphedGO.GetComponent<Animator>().SetBool("Morph", false);
+
+                    m_timer += Time.deltaTime;
+
+                    if (m_timer >= m_smokeTime)
+                    {
+                        if (!m_smokePlayed)
+                        {
+                            m_smokePlayed = true;
+                            m_smokeGO.GetComponent<ParticleSystem>().Play();
+                        }
+                    }
+
+                    if (m_timer >= m_TimeToSwap)
+                    {
+                        StartUnmorphing();
+                        m_morphedGO.GetComponent<Animator>().SetBool("Morph", false);
+                        m_timer = 0.0f;
+                    }
                 }
                 break;
             case GROUNDSLAM_STATES.STATE_MORPHING:
                 {
-                    StartMorphing();
-                    m_morphedGO.GetComponent<Animator>().SetBool("Morph", true);
+                    //m_smokeGO.GetComponent<ParticleSystem>().Play();
+                    m_timer += Time.deltaTime;
+
+                    if (m_timer >= m_smokeTime)
+                    {
+                        if (!m_smokePlayed)
+                        {
+                            m_smokePlayed = true;
+                            m_smokeGO.GetComponent<ParticleSystem>().Play();
+                        }
+                    }
+
+                    if (m_timer >= m_TimeToSwap)
+                    {
+                        StartMorphing();
+                        m_morphedGO.GetComponent<Animator>().SetBool("Morph", true);
+                        m_timer = 0.0f;
+                    }
                 }
                 break;
             case GROUNDSLAM_STATES.STATE_MORPHED_IDLE:
@@ -179,11 +240,12 @@ public class GroundSlamEnemyController : MonoBehaviour
 
     public void CheckForPlayer()
     {
-        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_detectionRange, ~gameObject.layer);
-        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_detectionRange, ~gameObject.layer);
+        Vector3 CenterPosition = transform.position + new Vector3(0, 0.5f, 0);
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(CenterPosition, Vector2.right, m_detectionRange);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(CenterPosition, Vector2.left, m_detectionRange);
 
-        Debug.DrawRay(transform.position + new Vector3(0, 1, 0), (Vector2.right * m_detectionRange), Color.red);
-        Debug.DrawRay(transform.position + new Vector3(0, 1, 0), (Vector2.left * m_detectionRange), Color.red);
+        Debug.DrawRay(CenterPosition, (Vector2.right * m_detectionRange), Color.red);
+        Debug.DrawRay(CenterPosition, (Vector2.left * m_detectionRange), Color.red);
         if (hitInfoRight.collider == true)
         {
             Debug.Log(hitInfoRight.collider.gameObject.name);
@@ -265,8 +327,12 @@ public class GroundSlamEnemyController : MonoBehaviour
 
     public void ChasingMovement()
     {
-        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_attackRange);
-        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_attackRange);
+        Vector3 CenterPosition = transform.position + new Vector3(0, 0.5f, 0);
+
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(CenterPosition, Vector2.right, m_attackRange);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(CenterPosition, Vector2.left, m_attackRange);
+        Debug.DrawRay(transform.position, (Vector2.right * m_attackRange), Color.green);
+        Debug.DrawRay(transform.position, (Vector2.left * m_attackRange), Color.green);
 
         if (hitInfoRight.collider == true && hitInfoRight.collider.gameObject.tag == "Player")
         {
