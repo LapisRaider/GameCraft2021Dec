@@ -21,7 +21,7 @@ public class ProjectileEnemyController : MonoBehaviour
     public GameObject m_attackGO;
 
     // Need to play test and change values accordingly
-    static int HP = 1;
+    static int HP = 2;
     static int DMG = 1;
     public int m_hp;
     public int m_dmg;
@@ -126,7 +126,7 @@ public class ProjectileEnemyController : MonoBehaviour
                     }
 
                     m_attackTimer += Time.deltaTime;
-                    Debug.Log(m_attackTimer);
+                    //Debug.Log(m_attackTimer);
                     if (m_attackTimer >= m_attackTime)
                     {
                         Debug.Log("ATTACKED");
@@ -184,9 +184,27 @@ public class ProjectileEnemyController : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log("HIT");
-        m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
+        //Debug.Log("HIT");
+        m_hp -= 1;
+        Debug.Log("Health Remaining" + m_hp);
 
+        if (m_hp <= 0)
+        {
+            m_player = null;
+            EndAttack();
+            m_currState = PROJECTILE_STATES.STATE_MORPHED_DEATH;
+            m_morphedGO.GetComponent<Animator>().SetBool("Dead", true);
+        }
+        else
+        {
+            m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
+        }
+        
+    }
+
+    public void Dead()
+    {
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -29,4 +29,8 @@ public class ProjectileEnemyAnimController : MonoBehaviour
         controller.EndAttack();
     }
 
+    public void Dead()
+    {
+        controller.Dead();
+    }
 }

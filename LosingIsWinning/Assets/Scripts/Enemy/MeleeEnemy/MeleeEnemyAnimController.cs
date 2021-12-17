@@ -27,4 +27,9 @@ public class MeleeEnemyAnimController : MonoBehaviour
     {
         enemyController.EndAttack();
     }
+
+    public void Dead()
+    {
+        enemyController.Dead();
+    }
 }

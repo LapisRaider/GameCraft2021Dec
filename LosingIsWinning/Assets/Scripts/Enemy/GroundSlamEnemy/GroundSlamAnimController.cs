@@ -27,4 +27,9 @@ public class GroundSlamAnimController : MonoBehaviour
     {
         controller.endAttack();
     }
+
+    public void Dead()
+    {
+        controller.Dead();
+    }
 }

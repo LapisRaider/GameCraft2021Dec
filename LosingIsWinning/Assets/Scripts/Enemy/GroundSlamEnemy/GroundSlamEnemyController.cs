@@ -23,7 +23,7 @@ public class GroundSlamEnemyController : MonoBehaviour
     public GameObject m_attackGO;
 
     // Need to play test and change values accordingly
-    static int HP = 1;
+    static int HP = 5;
     static int DMG = 1;
     public int m_hp;
     public int m_dmg;
@@ -383,7 +383,22 @@ public class GroundSlamEnemyController : MonoBehaviour
     public void TakeDamage()
     {
         Debug.Log("Damage Taken");
-        m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
+        m_hp -= 1;
+        Debug.Log("Health Remaining" + m_hp);
+        if (m_hp <= 0)
+        {
+            m_currState = GROUNDSLAM_STATES.STATE_MORPHED_DEATH;
+            m_morphedGO.GetComponent<Animator>().SetBool("Dead", true);
+        }
+        else
+        {
+            m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
+        }
+    }
+
+    public void Dead()
+    {
+        gameObject.SetActive(false);
     }
 
 }
