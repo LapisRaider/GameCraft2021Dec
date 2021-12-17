@@ -34,6 +34,13 @@ public class MeleeEnemyController : MonoBehaviour
     public float m_attackTimer;
     public float m_attackTime;
 
+    [Header("Smoke things")]
+    public float m_TimeToSwap;
+    public float m_smokeTime;
+    float m_timer;
+    bool m_smokePlayed;
+    bool m_isMorphing = false;
+
     [Header("Movement variables")]
     public Transform m_groundDetection;
     public float m_speed;
@@ -82,14 +89,36 @@ public class MeleeEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Testing purposes
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        //// Testing purposes
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    SetMorphing(true);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Mouse1))
+        //{
+        //    SetMorphing(false);
+        //}
+
+        if (PlayerData.Instance.m_isInsane)
         {
-            SetMorphing(true);
+            // They need to swap
+            if(m_isMorphing == false)
+            {
+                m_isMorphing = true;
+                m_smokePlayed = false;
+                m_timer = 0.0f;
+                SetMorphing(true);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        else
         {
-            SetMorphing(false);
+            if (m_isMorphing)
+            {
+                m_isMorphing = false;
+                m_smokePlayed = false;
+                m_timer = 0.0f;
+                SetMorphing(false);
+            }
         }
 
 
@@ -99,17 +128,47 @@ public class MeleeEnemyController : MonoBehaviour
                 break;
             case MELEE_STATES.STATE_UNMORPHING:
                 {
-                    StartUnmorphing();
-                    m_morphedGO.GetComponent<Animator>().SetBool("Morph", false);
+                    m_timer += Time.deltaTime;
+
+                    if (m_timer >= m_smokeTime)
+                    {
+                        if (!m_smokePlayed)
+                        {
+                            m_smokePlayed = true;
+                            m_smokeGO.GetComponent<ParticleSystem>().Play();
+                        }
+                    }
+
+                    if (m_timer >= m_TimeToSwap)
+                    {
+                        StartUnmorphing();
+                        m_morphedGO.GetComponent<Animator>().SetBool("Morph", false);
+                        m_timer = 0.0f;
+                    }
+
                 }
                 break;
             case MELEE_STATES.STATE_MORPHING:
                 {
-                    m_smokeGO.GetComponent<ParticleSystem>().Play();
+                    //m_smokeGO.GetComponent<ParticleSystem>().Play();
+                    m_timer += Time.deltaTime;
 
-                    StartMorphing();
-                    m_morphedGO.GetComponent<Animator>().SetBool("Morph", true);
-                    
+                    if (m_timer >= m_smokeTime)
+                    {
+                        if (!m_smokePlayed)
+                        {
+                            m_smokePlayed = true;
+                            m_smokeGO.GetComponent<ParticleSystem>().Play();
+                        }
+                    }
+
+                    if (m_timer >= m_TimeToSwap)
+                    {
+                        StartMorphing();
+                        m_morphedGO.GetComponent<Animator>().SetBool("Morph", true);
+                        m_timer = 0.0f;
+                    }
+
                 }
                 break;
             case MELEE_STATES.STATE_MORPHED_IDLE:

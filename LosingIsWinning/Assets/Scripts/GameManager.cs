@@ -45,13 +45,14 @@ public class GameManager : SingletonBase<GameManager>
         if (!PlayerData.Instance.m_isInsane)
         {
             // Deduct the sanity meter and set the timer
-            PlayerData.Instance.m_currSanityMeter -= m_SANITY_LOST_PER_CAST;
-            // Check if they lost
-            if (PlayerData.Instance.m_currSanityMeter <= 0)
-            {
-                // If they did
-                //idk what happens 
-            }
+            TakeSanityDamage(m_SANITY_LOST_PER_CAST);
+            //PlayerData.Instance.m_currSanityMeter -= m_SANITY_LOST_PER_CAST;
+            //// Check if they lost
+            //if (PlayerData.Instance.m_currSanityMeter <= 0)
+            //{
+            //    // If they did
+            //    //idk what happens 
+            //}
             m_CurrentSanityTimer = m_SanityTimer;
             PlayerData.Instance.m_isInsane = true;
         }
