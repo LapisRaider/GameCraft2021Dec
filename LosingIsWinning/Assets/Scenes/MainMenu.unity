@@ -28637,7 +28637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1518009902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29339,7 +29339,7 @@ MonoBehaviour:
   m_MainMenuAnimator: {fileID: 1694967251}
   m_quitButton: {fileID: 347775352}
   m_TransitionTime: 1
-  m_startSceneName: GameScene
+  m_startSceneName: FirstCutScene
 --- !u!1 &1752571932
 GameObject:
   m_ObjectHideFlags: 0
