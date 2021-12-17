@@ -16,15 +16,16 @@ public class MeleeEnemyAttack : MonoBehaviour
 
     public float m_attackRange;
     [System.NonSerialized] public bool m_movingRight;
-
+    MeleeEnemyController m_controller;
     // Start is called before the first frame update
     void Start()
     {
+        m_controller = GetComponentInParent<MeleeEnemyController>();
        // Debug.Log("RANGE OF ATTACK" + m_attackRange);
        // m_attackRange = GetComponentInParent<MeleeEnemyController>().m_attackRange;
        // m_movingRight = GetComponentInParent<MeleeEnemyController>().m_movingRight;
-        //m_hitboxTimer = HITBOX_LIFETIME;
-        //m_hitboxTime = HITBOX_LIFETIME;
+       //m_hitboxTimer = HITBOX_LIFETIME;
+       //m_hitboxTime = HITBOX_LIFETIME;
 
         //foreach (var hitbox in m_hitboxes)
         //{
@@ -55,20 +56,22 @@ public class MeleeEnemyAttack : MonoBehaviour
             if (m_hitboxTimer >= m_hitboxTime)
             {
                 //Debug.Log("RANGE OF ATTACK" + m_attackRange);
-               // Debug.Log("In Attack script " + m_movingRight);
+                // Debug.Log("In Attack script " + m_movingRight);
+                Vector3 centerPosition = transform.position - new Vector3(0, 0.5f, 0);
+
                 RaycastHit2D[] m_attack;
                 if (m_movingRight)
                 {
                    // Debug.Log("Test right");
-                    m_attack = Physics2D.RaycastAll(transform.position, Vector2.right, m_attackRange);
-                    Debug.DrawRay(transform.position, (Vector2.right * m_attackRange), Color.green);
+                    m_attack = Physics2D.RaycastAll(centerPosition, Vector2.right, m_attackRange);
+                    Debug.DrawRay(centerPosition, (Vector2.right * m_attackRange), Color.green);
                    
                 }
                 else
                 {
                     //Debug.Log("Test left");
-                    m_attack = Physics2D.RaycastAll(transform.position, Vector2.left, m_attackRange);
-                    Debug.DrawRay(transform.position, (Vector2.left * m_attackRange), Color.green);
+                    m_attack = Physics2D.RaycastAll(centerPosition, Vector2.left, m_attackRange);
+                    Debug.DrawRay(centerPosition, (Vector2.left * m_attackRange), Color.green);
 
                 }
 
@@ -76,7 +79,10 @@ public class MeleeEnemyAttack : MonoBehaviour
                 {
                     if (hit.collider.gameObject.tag == "Player")
                     {
-                        Debug.Log("HIT THE PLAYER");
+                        // GameManager.Instance.TakeSanityDamage(m_controller.m_dmg);
+                        Vector3 dir = Player.Instance.transform.position - transform.position;
+                        dir.Normalize();
+                        Player.Instance.HurtPlayer(dir, 1.0f, m_controller.m_dmg);
                         break;
                     }
                 }

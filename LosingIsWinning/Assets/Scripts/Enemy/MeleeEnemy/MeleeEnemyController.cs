@@ -181,12 +181,13 @@ public class MeleeEnemyController : MonoBehaviour
 
     public void CheckForPlayer()
     {
-        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_detectionRange);
-        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_detectionRange);
+        Vector3 centerPosition = transform.position - new Vector3(0, 0.5f, 0);
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(centerPosition, Vector2.right, m_detectionRange);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(centerPosition, Vector2.left, m_detectionRange);
+        Debug.DrawRay(centerPosition, (Vector2.right * m_detectionRange), Color.red);
+        Debug.DrawRay(centerPosition, (Vector2.left * m_detectionRange), Color.red);
 
-        //Debug.DrawRay(transform.position, (Vector2.right * m_detectionRange), Color.red);
-        //Debug.DrawRay(transform.position, (Vector2.left * m_detectionRange), Color.red);
-        
+
         if (hitInfoRight.collider == true)
         {
             //Debug.Log(hitInfoRight.collider.gameObject.name);
@@ -266,11 +267,11 @@ public class MeleeEnemyController : MonoBehaviour
 
     public void ChasingMovement()
     {
-
-        RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_attackRange);
-        RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_attackRange);
-        //Debug.DrawRay(transform.position, (Vector2.right * m_attackRange), Color.red);
-       // Debug.DrawRay(transform.position, (Vector2.left * m_attackRange), Color.red);
+        Vector3 centerPosition = transform.position - new Vector3(0, 0.5f, 0);
+        RaycastHit2D hitInfoRight = Physics2D.Raycast(centerPosition, Vector2.right, m_attackRange);
+        RaycastHit2D hitInfoLeft = Physics2D.Raycast(centerPosition, Vector2.left, m_attackRange);
+        Debug.DrawRay(centerPosition, (Vector2.right * m_attackRange), Color.red);
+        Debug.DrawRay(centerPosition, (Vector2.left * m_attackRange), Color.red);
 
         if (hitInfoRight.collider == true && hitInfoRight.collider.gameObject.tag == "Player")
         {
