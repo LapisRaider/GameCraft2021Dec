@@ -7,6 +7,7 @@ public class GroundSlamEnemyAttack : MonoBehaviour
 {
     public bool startAttack = false;
     public List<BoxCollider2D> m_hitboxes;
+    Vector3 m_hitboxesDirection;
 
     // When m_hitboxTimer reaches m_hitboxTime, a new hitbox will be made
     // Need to play test and change values accordingly
@@ -21,6 +22,8 @@ public class GroundSlamEnemyAttack : MonoBehaviour
     public float m_hitboxTravelTimer;
     public float m_hitboxTravelTime;
 
+    GameObject playerObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,8 @@ public class GroundSlamEnemyAttack : MonoBehaviour
 
         m_hitboxTravelTimer = 0;
         m_hitboxTravelTime = HITBOX_TRAVEL_TIME;
+
+        playerObject = Player.Instance.gameObject;
 
         foreach (var hitbox in m_hitboxes)
         {
@@ -66,7 +71,6 @@ public class GroundSlamEnemyAttack : MonoBehaviour
                     if (!hitbox.gameObject.activeSelf)
                     {
                         m_hitboxTimer = 0;
-
                         hitbox.gameObject.SetActive(true);
                         return;
                     }
@@ -82,8 +86,9 @@ public class GroundSlamEnemyAttack : MonoBehaviour
                 }
                 else
                 {
+                    m_hitboxesDirection = (playerObject.transform.position - transform.position).normalized;
                     m_hitboxTravelTimer += Time.deltaTime;
-                    gameObject.transform.position += new Vector3(-1, 0, 0) * Time.deltaTime * HITBOX_TRAVEL_SPEED;
+                    gameObject.transform.position += m_hitboxesDirection * Time.deltaTime * HITBOX_TRAVEL_SPEED;
                 }
             }
             else

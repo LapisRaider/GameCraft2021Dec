@@ -23,10 +23,10 @@ public class DashEnemyAnimController : MonoBehaviour
         controller.Attack();
     }
 
-    //public void endAttack()
-    //{
-    //    enemyController.EndAttack();
-    //}
+    public void endAttack()
+    {
+        controller.EndAttack();
+    }
 
     public void Dead()
     {
