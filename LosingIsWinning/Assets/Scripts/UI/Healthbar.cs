@@ -98,7 +98,7 @@ public class Healthbar : SingletonBase<Healthbar>
             m_currDiff = m_redBuffSlider.value - m_slider.value;
             m_startPowerup = true;
         }
-        else
+        else if (!m_startPowerup)
         {
             m_redBuffSlider.value = health; //just update health normally
         }
