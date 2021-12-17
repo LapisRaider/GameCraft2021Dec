@@ -406,7 +406,7 @@ MonoBehaviour:
   m_attackGO: {fileID: 4242643383477403347}
   m_hp: 0
   m_dmg: 0
-  m_attackTime: 3
+  m_attackTime: 8
 --- !u!58 &1458354968
 CircleCollider2D:
   m_ObjectHideFlags: 0

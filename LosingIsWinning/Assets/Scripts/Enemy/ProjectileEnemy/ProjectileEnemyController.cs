@@ -106,6 +106,12 @@ public class ProjectileEnemyController : MonoBehaviour
                     //    m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
                     //    //Attack();
                     //}
+
+                    // Detected the player when unmorphed                   
+                    if (m_player != null)
+                    {
+                        m_currState = PROJECTILE_STATES.STATE_MORPHED_ATTACKING;
+                    }
                 }
                 break;
             case PROJECTILE_STATES.STATE_MORPHED_ATTACKING:
@@ -120,9 +126,10 @@ public class ProjectileEnemyController : MonoBehaviour
                     }
 
                     m_attackTimer += Time.deltaTime;
-
+                    Debug.Log(m_attackTimer);
                     if (m_attackTimer >= m_attackTime)
                     {
+                        Debug.Log("ATTACKED");
                         m_attackTimer = 0;
                         m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
                     }
@@ -138,7 +145,8 @@ public class ProjectileEnemyController : MonoBehaviour
         m_attackGO.transform.position = transform.position;
         m_attackGO.SetActive(true);
         m_attackGO.GetComponent<ProjectileEnemyAttack>().startAttack = true;
-       // m_currState = PROJECTILE_STATES.STATE_MORPHED_IDLE;
+        m_attackTimer = 0;
+        // m_currState = PROJECTILE_STATES.STATE_MORPHED_IDLE;
     }
 
     public void EndAttack()

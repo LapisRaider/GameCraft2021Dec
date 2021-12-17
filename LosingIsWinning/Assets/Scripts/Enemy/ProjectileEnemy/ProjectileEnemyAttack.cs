@@ -13,10 +13,10 @@ public class ProjectileEnemyAttack : MonoBehaviour
     // HITBOX_LIFETIME is max life time before projectile is gone
     // HITBOX_TRAVEL_SPEED is how fast the hitbox moves
     // Need to play test and change values accordingly
-    static float HITBOX_LIFETIME = 3.0f; // The bigger the value, the longer the hitbox will stay on the screen
+    static float HITBOX_LIFETIME = 6.0f; // The bigger the value,s the longer the hitbox will stay on the screen
 
     // Need to play test and change values accordingly
-    static float HITBOX_TRAVEL_SPEED = 1;
+    static float HITBOX_TRAVEL_SPEED = 2;
 
     [System.NonSerialized] public GameObject playerObject;
     // m_hitboxDirection is the travel direction of the hitbox
@@ -78,6 +78,7 @@ public class ProjectileEnemyAttack : MonoBehaviour
                         m_hitboxes[oldestProjectileIndex].gameObject.transform.position = transform.position;
                         m_hitboxesDirection[oldestProjectileIndex] = (playerObject.transform.position - gameObject.transform.position).normalized;
                         m_hitboxesLifetime[oldestProjectileIndex] = 0;
+                        startAttack = false;
                     }
                 }
             }
