@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9daea61a9526ae3409a952f208de099e, type: 3}
+  m_Name: StartDialogue
+  m_EditorClassIdentifier: 
+  m_Dialogues:
+  - name: Introduction
+    m_dialogue:
+    - m_text: Hey Cat, everything alright? You looked frazzled.
+      m_effect: 0
+    m_hasChoice: 1
+    m_choices:
+    - name: Bro in hospital
+      m_nextDialogueIndex: 1
+      m_Text:
+        m_text: My brother is in the hospital... I need to get to him fast.
+        m_effect: 1
+    - name: No time
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: NO TIME TO TALK I NEED TO GO NOW!
+        m_effect: 2
+    m_hitPlayerAfter: 0
+  - name: Sorry to hear that
+    m_dialogue:
+    - m_text: Sorry to hear that...
+      m_effect: 0
+    - m_text: But please be careful, it's dangerous during this time of the year.
+      m_effect: 0
+    m_hasChoice: 0
+    m_choices: []
+    m_hitPlayerAfter: 0
+  - name: OKAY
+    m_dialogue:
+    - m_text: WHAT ARE YOU DOING THEN! GO!
+      m_effect: 2
+    m_hasChoice: 0
+    m_choices: []
+    m_hitPlayerAfter: 0
