@@ -8,10 +8,10 @@ public class HitObjs : MonoBehaviour
     public Color m_HitColor = Color.red;
     public float m_HitFlashTime = 0.2f;
 
-    private float m_CurrFlashTime = 0.0f;
-    private bool m_HasBeenHit = false;
+    [System.NonSerialized] public float m_CurrFlashTime = 0.0f;
+    [System.NonSerialized] public bool m_HasBeenHit = false;
 
-    SpriteRenderer m_spriteRenderer;
+    [System.NonSerialized] public SpriteRenderer m_spriteRenderer;
 
     public void Start()
     {
@@ -30,12 +30,10 @@ public class HitObjs : MonoBehaviour
         }
     }
 
-    public bool Hit()
+    virtual public bool Hit()
     {
         if (m_HasBeenHit)
-        {
             return false;
-        }
 
         if (m_spriteRenderer == null)
             return false;
