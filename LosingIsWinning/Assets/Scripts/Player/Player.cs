@@ -59,6 +59,13 @@ public class Player : SingletonBase<Player>
         {
             m_currInteraction = collision.gameObject.GetComponent<Interactiables>();
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Vector3 dir = transform.position - collision.transform.position;
+            dir.Normalize();
+            HurtPlayer(dir, 1.0f, 1);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
