@@ -13,7 +13,7 @@ public class ProjectileEnemyAttack : MonoBehaviour
     // HITBOX_LIFETIME is max life time before projectile is gone
     // HITBOX_TRAVEL_SPEED is how fast the hitbox moves
     // Need to play test and change values accordingly
-    static float HITBOX_LIFETIME = 6.0f; // The bigger the value,s the longer the hitbox will stay on the screen
+    static float HITBOX_LIFETIME = 6.0f; // The bigger the value, the longer the hitbox will stay on the screen
 
     // Need to play test and change values accordingly
     static float HITBOX_TRAVEL_SPEED = 2;

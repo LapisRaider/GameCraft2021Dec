@@ -99,6 +99,7 @@ public class MeleeEnemyController : MonoBehaviour
             case MELEE_STATES.STATE_UNMORPHING:
                 {
                     StartUnmorphing();
+                    m_morphedGO.GetComponent<Animator>().SetBool("Morph", false);
                 }
                 break;
             case MELEE_STATES.STATE_MORPHING:
