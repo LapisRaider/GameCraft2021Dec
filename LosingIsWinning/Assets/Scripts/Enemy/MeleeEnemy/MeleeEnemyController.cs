@@ -44,7 +44,7 @@ public class MeleeEnemyController : MonoBehaviour
     public float m_detectionRange;
     public float m_attackRange;
 
-    bool m_movingRight = true;
+    [System.NonSerialized] public bool m_movingRight = true;
     bool m_moving;
     bool m_attacking;
     float m_patrolTimer;
@@ -164,7 +164,9 @@ public class MeleeEnemyController : MonoBehaviour
     {
         m_attackGO.transform.position = transform.position;
         m_attackGO.SetActive(true);
+       // Debug.Log("In controller script " + m_movingRight);
         m_attackGO.GetComponent<MeleeEnemyAttack>().startAttack = true;
+        m_attackGO.GetComponent<MeleeEnemyAttack>().m_movingRight = m_movingRight;
         //m_currState = MELEE_STATES.STATE_MORPHED_CHASE;
     }
 
@@ -185,7 +187,7 @@ public class MeleeEnemyController : MonoBehaviour
         //Debug.DrawRay(transform.position, (Vector2.left * m_detectionRange), Color.red);
         if (hitInfoRight.collider == true)
         {
-            Debug.Log(hitInfoRight.collider.gameObject.name);
+            //Debug.Log(hitInfoRight.collider.gameObject.name);
 
             if (hitInfoRight.collider.gameObject.tag == "Player")
             {
@@ -196,7 +198,7 @@ public class MeleeEnemyController : MonoBehaviour
         }
         else if (hitInfoLeft.collider == true)
         {
-            Debug.Log(hitInfoLeft.collider.gameObject.name);
+           // Debug.Log(hitInfoLeft.collider.gameObject.name);
 
             if (hitInfoLeft.collider.gameObject.tag == "Player")
             {
