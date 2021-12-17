@@ -65,7 +65,7 @@ public class Healthbar : SingletonBase<Healthbar>
         }
     }
 
-    public void SetHealth(int health)
+    public void SetHealth(float health)
     {
         if (m_slider != null)
             m_slider.value = health;

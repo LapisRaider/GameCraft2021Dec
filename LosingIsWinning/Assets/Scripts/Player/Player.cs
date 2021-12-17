@@ -41,6 +41,9 @@ public class Player : SingletonBase<Player>
 
     public void HurtPlayer(Vector2 dir, float force = 1.0f, int sanityDamage = 0)
     {
+        if (!m_movement.m_takeDamage)
+            return;
+
         m_movement.PlayerKnockBack(dir, force);
         GameManager.Instance.TakeSanityDamage(sanityDamage);
     }

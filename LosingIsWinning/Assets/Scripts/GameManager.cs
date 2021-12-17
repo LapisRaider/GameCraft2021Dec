@@ -71,7 +71,7 @@ public class GameManager : SingletonBase<GameManager>
             // Lost again
         }
 
-        Healthbar.Instance.SetHealth(PlayerData.Instance.m_currSanityMeter / PlayerData.Instance.m_maxSanityMeter);
+        Healthbar.Instance.SetHealth((float)(PlayerData.Instance.m_currSanityMeter) / (float)(PlayerData.Instance.m_maxSanityMeter));
         Healthbar.Instance.LoseHealth();
     }
 

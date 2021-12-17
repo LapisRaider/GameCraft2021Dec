@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     public Sprite m_hurtSprite;
     public float m_hurtSpriteTime = 0.1f; //how long to show hurt sprite
 
-    private bool m_takeDamage = true;
+    [HideInInspector] public bool m_takeDamage = true;
     private float m_currInvincibleTime;
 
     private bool m_applyKnockBack = false;
