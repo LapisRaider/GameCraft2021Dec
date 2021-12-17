@@ -26,11 +26,16 @@ public class ProjectileEnemyController : MonoBehaviour
     public int m_hp;
     public int m_dmg;
 
+
+    [Header("Attack attributes")]
     // When attacktimer reaches attacktime, an attack will be made
     // Need to play test and change values accordingly
     static float ATT_TIME = 2;
-    public float m_attackTimer;
     public float m_attackTime;
+    //public float m_attackRange;
+    float m_attackTimer;
+    GameObject m_player;
+    bool m_attacking = false;
 
 
     // Call this function when the player decides to lose sanity or when the duration ends
@@ -87,22 +92,41 @@ public class ProjectileEnemyController : MonoBehaviour
             case PROJECTILE_STATES.STATE_MORPHING:
                 {
                     StartMorphing();
+                    m_morphedGO.GetComponent<Animator>().SetBool("Morph", true);
                 }
                 break;
             case PROJECTILE_STATES.STATE_MORPHED_IDLE:
                 {
+                    //m_attackTimer += Time.deltaTime;
+
+                    //if (m_attackTimer >= m_attackTime)
+                    //{
+                    //    m_attackTimer = 0;
+                    //    m_currState = PROJECTILE_STATES.STATE_MORPHED_ATTACKING;
+                    //    m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+                    //    //Attack();
+                    //}
+                }
+                break;
+            case PROJECTILE_STATES.STATE_MORPHED_ATTACKING:
+                {
+                    if (m_player != null)
+                    {
+                        m_attackGO.GetComponent<ProjectileEnemyAttack>().playerObject = m_player;
+                    }
+                    else
+                    {
+                        m_attackGO.GetComponent<ProjectileEnemyAttack>().playerObject = null;
+                    }
+
                     m_attackTimer += Time.deltaTime;
 
                     if (m_attackTimer >= m_attackTime)
                     {
                         m_attackTimer = 0;
-                        m_currState = PROJECTILE_STATES.STATE_MORPHED_ATTACKING;
                         m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
-                        //Attack();
                     }
                 }
-                break;
-            case PROJECTILE_STATES.STATE_MORPHED_ATTACKING:
                 break;
             default:
                 break;
@@ -114,14 +138,18 @@ public class ProjectileEnemyController : MonoBehaviour
         m_attackGO.transform.position = transform.position;
         m_attackGO.SetActive(true);
         m_attackGO.GetComponent<ProjectileEnemyAttack>().startAttack = true;
-        m_currState = PROJECTILE_STATES.STATE_MORPHED_IDLE;
+       // m_currState = PROJECTILE_STATES.STATE_MORPHED_IDLE;
     }
 
     public void EndAttack()
     {
-        m_currState = PROJECTILE_STATES.STATE_MORPHED_IDLE;
-        m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
-
+        // Player is no longer in range
+        if(m_player == null)
+        {
+            m_currState = PROJECTILE_STATES.STATE_MORPHED_IDLE;
+            m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
+            m_attackTimer = 0;
+        }
     }
 
     public void StartMorphing()
@@ -144,5 +172,25 @@ public class ProjectileEnemyController : MonoBehaviour
 
         // When done with unmorphing
         m_currState = PROJECTILE_STATES.STATE_NORMAL;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            m_currState = PROJECTILE_STATES.STATE_MORPHED_ATTACKING;
+
+            m_player = collision.gameObject;
+            Debug.Log("Player in range");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            m_player = null;
+            Debug.Log("Player not in range");
+        }
     }
 }

@@ -15,7 +15,7 @@ public class PlayerFeet : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Testing falling on");
+        //Debug.Log("Testing falling on");
 
         if (collision.gameObject.CompareTag("Platform") && playerMovement.m_isGrounded == false && playerMovement.m_startJump == false)
         {
@@ -27,7 +27,7 @@ public class PlayerFeet : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Testing falling off");
+        //Debug.Log("Testing falling off");
 
         if (collision.gameObject.CompareTag("Platform"))
         {

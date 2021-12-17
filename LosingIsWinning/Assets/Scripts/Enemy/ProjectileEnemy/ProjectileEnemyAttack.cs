@@ -18,6 +18,7 @@ public class ProjectileEnemyAttack : MonoBehaviour
     // Need to play test and change values accordingly
     static float HITBOX_TRAVEL_SPEED = 1;
 
+    [System.NonSerialized] public GameObject playerObject;
     // m_hitboxDirection is the travel direction of the hitbox
 
     // Start is called before the first frame update
@@ -44,7 +45,7 @@ public class ProjectileEnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startAttack)
+        if (playerObject != null)
         {
             // Create a new projectile
             for (int i = 0; i < m_hitboxes.Count; i++)
@@ -55,7 +56,7 @@ public class ProjectileEnemyAttack : MonoBehaviour
                     {
                         m_hitboxes[i].gameObject.SetActive(true);
                         m_hitboxes[i].gameObject.transform.position = transform.position;
-                        m_hitboxesDirection[i] = (GameManager.Instance.m_player.transform.position - gameObject.transform.position).normalized;
+                        m_hitboxesDirection[i] = (playerObject.transform.position - gameObject.transform.position).normalized;
                         m_hitboxesLifetime[i] = 0;
                         startAttack = false;
                     }
@@ -75,13 +76,13 @@ public class ProjectileEnemyAttack : MonoBehaviour
 
                         m_hitboxes[oldestProjectileIndex].gameObject.SetActive(true);
                         m_hitboxes[oldestProjectileIndex].gameObject.transform.position = transform.position;
-                        m_hitboxesDirection[oldestProjectileIndex] = (GameManager.Instance.m_player.transform.position - gameObject.transform.position).normalized;
+                        m_hitboxesDirection[oldestProjectileIndex] = (playerObject.transform.position - gameObject.transform.position).normalized;
                         m_hitboxesLifetime[oldestProjectileIndex] = 0;
                     }
                 }
             }
-        }
 
+        }
         // Loop through list of projectiles to look for active ones
         for (int i = 0; i < m_hitboxes.Count; i++)
         {
