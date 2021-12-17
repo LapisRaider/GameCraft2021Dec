@@ -61709,17 +61709,25 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 535090350017782931, guid: c5cf5a074b86fd8498c48b43a62cbd26, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1723216344}
     - target: {fileID: 535090350017782934, guid: c5cf5a074b86fd8498c48b43a62cbd26, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 535090350017782934, guid: c5cf5a074b86fd8498c48b43a62cbd26, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 2258053725604887163, guid: c5cf5a074b86fd8498c48b43a62cbd26, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258053725604887163, guid: c5cf5a074b86fd8498c48b43a62cbd26, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110279432509347532, guid: c5cf5a074b86fd8498c48b43a62cbd26, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110279432509347532, guid: c5cf5a074b86fd8498c48b43a62cbd26, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5cf5a074b86fd8498c48b43a62cbd26, type: 3}

@@ -51,7 +51,7 @@ public class GameManager : SingletonBase<GameManager>
             Player.Instance.SetInsane(true);
 
             // Deduct the sanity meter and set the timer
-            TakeSanityDamage(m_SANITY_LOST_PER_CAST);
+            TakeSanityDamage(m_SANITY_LOST_PER_CAST, true);
             //PlayerData.Instance.m_currSanityMeter -= m_SANITY_LOST_PER_CAST;
             //// Check if they lost
             //if (PlayerData.Instance.m_currSanityMeter <= 0)
@@ -70,7 +70,7 @@ public class GameManager : SingletonBase<GameManager>
         }
     }
 
-    public void TakeSanityDamage(int sanityLost)
+    public void TakeSanityDamage(int sanityLost, bool sanityAbility = false)
     {
         PlayerData.Instance.m_currSanityMeter -= sanityLost;
 
@@ -79,7 +79,7 @@ public class GameManager : SingletonBase<GameManager>
             // Lost again
         }
 
-        Healthbar.Instance.SetHealth((float)(PlayerData.Instance.m_currSanityMeter) / (float)(PlayerData.Instance.m_maxSanityMeter));
+        Healthbar.Instance.SetHealth((float)(PlayerData.Instance.m_currSanityMeter) / (float)(PlayerData.Instance.m_maxSanityMeter), sanityAbility);
         Healthbar.Instance.LoseHealth();
     }
 

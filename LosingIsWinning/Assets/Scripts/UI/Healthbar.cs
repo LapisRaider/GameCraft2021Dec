@@ -13,6 +13,12 @@ public class Healthbar : SingletonBase<Healthbar>
     public Image m_barFillUI;
     Color m_currBarColor;
 
+    [Header("Red Buffer")]
+    public Slider m_redBuffSlider;
+    private float m_oriRefBuffAmt = 1.0f;
+    private float m_currDiff = 1.0f;
+    private bool m_startPowerup = false;
+
     [Header("Colors Eyes")]
     public Image m_eyesUI;
     public Color m_insaneEyes;
@@ -37,6 +43,19 @@ public class Healthbar : SingletonBase<Healthbar>
             ParticleSystem.MainModule main = m_dmgParticleEffect.main;
             main.startColor = m_currBarColor;
         }
+    }
+
+    private void Update()
+    {
+        if (!m_startPowerup)
+            return;
+
+        if (m_redBuffSlider == null || m_slider == null)
+            return;
+
+        m_redBuffSlider.value = m_oriRefBuffAmt - m_currDiff * ( 1.0f - (GameManager.Instance.m_CurrentSanityTimer / GameManager.Instance.m_SanityTimer));
+        m_redBuffSlider.value = Mathf.Clamp(m_redBuffSlider.value, m_slider.value, 1.0f);
+        m_startPowerup = m_redBuffSlider.value > m_slider.value;
     }
 
     public void InsaneMode(bool insane)
@@ -65,10 +84,24 @@ public class Healthbar : SingletonBase<Healthbar>
         }
     }
 
-    public void SetHealth(float health)
+    public void SetHealth(float health, bool powerup = false)
     {
         if (m_slider != null)
             m_slider.value = health;
+
+        if (m_redBuffSlider == null)
+            return;
+
+        if (powerup)
+        {
+            m_oriRefBuffAmt = m_redBuffSlider.value;
+            m_currDiff = m_redBuffSlider.value - m_slider.value;
+            m_startPowerup = true;
+        }
+        else
+        {
+            m_redBuffSlider.value = health; //just update health normally
+        }
     }
 
     public void LoseHealth()
