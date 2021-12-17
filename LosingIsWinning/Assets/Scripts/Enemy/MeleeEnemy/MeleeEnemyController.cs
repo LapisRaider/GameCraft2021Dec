@@ -20,6 +20,7 @@ public class MeleeEnemyController : MonoBehaviour
     public GameObject m_normalGO;
     public GameObject m_morphedGO;
     public GameObject m_attackGO;
+    public GameObject m_smokeGO;
 
     // Need to play test and change values accordingly
     static int HP = 3;
@@ -104,8 +105,11 @@ public class MeleeEnemyController : MonoBehaviour
                 break;
             case MELEE_STATES.STATE_MORPHING:
                 {
+                    m_smokeGO.GetComponent<ParticleSystem>().Play();
+
                     StartMorphing();
                     m_morphedGO.GetComponent<Animator>().SetBool("Morph", true);
+                    
                 }
                 break;
             case MELEE_STATES.STATE_MORPHED_IDLE:
@@ -363,6 +367,7 @@ public class MeleeEnemyController : MonoBehaviour
 
     public void StartMorphing()
     {
+
         m_normalGO.SetActive(false);
         m_morphedGO.SetActive(true);
 
