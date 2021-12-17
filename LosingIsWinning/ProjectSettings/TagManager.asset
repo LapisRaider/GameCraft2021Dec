@@ -53,6 +53,9 @@ TagManager:
   - name: GhostTrail
     uniqueID: 3719374751
     locked: 0
+  - name: NPC
+    uniqueID: 4244408519
+    locked: 0
   - name: Player
     uniqueID: 2814794981
     locked: 0

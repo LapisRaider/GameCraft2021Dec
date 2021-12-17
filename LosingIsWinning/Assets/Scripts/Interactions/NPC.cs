@@ -2,9 +2,13 @@
 
 public class NPC : Interactiables
 {
+    [Header("Others")]
     public DialogueData m_NpcDialogue;
     public bool m_rememberPrevDia = false;
     public float m_hitForce = 1.0f;
+
+    [Header("UI stuff")]
+    public GameObject m_speechBox;
 
     private Animator m_animator;
     private SpriteRenderer m_spriteRenderer;
@@ -50,5 +54,17 @@ public class NPC : Interactiables
 
         if (m_animator != null)
             m_animator.SetTrigger("Attack");
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (m_speechBox != null)
+            m_speechBox.SetActive(true);
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (m_speechBox != null)
+            m_speechBox.SetActive(false);
     }
 }
