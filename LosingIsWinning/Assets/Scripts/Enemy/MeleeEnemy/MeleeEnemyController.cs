@@ -57,6 +57,8 @@ public class MeleeEnemyController : MonoBehaviour
     bool m_attacking;
     float m_patrolTimer;
 
+    Vector3 originalPosition;
+
 
     // Call this function when the player decides to lose sanity or when the duration ends
     public void SetMorphing(bool _morphing)
@@ -76,10 +78,10 @@ public class MeleeEnemyController : MonoBehaviour
     {
         m_hp = HP;
         m_dmg = DMG;
-
+        m_patrolTimer = m_patrolTime;
         m_attackTimer = 0;
         m_attackTime = ATT_TIME;
-
+        originalPosition = transform.position;
         m_normalGO.SetActive(true);
         m_morphedGO.SetActive(false);
         m_attackGO.SetActive(false);
@@ -438,6 +440,7 @@ public class MeleeEnemyController : MonoBehaviour
     {
         m_attackTimer = 0;
 
+        transform.position = originalPosition;
         m_normalGO.SetActive(true);
         m_morphedGO.SetActive(false);
         m_attackGO.GetComponent<MeleeEnemyAttack>().ResetAll();
@@ -465,6 +468,13 @@ public class MeleeEnemyController : MonoBehaviour
 
     public void Dead()
     {
-        gameObject.SetActive(false);
+        transform.position = originalPosition;
+        m_normalGO.SetActive(true);
+        m_morphedGO.SetActive(false);
+        m_attackGO.SetActive(false);
+        m_smokeGO.GetComponent<ParticleSystem>().Play();
+        // gameObject.SetActive(false);
     }
+
+
 }
