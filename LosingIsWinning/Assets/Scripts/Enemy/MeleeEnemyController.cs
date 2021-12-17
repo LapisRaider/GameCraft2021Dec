@@ -46,6 +46,7 @@ public class MeleeEnemyController : MonoBehaviour
 
     bool m_movingRight = true;
     bool m_moving;
+    bool m_attacking;
     float m_patrolTimer;
 
 
@@ -103,6 +104,7 @@ public class MeleeEnemyController : MonoBehaviour
             case MELEE_STATES.STATE_MORPHING:
                 {
                     StartMorphing();
+                    m_morphedGO.GetComponent<Animator>().SetBool("Morph", true);
                 }
                 break;
             case MELEE_STATES.STATE_MORPHED_IDLE:
@@ -140,7 +142,8 @@ public class MeleeEnemyController : MonoBehaviour
                 if (m_attackTimer >= m_attackTime)
                 {
                     m_attackTimer = 0;
-                    m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+                    m_attacking = true;
+                   // m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
                 }
 
                 break;
@@ -148,6 +151,13 @@ public class MeleeEnemyController : MonoBehaviour
                 break;
         }
 
+        UpdateAnimations();
+    }
+
+    public void UpdateAnimations()
+    {
+        m_morphedGO.GetComponent<Animator>().SetBool("Attack", m_attacking);
+        m_morphedGO.GetComponent<Animator>().SetBool("isMoving", m_moving);
     }
 
     public void Attack()
@@ -161,7 +171,8 @@ public class MeleeEnemyController : MonoBehaviour
     public void EndAttack()
     {
         m_currState = MELEE_STATES.STATE_MORPHED_CHASE;
-        m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
+        m_attacking = false;
+       // m_morphedGO.GetComponent<Animator>().SetBool("Attack", false);
         m_attackTimer = 0;
     }
 
@@ -170,8 +181,8 @@ public class MeleeEnemyController : MonoBehaviour
         RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_detectionRange, ~gameObject.layer);
         RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_detectionRange, ~gameObject.layer);
 
-        Debug.DrawRay(transform.position, (Vector2.right * m_detectionRange), Color.red);
-        Debug.DrawRay(transform.position, (Vector2.left * m_detectionRange), Color.red);
+       // Debug.DrawRay(transform.position, (Vector2.right * m_detectionRange), Color.red);
+        //Debug.DrawRay(transform.position, (Vector2.left * m_detectionRange), Color.red);
         if (hitInfoRight.collider == true)
         {
             Debug.Log(hitInfoRight.collider.gameObject.name);
@@ -205,20 +216,20 @@ public class MeleeEnemyController : MonoBehaviour
             // Get the bottom and right hit info 
             // Checks if theres a wall infront or a drop below
             RaycastHit2D hitInfoDown = Physics2D.Raycast(m_groundDetection.position, Vector2.down, m_distance);
-            Debug.DrawRay(m_groundDetection.position, (Vector2.down * m_distance), Color.green);
+            //Debug.DrawRay(m_groundDetection.position, (Vector2.down * m_distance), Color.green);
 
             RaycastHit2D hitInfoForward;
             if (m_movingRight)
             {
                 hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.right, m_distance);
-                Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
+               // Debug.DrawRay(m_groundDetection.position, (Vector2.right * m_distance), Color.green);
 
             }
             else
             {
                 hitInfoForward = Physics2D.Raycast(m_groundDetection.position, Vector2.left, m_distance);
 
-                Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
+               // Debug.DrawRay(m_groundDetection.position, (Vector2.left * m_distance), Color.green);
             }
 
             // Down collider did not hit anything
@@ -254,7 +265,9 @@ public class MeleeEnemyController : MonoBehaviour
 
         RaycastHit2D hitInfoRight = Physics2D.Raycast(transform.position, Vector2.right, m_attackRange, ~gameObject.layer);
         RaycastHit2D hitInfoLeft = Physics2D.Raycast(transform.position, Vector2.left, m_attackRange, ~gameObject.layer);
-      
+        Debug.DrawRay(transform.position, (Vector2.right * m_attackRange), Color.red);
+        Debug.DrawRay(transform.position, (Vector2.left * m_attackRange), Color.red);
+
         if (hitInfoRight.collider == true && hitInfoRight.collider.gameObject.tag == "Player")
         {
             // if they are facing left
@@ -264,7 +277,8 @@ public class MeleeEnemyController : MonoBehaviour
             }
 
             m_currState = MELEE_STATES.STATE_MORPHED_ATTACKING;
-            m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+            m_attacking = true;
+           // m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
             m_patrolTimer = 0.0f;
             m_moving = false;
         }
@@ -277,7 +291,8 @@ public class MeleeEnemyController : MonoBehaviour
             }
 
             m_currState = MELEE_STATES.STATE_MORPHED_ATTACKING;
-            m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+            // m_morphedGO.GetComponent<Animator>().SetBool("Attack", true);
+            m_attacking = true;
             m_patrolTimer = 0.0f;
             m_moving = false;
         }
