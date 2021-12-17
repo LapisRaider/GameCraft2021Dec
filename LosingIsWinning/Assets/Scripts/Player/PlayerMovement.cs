@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
 
     public float m_dashSpeed = 200.0f;
     public float m_dashTime = 2.0f;
+    public float m_dashCooldown = 1.0f;
+    private float m_currDashCooldown = 1.0f;
+
     private float m_currDashTime = 0.0f;
     private float m_prevGravity = 0.5f;
 
@@ -82,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         m_isDashing = false;
         m_isGrounded = Physics2D.OverlapCircle(m_groundCheckPos.position, m_groundCheckRadius, m_groundLayers);
 
+        m_currDashCooldown = Time.time;
         m_currJumps = PlayerData.Instance.m_maxJumps;
         m_currAttackTime = Time.time;
         m_currGhostTime = Time.time;
@@ -116,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
             if (!m_isDashing)
             {
                 m_rigidBody.gravityScale = m_prevGravity;
+                m_currDashCooldown = Time.time;
             }
         }
 
@@ -165,15 +170,18 @@ public class PlayerMovement : MonoBehaviour
         //for dashing
         if (Input.GetKeyDown(KeyCode.LeftShift) && !m_isDashing)
         {
-            m_isDashing = true;
-            m_currDashTime = Time.time;
-            m_currGhostTime = m_currDashTime;
+            if (Time.time - m_currDashCooldown > m_dashCooldown)
+            {
+                m_isDashing = true;
+                m_currDashTime = Time.time;
+                m_currGhostTime = m_currDashTime;
 
-            if (m_CameraShake != null)
-                m_CameraShake.StartShake();
+                if (m_CameraShake != null)
+                    m_CameraShake.StartShake();
 
-            m_rigidBody.gravityScale = 0.0f;
-            ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
+                m_rigidBody.gravityScale = 0.0f;
+                ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.B))
