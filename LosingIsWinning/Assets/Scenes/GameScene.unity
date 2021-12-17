@@ -80285,6 +80285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee1578f48c1747448e5d1573518447c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bDontDestroyOnLoad: 0
   m_ShockWaveMaterial: {fileID: 2100000, guid: 19ecf1c2a2c073b4f80930a931d29dd1, type: 2}
   m_ShockWaveSize: 0.1
   m_ShockWaveMagnification: -0.75
@@ -106108,6 +106109,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1517971161}
     m_Modifications:
+    - target: {fileID: 4804558605197846513, guid: c2afec6f1350aac45a4bb920c90055ad, type: 3}
+      propertyPath: m_insaneAnimator
+      value: 
+      objectReference: {fileID: 22100000, guid: d89f482718a3f294e911f587590a7e43, type: 2}
+    - target: {fileID: 4804558605197846513, guid: c2afec6f1350aac45a4bb920c90055ad, type: 3}
+      propertyPath: m_normalAnimator
+      value: 
+      objectReference: {fileID: 9100000, guid: 5ecf3ffe27b968845be4b0fc8cb3c4af, type: 2}
     - target: {fileID: 4804558605197846515, guid: c2afec6f1350aac45a4bb920c90055ad, type: 3}
       propertyPath: m_jumpSpeed
       value: 275
