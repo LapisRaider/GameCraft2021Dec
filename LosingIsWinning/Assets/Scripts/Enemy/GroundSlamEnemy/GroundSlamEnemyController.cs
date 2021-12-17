@@ -382,7 +382,8 @@ public class GroundSlamEnemyController : MonoBehaviour
 
     public void TakeDamage()
     {
-
+        Debug.Log("Damage Taken");
+        m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
     }
 
 }
