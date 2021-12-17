@@ -21,7 +21,7 @@ public class PlayerData : SingletonBase<PlayerData>
     void Start()
     {
         m_maxJumps = 1;
-        m_maxSanityMeter = 1;
+        m_maxSanityMeter = 15;
         m_currSanityMeter = m_maxSanityMeter;
         m_sanityAbility = 1;
         m_isInsane = false;
