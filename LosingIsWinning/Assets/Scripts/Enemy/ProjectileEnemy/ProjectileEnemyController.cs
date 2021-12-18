@@ -144,6 +144,7 @@ public class ProjectileEnemyController : MonoBehaviour
                         {
                             m_smokePlayed = true;
                             m_smokeGO.GetComponent<ParticleSystem>().Play();
+                            SoundManager.Instance.Play("SmokePuff");
                         }
                     }
 
