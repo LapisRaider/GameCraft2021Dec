@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Dialogues:
   - name: Intro
     m_dialogue:
-    - m_text: Taking that will cause you to lose some sanity.
+    - m_text: Taking that will cause you to lose some sanity and start hallucinating
       m_effect: 0
     m_hasChoice: 1
     m_choices:
@@ -50,8 +50,7 @@ MonoBehaviour:
     m_hitPlayerAfter: 0
   - name: Last
     m_dialogue:
-    - m_text: Remember that certain abilities don't require you to be under its effects
-        so manage your sanity wisely!
+    - m_text: Don't forget that you can slash things with [ENTER].
       m_effect: 0
     m_hasChoice: 1
     m_choices:
