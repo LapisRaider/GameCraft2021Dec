@@ -16,12 +16,15 @@ public class Player : SingletonBase<Player>
 
     PlayerMovement m_movement;
 
+    [HideInInspector] public bool m_updatePlayerAnim = true;
+
     // Start is called before the first frame update
     public override void Awake()
     {
         m_currInteraction = null;
         m_movement = GetComponent<PlayerMovement>();
         m_playerAnimator = GetComponent<Animator>();
+        m_updatePlayerAnim = true;
     }
 
     // Update is called once per frame
@@ -72,6 +75,7 @@ public class Player : SingletonBase<Player>
 
     public void PlayerDied()
     {
+        m_updatePlayerAnim = false;
         m_playerAnimator.runtimeAnimatorController = m_deadAnimator;
         PlayerData.Instance.EnableActions(false);
         Invoke("ResetDeath", m_deathTime);
@@ -80,6 +84,7 @@ public class Player : SingletonBase<Player>
     public void ResetDeath()
     {
         m_playerAnimator.runtimeAnimatorController = m_normalAnimator;
+        m_updatePlayerAnim = true;
         PlayerData.Instance.EnableActions(true);
         SaveSystem.Instance.LoadTheGame();
     }
