@@ -52,6 +52,6 @@ public class SaveSystem : SingletonBase<SaveSystem>
             }
         }
         Healthbar.Instance.SetHealth(PlayerData.Instance.m_currSanityMeter / PlayerData.Instance.m_maxSanityMeter);
-
+        Healthbar.Instance.InsaneMode(false);
     }
 }
