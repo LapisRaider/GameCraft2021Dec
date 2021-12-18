@@ -141,5 +141,33 @@ MonoBehaviour:
     m_Volume: 0.5
     m_Pitch: 1
     m_HearingBaseOnDist: 0
-    m_Loop: 1
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: MeleeHit
+    m_Clip: {fileID: 8300000, guid: 226d0a28bb1c6a944bf325ad5fd6483e, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: ProjectileEnemyDying
+    m_Clip: {fileID: 8300000, guid: e21e4cb7eb3735146b0359fbe74065c7, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: ProjectileEnemyHit
+    m_Clip: {fileID: 8300000, guid: 2ab0e0b68fb607f40a1fd66d1ea734cd, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: MeleeDying
+    m_Clip: {fileID: 8300000, guid: ca97db87b8d314843b049ebaaea78ebc, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
     m_Source: {fileID: 0}

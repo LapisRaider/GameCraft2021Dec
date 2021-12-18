@@ -83,6 +83,8 @@ public class MeleeEnemyAttack : MonoBehaviour
                         Vector3 dir = Player.Instance.transform.position - transform.position;
                         dir.Normalize();
                         Player.Instance.HurtPlayer(dir, 1.0f, m_controller.m_dmg);
+                        SoundManager.Instance.Play("MeleeSwing");
+
                         break;
                     }
                 }

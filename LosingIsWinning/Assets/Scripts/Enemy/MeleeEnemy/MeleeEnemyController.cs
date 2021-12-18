@@ -161,6 +161,7 @@ public class MeleeEnemyController : MonoBehaviour
                         {
                             m_smokePlayed = true;
                             m_smokeGO.GetComponent<ParticleSystem>().Play();
+                            SoundManager.Instance.Play("SmokePuff");
                         }
                     }
 
@@ -194,12 +195,20 @@ public class MeleeEnemyController : MonoBehaviour
                     }
                     CheckForPlayer();
                     IdleMovement();
+
+                    if (m_moving == false)
+                    {
+                    }
                 }
                 break;
             case MELEE_STATES.STATE_MORPHED_CHASE:
                 {
                     CheckForPlayer();
                     ChasingMovement();
+
+                    if (m_moving == false)
+                    {
+                    }
                 }
                 break;
             case MELEE_STATES.STATE_MORPHED_ATTACKING:
@@ -224,6 +233,12 @@ public class MeleeEnemyController : MonoBehaviour
     {
         m_morphedGO.GetComponent<Animator>().SetBool("Attack", m_attacking);
         m_morphedGO.GetComponent<Animator>().SetBool("isMoving", m_moving);
+
+        if (m_moving == false)
+            SoundManager.Instance.Stop("MeleeRunning");
+        else if (m_moving == true)
+            SoundManager.Instance.Play("MeleeRunning");
+
     }
 
     public void Attack()
@@ -376,6 +391,7 @@ public class MeleeEnemyController : MonoBehaviour
         if (m_moving)
         {
             transform.Translate(Vector2.right * m_speed * Time.deltaTime);
+            //SoundManager.Instance.Play("MeleeRunning");
 
             // Get the bottom and right hit info 
             // Checks if theres a wall infront or a drop below
@@ -458,10 +474,11 @@ public class MeleeEnemyController : MonoBehaviour
         {
             m_currState = MELEE_STATES.STATE_MORPHED_DEATH;
             m_morphedGO.GetComponent<Animator>().SetBool("Dead", true);
-
+            SoundManager.Instance.Play("MeleeDying");
         }
         else
         {
+            SoundManager.Instance.Play("MeleeHit");
             ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.ENEMY_DAMAGE);
             m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
         }
