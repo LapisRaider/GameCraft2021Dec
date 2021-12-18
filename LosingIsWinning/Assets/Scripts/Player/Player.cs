@@ -60,6 +60,7 @@ public class Player : SingletonBase<Player>
         if (!m_movement.m_takeDamage)
             return;
 
+        SoundManager.Instance.Play("PlayerHit");
         m_movement.PlayerKnockBack(dir, force);
         GameManager.Instance.TakeSanityDamage(sanityDamage);
     }
