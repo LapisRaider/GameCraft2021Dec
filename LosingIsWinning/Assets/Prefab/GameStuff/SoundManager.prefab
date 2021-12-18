@@ -66,3 +66,38 @@ MonoBehaviour:
     m_HearingBaseOnDist: 0
     m_Loop: 1
     m_Source: {fileID: 0}
+  - m_Name: Pulse
+    m_Clip: {fileID: 8300000, guid: 4177c3d3efcd43444bb1d093b22a8ca0, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: Dash
+    m_Clip: {fileID: 8300000, guid: efe998886262fca47bbacb3365d4a94a, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: Jump
+    m_Clip: {fileID: 8300000, guid: 6e3609ad72f8c2346904ed42a238fd29, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: LayDown
+    m_Clip: {fileID: 8300000, guid: 63166ae750977bf4f96cca6ba350d79b, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: Running
+    m_Clip: {fileID: 8300000, guid: 3998819025f19ee408a3ccc1b1620ce1, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
