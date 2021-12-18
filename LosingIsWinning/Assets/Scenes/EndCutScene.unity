@@ -2590,6 +2590,7 @@ GameObject:
   - component: {fileID: 2083625760}
   - component: {fileID: 2083625764}
   - component: {fileID: 2083625765}
+  - component: {fileID: 2083625766}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2761,3 +2762,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2083625766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083625759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d50ab96361c2e468cb5929021b2f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bDontDestroyOnLoad: 0
+  m_SoundClipList:
+  - m_Name: background
+    m_Clip: {fileID: 8300000, guid: 8d4a313b6408aed4fbee1aa771b48643, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 1
+    m_Source: {fileID: 0}
+  - m_Name: type
+    m_Clip: {fileID: 0}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
