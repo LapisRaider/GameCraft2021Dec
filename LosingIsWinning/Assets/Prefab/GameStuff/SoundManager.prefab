@@ -171,3 +171,17 @@ MonoBehaviour:
     m_HearingBaseOnDist: 0
     m_Loop: 0
     m_Source: {fileID: 0}
+  - m_Name: ProjectileShoot
+    m_Clip: {fileID: 8300000, guid: 848e778e162b0014581007ed96fb3c1d, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: PlayerHit
+    m_Clip: {fileID: 8300000, guid: 92db85a957acade4f9927276e1cff2b1, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}

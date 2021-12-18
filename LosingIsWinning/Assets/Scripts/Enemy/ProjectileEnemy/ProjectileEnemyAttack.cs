@@ -54,6 +54,7 @@ public class ProjectileEnemyAttack : MonoBehaviour
                 {
                     if (!m_hitboxes[i].gameObject.activeSelf)
                     {
+                        SoundManager.Instance.Play("ProjectileShoot");
                         m_hitboxes[i].gameObject.SetActive(true);
                         m_hitboxes[i].gameObject.transform.position = transform.position;
                         m_hitboxesDirection[i] = (playerObject.transform.position - gameObject.transform.position).normalized;
@@ -74,6 +75,7 @@ public class ProjectileEnemyAttack : MonoBehaviour
                             }
                         }
 
+                        SoundManager.Instance.Play("ProjectileShoot");
                         m_hitboxes[oldestProjectileIndex].gameObject.SetActive(true);
                         m_hitboxes[oldestProjectileIndex].gameObject.transform.position = transform.position;
                         m_hitboxesDirection[oldestProjectileIndex] = (playerObject.transform.position - gameObject.transform.position).normalized;

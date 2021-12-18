@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : SingletonBase<GameManager>
 {
@@ -14,7 +16,9 @@ public class GameManager : SingletonBase<GameManager>
     // How long the sanity will last for one use.
     public float m_SanityTimer = 10.0f;
     // Used to keep track of the time
-    public float m_CurrentSanityTimer = 0.0f;    
+    public float m_CurrentSanityTimer = 0.0f;
+
+    public Volume m_postProcess;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +41,11 @@ public class GameManager : SingletonBase<GameManager>
 
                 SoundManager.Instance.Stop("InsaneMusic");
                 SoundManager.Instance.Play("BackgroundMusic");
+
+                if (m_postProcess.profile.TryGet<ChromaticAberration>(out var chromaticAberration))
+                {
+                    chromaticAberration.active = false;
+                }
             }
         }
         // Testing if saving works
@@ -74,6 +83,11 @@ public class GameManager : SingletonBase<GameManager>
             //}
             m_CurrentSanityTimer = m_SanityTimer;
             PlayerData.Instance.m_isInsane = true;
+
+            if (m_postProcess.profile.TryGet<ChromaticAberration>(out var chromaticAberration))
+            {
+                chromaticAberration.active = true;
+            }
         }
         else
         {
