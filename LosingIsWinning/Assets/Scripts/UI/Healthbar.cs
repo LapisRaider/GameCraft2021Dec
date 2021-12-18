@@ -114,6 +114,11 @@ public class Healthbar : SingletonBase<Healthbar>
         if (m_dmgParticleEffect != null)
             m_dmgParticleEffect.Play();
 
+        if (m_startPowerup)
+        {
+            m_currDiff = m_oriRefBuffAmt - m_slider.value;
+        }
+
         StartCoroutine(EyesBlink());
     }
 

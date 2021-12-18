@@ -29214,6 +29214,7 @@ GameObject:
   - component: {fileID: 1694967247}
   - component: {fileID: 1694967251}
   - component: {fileID: 1694967252}
+  - component: {fileID: 1694967253}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -29340,6 +29341,34 @@ MonoBehaviour:
   m_quitButton: {fileID: 347775352}
   m_TransitionTime: 1
   m_startSceneName: FirstCutScene
+--- !u!114 &1694967253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694967246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d50ab96361c2e468cb5929021b2f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bDontDestroyOnLoad: 0
+  m_SoundClipList:
+  - m_Name: Background
+    m_Clip: {fileID: 8300000, guid: 73fa4ae0b00ff4c45a647ea77a63b7cb, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 1
+    m_Source: {fileID: 0}
+  - m_Name: Click
+    m_Clip: {fileID: 8300000, guid: d044168d2df291548a00321af8e0d925, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
 --- !u!1 &1752571932
 GameObject:
   m_ObjectHideFlags: 0

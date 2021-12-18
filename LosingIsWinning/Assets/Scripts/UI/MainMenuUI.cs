@@ -19,11 +19,12 @@ public class MainMenuUI : MonoBehaviour
         m_quitButton.gameObject.SetActive(false);
 #endif
 
-        //TODO::play the sound
+        SoundManager.Instance.Play("Background");
     }
 
     public void StartGame()
     {
+        SoundManager.Instance.Play("Click");
         StartCoroutine(StartLoadGame());
     }
 
@@ -39,6 +40,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void QuitGame()
     {
+        SoundManager.Instance.Play("Click");
         Application.Quit();
     }
 }

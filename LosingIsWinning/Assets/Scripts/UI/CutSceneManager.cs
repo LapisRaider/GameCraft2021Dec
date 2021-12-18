@@ -34,6 +34,8 @@ public class CutSceneManager : MonoBehaviour
         {
             cutSceneText[i].m_textBoxObj.text = "";
         }
+
+        SoundManager.Instance.Play("background");
     }
 
     // Update is called once per frame
@@ -106,6 +108,7 @@ public class CutSceneManager : MonoBehaviour
         foreach (char letter in cutSceneText[m_currText].m_dialogue)
         {
             cutSceneText[m_currText].m_textBoxObj.text += letter;
+            SoundManager.Instance.Play("type");
 
             yield return new WaitForSeconds(m_textSpeed);
         }
