@@ -115,3 +115,10 @@ MonoBehaviour:
     m_HearingBaseOnDist: 0
     m_Loop: 0
     m_Source: {fileID: 0}
+  - m_Name: InsaneMusic
+    m_Clip: {fileID: 8300000, guid: bc142c816998f024bb0dda6fbd6ef233, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 1
+    m_Source: {fileID: 0}

@@ -32,6 +32,9 @@ public class GameManager : SingletonBase<GameManager>
                 Healthbar.Instance.InsaneMode(false);
                 Player.Instance.SetInsane(false);
                 m_CurrentSanityTimer = 0.0f;
+
+                SoundManager.Instance.Stop("InsaneMusic");
+                SoundManager.Instance.Play("BackgroundMusic");
             }
         }
         // Testing if saving works
@@ -56,6 +59,9 @@ public class GameManager : SingletonBase<GameManager>
             ShockWaveFX.Instance.StartShockWave();
             Player.Instance.SetInsane(true);
 
+            SoundManager.Instance.Stop("BackgroundMusic");
+            SoundManager.Instance.Play("InsaneMusic");
+            
             // Deduct the sanity meter and set the timer
             TakeSanityDamage(m_SANITY_LOST_PER_CAST, true);
             //PlayerData.Instance.m_currSanityMeter -= m_SANITY_LOST_PER_CAST;
