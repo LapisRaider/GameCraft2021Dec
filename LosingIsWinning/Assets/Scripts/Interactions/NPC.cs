@@ -65,6 +65,8 @@ public class NPC : Interactiables
             {
                 //TODO:: CALL ALLOW PLAYER EAT CATNIP
                 m_givePowerup = false;
+                PlayerData.Instance.m_sanityAbility = 1;
+                PlayerData.Instance.m_maxDashes = 1;
             }
         }
     }

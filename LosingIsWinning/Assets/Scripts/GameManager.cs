@@ -43,6 +43,12 @@ public class GameManager : SingletonBase<GameManager>
 
     public void UseSanityAbility()
     {
+        if (PlayerData.Instance.m_sanityAbility == 0)
+        {
+            return;
+        }
+
+
         // Check if it isnt enabled
         if (!PlayerData.Instance.m_isInsane)
         {

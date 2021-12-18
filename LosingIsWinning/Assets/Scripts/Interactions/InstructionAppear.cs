@@ -8,7 +8,7 @@ public class InstructionAppear : MonoBehaviour
     public TextMeshPro m_textObj;
     public float m_printTime = 0.01f;
 
-    private bool m_textPrinted = false;
+    public bool m_textPrinted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class InstructionAppear : MonoBehaviour
         StartCoroutine(MakeTextAppear());
     }
 
-    IEnumerator MakeTextAppear()
+    public IEnumerator MakeTextAppear()
     {
         foreach (char letter in m_instructionText)
         {

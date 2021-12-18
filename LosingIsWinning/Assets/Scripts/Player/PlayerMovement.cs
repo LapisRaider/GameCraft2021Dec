@@ -180,28 +180,31 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !m_isDashing)
         {
 
-            if (m_currDashes > 0)
+            if (PlayerData.Instance.m_isInsane)
             {
-                if (Time.time - m_currDashCooldown > m_dashCooldown)
+                if (m_currDashes > 0)
                 {
-                    --m_currDashes;
-                    m_isDashing = true;
-                    m_currDashTime = Time.time;
-                    m_currGhostTime = m_currDashTime;
+                    if (Time.time - m_currDashCooldown > m_dashCooldown)
+                    {
+                        --m_currDashes;
+                        m_isDashing = true;
+                        m_currDashTime = Time.time;
+                        m_currGhostTime = m_currDashTime;
 
-                    if (m_CameraShake != null)
-                        m_CameraShake.StartShake();
+                        if (m_CameraShake != null)
+                            m_CameraShake.StartShake();
 
-                    m_rigidBody.gravityScale = 0.0f;
-                    ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
+                        m_rigidBody.gravityScale = 0.0f;
+                        ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
+                    }
                 }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            PlayerKnockBack(new Vector2(1.0f, 1.0f), 1.0f);
-        }
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    PlayerKnockBack(new Vector2(1.0f, 1.0f), 1.0f);
+        //}
 
         UpdateAnimation();
     }
