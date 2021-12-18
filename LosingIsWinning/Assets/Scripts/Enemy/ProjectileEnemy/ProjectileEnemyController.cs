@@ -100,12 +100,28 @@ public class ProjectileEnemyController : MonoBehaviour
         {
             if (m_isMorphing)
             {
-                m_isMorphing = false;
-                m_smokePlayed = false;
-                m_timer = 0.0f;
-                SetMorphing(false);
+                if (m_hp <= 0)
+                {
+                    m_hp = HP;
+                    // dont repeat the smoke
+                    m_smokePlayed = true;
+                    m_morphedGO.GetComponent<Animator>().SetBool("Dead", false);
+                    m_isMorphing = false;
+                    m_timer = 0.0f;
+                    SetMorphing(false);
+
+                }
+                else
+                {
+                    m_isMorphing = false;
+                    m_smokePlayed = false;
+                    m_timer = 0.0f;
+                    SetMorphing(false);
+                }
+
             }
         }
+    
 
 
         switch (m_currState)
