@@ -229,9 +229,11 @@ MonoBehaviour:
   m_NpcDialogue: {fileID: 0}
   m_rememberPrevDia: 0
   m_hitForce: 2
+  m_soundName: Talking2
   m_speechBox: {fileID: 4222733137232790246}
   m_blockPlayer: 1
   m_collider: {fileID: 7220279966812667072}
+  m_givePowerup: 0
 --- !u!1 &7220279966812667072
 GameObject:
   m_ObjectHideFlags: 0
