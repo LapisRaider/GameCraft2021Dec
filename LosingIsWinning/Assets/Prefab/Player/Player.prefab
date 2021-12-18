@@ -109,7 +109,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480172315
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1c150bc805b4a0047abc9cab98332a40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -186,12 +186,15 @@ MonoBehaviour:
   m_fallMultiplier: 2
   m_dashSpeed: 300
   m_dashTime: 0.3
+  m_dashCooldown: 1
+  m_faceDir: {x: 0, y: 0}
   m_groundCheckPos: {fileID: 4804558606140678135}
   m_groundCheckRadius: 0.1
   m_groundLayers:
     serializedVersion: 2
     m_Bits: 768
   m_hitOffset: {x: 0.54, y: 0.63}
+  m_hitEffectOffset: {x: 0, y: 0}
   m_attackRange: {x: 0.14, y: 1.01}
   m_attackObjectsMask:
     serializedVersion: 2
@@ -205,6 +208,7 @@ MonoBehaviour:
   m_flickerTime: 0.1
   m_hurtSprite: {fileID: 6938082337742348203, guid: 704078429f02ab9478be9c658b4bbd51, type: 3}
   m_hurtSpriteTime: 0.25
+  m_takeDamage: 1
 --- !u!114 &4804558605197846512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bDontDestroyOnLoad: 0
   m_maxJumps: 0
+  m_maxDashes: 0
   m_maxSanityMeter: 0
   m_currSanityMeter: 0
   m_sanityAbility: 0
@@ -235,6 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d5be9262383c44a8337db9d64f3271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bDontDestroyOnLoad: 0
+  m_insaneAnimator: {fileID: 22100000, guid: d89f482718a3f294e911f587590a7e43, type: 2}
+  m_normalAnimator: {fileID: 9100000, guid: 5ecf3ffe27b968845be4b0fc8cb3c4af, type: 2}
+  m_deadAnimator: {fileID: 9100000, guid: 93985fb5a43d16b4cab2978a5eb0198d, type: 2}
+  m_deathTime: 2
 --- !u!95 &5623119702100333154
 Animator:
   serializedVersion: 3

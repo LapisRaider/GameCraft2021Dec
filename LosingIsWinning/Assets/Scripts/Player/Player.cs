@@ -8,6 +8,8 @@ public class Player : SingletonBase<Player>
     Animator m_playerAnimator;
     public RuntimeAnimatorController m_insaneAnimator;
     public RuntimeAnimatorController m_normalAnimator;
+    public RuntimeAnimatorController m_deadAnimator;
+    public float m_deathTime = 2.0f;
 
     Interactiables m_currInteraction;
     bool m_InteractionStarted = false;
@@ -65,6 +67,19 @@ public class Player : SingletonBase<Player>
     public bool GetPlayerFaceDir()
     {
         return m_movement.m_faceDir.x < 0;
+    }
+
+    public void PlayerDied()
+    {
+        m_playerAnimator.runtimeAnimatorController = m_deadAnimator;
+        PlayerData.Instance.EnableActions(false);
+        Invoke("ResetDeath", m_deathTime);
+    }
+
+    public void ResetDeath()
+    {
+        m_playerAnimator.runtimeAnimatorController = m_normalAnimator;
+        PlayerData.Instance.EnableActions(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
