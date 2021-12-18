@@ -178,6 +178,15 @@ public class DialogueManager : SingletonBase<DialogueManager>
         //TODO:: should be from Math.Ceil(sentence.Length * Math.Clamp(1.0f - currSanity/fullsanity))
         //corruptionFrequency = Mathf.Clamp(corruptionFrequency, 0.0f, m_maxCorruption);
 
+        if (PlayerData.Instance.m_isInsane)
+        {
+            TEMP_CORRUPTIONFREQUENCY = 0.3f;
+        }
+        else
+        {
+            TEMP_CORRUPTIONFREQUENCY = 0.0f;
+        }
+
         float corruptionFrequency = Mathf.Ceil(sentence.Length * TEMP_CORRUPTIONFREQUENCY);
         for (int i = 0; i < (int)corruptionFrequency; ++i)
         {

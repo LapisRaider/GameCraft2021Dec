@@ -80,6 +80,7 @@ public class Player : SingletonBase<Player>
     {
         m_playerAnimator.runtimeAnimatorController = m_normalAnimator;
         PlayerData.Instance.EnableActions(true);
+        SaveSystem.Instance.LoadTheGame();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

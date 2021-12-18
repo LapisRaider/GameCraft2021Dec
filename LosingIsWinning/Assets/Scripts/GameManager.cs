@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GameManager : SingletonBase<GameManager>
 {
+    public string m_currLevel;
+
     // Whenever sanity ability is used, m_SANITY_LOST_PER_CAST is amount of sanity lost
     // Need to play test and change values accordingly
-    static int m_SANITY_LOST_PER_CAST = 1;
+    public int m_SANITY_LOST_PER_CAST = 1;
 
     public GameObject m_player;
     // How long the sanity will last for one use.
-    public float m_SanityTimer = 45.0f;
+    public float m_SanityTimer = 10.0f;
     // Used to keep track of the time
     public float m_CurrentSanityTimer = 0.0f;    
 
@@ -38,9 +40,8 @@ public class GameManager : SingletonBase<GameManager>
             }
         }
         // Testing if saving works
-        if (Input.GetKey(KeyCode.V)) { SaveSystem.Instance.SaveTheGame(); }
-        if (Input.GetKey(KeyCode.B)) { SaveSystem.Instance.LoadTheGame(); }
-        if (Input.GetKey(KeyCode.B)) { SaveSystem.Instance.LoadTheGame(); }
+        if (Input.GetKey(KeyCode.M)) { SaveSystem.Instance.SaveTheGame(); }
+        if (Input.GetKey(KeyCode.N)) { SaveSystem.Instance.LoadTheGame(); }
         if (Input.GetKey(KeyCode.E)) { UseSanityAbility(); }
     }
 
@@ -89,6 +90,7 @@ public class GameManager : SingletonBase<GameManager>
         if (PlayerData.Instance.m_currSanityMeter <= 0)
         {
             // Lost again
+            Player.Instance.PlayerDied();
         }
 
         Healthbar.Instance.SetHealth((float)(PlayerData.Instance.m_currSanityMeter) / (float)(PlayerData.Instance.m_maxSanityMeter), sanityAbility);

@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveFile
 {
+    public string m_currLevel;
     public int m_maxJumps;
     public int m_maxDashes;
     public int m_maxSanityMeter;

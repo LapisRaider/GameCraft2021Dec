@@ -23,7 +23,7 @@ public class PlayerData : SingletonBase<PlayerData>
     {
         m_maxJumps = 1;
         m_maxDashes = 0;
-        m_maxSanityMeter = 100;
+        m_maxSanityMeter = 20;
         m_currSanityMeter = m_maxSanityMeter;
         m_sanityAbility = 0;
         m_isInsane = false;

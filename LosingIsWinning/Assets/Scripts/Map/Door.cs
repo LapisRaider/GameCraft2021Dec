@@ -25,5 +25,9 @@ public class Door : MonoBehaviour
         m_NextRoom.gameObject.SetActive(true);
         m_NextRoom.RoomActivation(true);
         m_CurrRoom.RoomActivation(false);
+
+        GameManager.Instance.m_currLevel = m_NextRoom.gameObject.name;
+        
+        SaveSystem.Instance.SaveTheGame();
     }
 }
