@@ -253,6 +253,7 @@ public class DialogueManager : SingletonBase<DialogueManager>
         {
             m_text.AddCharToText(letter);
             ++m_currCharIndex;
+            SoundManager.Instance.Play("Typing");
 
             yield return new WaitForSeconds(m_textSpeed);
         }

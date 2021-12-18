@@ -140,7 +140,12 @@ public class PlayerMovement : MonoBehaviour
             
         m_inputDir.x = Input.GetAxisRaw("Horizontal");
         m_inputDir.y = Input.GetAxisRaw("Vertical");
- 
+
+        if (m_inputDir.x != 0.0f && m_isGrounded)
+            SoundManager.Instance.Play("Running");
+        else
+            SoundManager.Instance.Stop("Running");
+
         //update for animation
         if (m_inputDir.x != 0.0f && !m_isDashing)
         {
@@ -174,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
             --m_currJumps;
             m_startJump = true;
             ParticleEffectObjectPooler.Instance.PlayParticle(m_groundCheckPos.position, PARTICLE_EFFECT_TYPE.JUMP);
+            SoundManager.Instance.Play("Jump");
         }
 
         //for dashing
@@ -188,16 +194,20 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Time.time - m_currDashCooldown > m_dashCooldown)
                 {
-                    --m_currDashes;
-                    m_isDashing = true;
-                    m_currDashTime = Time.time;
-                    m_currGhostTime = m_currDashTime;
+                    if (Time.time - m_currDashCooldown > m_dashCooldown)
+                    {
+                        --m_currDashes;
+                        m_isDashing = true;
+                        m_currDashTime = Time.time;
+                        m_currGhostTime = m_currDashTime;
 
-                    if (m_CameraShake != null)
-                        m_CameraShake.StartShake();
+                        if (m_CameraShake != null)
+                            m_CameraShake.StartShake();
 
-                    m_rigidBody.gravityScale = 0.0f;
-                    ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
+                        m_rigidBody.gravityScale = 0.0f;
+                        ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
+                        SoundManager.Instance.Play("Dash");
+                    }
                 }
             }
         }

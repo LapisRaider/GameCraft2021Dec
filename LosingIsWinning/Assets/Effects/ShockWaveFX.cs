@@ -29,6 +29,8 @@ public class ShockWaveFX : SingletonBase<ShockWaveFX>
     {
         StopCoroutine("UpdateShockWave");
 
+        SoundManager.Instance.Play("Pulse");
+
         m_ShockWaveMaterial.SetFloat("Size", m_ShockWaveSize);
         m_ShockWaveMaterial.SetFloat("Magnification", m_ShockWaveMagnification);
         m_ShockWaveMaterial.SetFloat("shockwaveOffset", 0.0f);
