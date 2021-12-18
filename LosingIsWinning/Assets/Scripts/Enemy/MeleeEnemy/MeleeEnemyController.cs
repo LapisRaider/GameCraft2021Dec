@@ -462,6 +462,7 @@ public class MeleeEnemyController : MonoBehaviour
         }
         else
         {
+            ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.ENEMY_DAMAGE);
             m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
         }
     }
