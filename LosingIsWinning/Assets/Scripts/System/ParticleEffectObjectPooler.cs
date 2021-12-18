@@ -55,4 +55,5 @@ public enum PARTICLE_EFFECT_TYPE
     JUMP,
     LAND,
     DASH,
+    ENEMY_DAMAGE,
 }
