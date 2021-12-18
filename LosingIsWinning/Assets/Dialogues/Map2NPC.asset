@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9daea61a9526ae3409a952f208de099e, type: 3}
+  m_Name: Map2NPC
+  m_EditorClassIdentifier: 
+  m_Dialogues:
+  - name: Intro
+    m_dialogue:
+    - m_text: Taking that will cause you to lose some sanity.
+      m_effect: 0
+    m_hasChoice: 1
+    m_choices:
+    - name: 
+      m_nextDialogueIndex: 1
+      m_Text:
+        m_text: Okay I will be careful!
+        m_effect: 0
+    - name: 
+      m_nextDialogueIndex: 1
+      m_Text:
+        m_text: You worry too much!
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: Next
+    m_dialogue:
+    - m_text: Make sure that the effects wear off before you talk to anyone, else
+        you might not be able to understand anything!
+      m_effect: 0
+    m_hasChoice: 1
+    m_choices:
+    - name: 
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: Noted gramps!
+        m_effect: 0
+    - name: 
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: I'll be fine!
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: Last
+    m_dialogue:
+    - m_text: Remember that certain abilities don't require you to be under its effects
+        so manage your sanity wisely!
+      m_effect: 0
+    m_hasChoice: 1
+    m_choices:
+    - name: 
+      m_nextDialogueIndex: 3
+      m_Text:
+        m_text: Sure thing gramps!
+        m_effect: 0
+    - name: 
+      m_nextDialogueIndex: 3
+      m_Text:
+        m_text: I'll be outta here in no time!
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: Final
+    m_dialogue:
+    - m_text: Take care kiddo
+      m_effect: 0
+    m_hasChoice: 0
+    m_choices: []
+    m_hitPlayerAfter: 0

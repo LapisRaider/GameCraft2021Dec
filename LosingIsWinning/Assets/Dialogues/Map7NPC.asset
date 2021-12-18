@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9daea61a9526ae3409a952f208de099e, type: 3}
+  m_Name: Map7NPC
+  m_EditorClassIdentifier: 
+  m_Dialogues:
+  - name: Intro
+    m_dialogue:
+    - m_text: Only those with the proper willpower can answer my riddles and continue
+        onwards!
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: 
+      m_nextDialogueIndex: 1
+      m_Text:
+        m_text: Err ok?
+        m_effect: 0
+    - name: 
+      m_nextDialogueIndex: 1
+      m_Text:
+        m_text: SURE!
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: Question1
+    m_dialogue:
+    - m_text: What is always in front of you but can't be seen?
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: Response1
+      m_nextDialogueIndex: 2
+      m_Text:
+        m_text: Err my shadow?
+        m_effect: 0
+    - name: Response2
+      m_nextDialogueIndex: 3
+      m_Text:
+        m_text: The future?
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: WrongToQuestion1
+    m_dialogue:
+    - m_text: Wrong! You lack the skills needed!
+      m_effect: 1
+    m_hasChoice: 0
+    m_choices: []
+    m_hitPlayerAfter: 1
+  - name: CorrectToQuestion1
+    m_dialogue:
+    - m_text: Correct! Now for my next question!
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: 
+      m_nextDialogueIndex: 4
+      m_Text:
+        m_text: Yay!
+        m_effect: 0
+    - name: 
+      m_nextDialogueIndex: 4
+      m_Text:
+        m_text: That was easy!
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: Question2 (Index4)
+    m_dialogue:
+    - m_text: "If you don\u2019t keep me, I\u2019ll break. What am I?"
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: Response1
+      m_nextDialogueIndex: 6
+      m_Text:
+        m_text: A promise?
+        m_effect: 0
+    - name: Response2
+      m_nextDialogueIndex: 5
+      m_Text:
+        m_text: Money?
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: WrongToQuestion2
+    m_dialogue:
+    - m_text: Wrong! You lack the skills needed!
+      m_effect: 1
+    m_hasChoice: 0
+    m_choices: []
+    m_hitPlayerAfter: 1
+  - name: CorrectToQuestion2
+    m_dialogue:
+    - m_text: Correct! Now for my next question!
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: 
+      m_nextDialogueIndex: 7
+      m_Text:
+        m_text: That's too easy!
+        m_effect: 0
+    - name: 
+      m_nextDialogueIndex: 7
+      m_Text:
+        m_text: What's the next one?
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: Question3(Index7)
+    m_dialogue:
+    - m_text: 'Which word becomes shorter when you add 2 letters to it? '
+      m_effect: 1
+    m_hasChoice: 1
+    m_choices:
+    - name: Response1
+      m_nextDialogueIndex: 9
+      m_Text:
+        m_text: The word 'short'
+        m_effect: 0
+    - name: Response2
+      m_nextDialogueIndex: 8
+      m_Text:
+        m_text: I don't know
+        m_effect: 0
+    m_hitPlayerAfter: 0
+  - name: WrongToQuestion3
+    m_dialogue:
+    - m_text: Wrong! You lack the skills needed!
+      m_effect: 1
+    m_hasChoice: 0
+    m_choices: []
+    m_hitPlayerAfter: 1
+  - name: CorrectToQuestion3
+    m_dialogue:
+    - m_text: Correct! You may pass!
+      m_effect: 1
+    m_hasChoice: 0
+    m_choices: []
+    m_hitPlayerAfter: 0
