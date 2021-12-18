@@ -122,3 +122,24 @@ MonoBehaviour:
     m_HearingBaseOnDist: 0
     m_Loop: 1
     m_Source: {fileID: 0}
+  - m_Name: MeleeSwing
+    m_Clip: {fileID: 8300000, guid: 48660c840ff3e034296627bcb9b1b353, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: MeleeRunning
+    m_Clip: {fileID: 8300000, guid: 3063e6554edce6f44b3add466a68a37a, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 1
+    m_Source: {fileID: 0}
+  - m_Name: SmokePuff
+    m_Clip: {fileID: 8300000, guid: 2165d1c9655f7f142809c51d50ac7780, type: 3}
+    m_Volume: 0.5
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 1
+    m_Source: {fileID: 0}
