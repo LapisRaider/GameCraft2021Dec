@@ -179,26 +179,25 @@ public class PlayerMovement : MonoBehaviour
         //for dashing
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !m_isDashing)
         {
-
             if (!PlayerData.Instance.m_isInsane)
             {
                 GameManager.Instance.UseSanityAbility();
+            }
 
-                if (m_currDashes > 0)
+            if (m_currDashes > 0)
+            {
+                if (Time.time - m_currDashCooldown > m_dashCooldown)
                 {
-                    if (Time.time - m_currDashCooldown > m_dashCooldown)
-                    {
-                        --m_currDashes;
-                        m_isDashing = true;
-                        m_currDashTime = Time.time;
-                        m_currGhostTime = m_currDashTime;
+                    --m_currDashes;
+                    m_isDashing = true;
+                    m_currDashTime = Time.time;
+                    m_currGhostTime = m_currDashTime;
 
-                        if (m_CameraShake != null)
-                            m_CameraShake.StartShake();
+                    if (m_CameraShake != null)
+                        m_CameraShake.StartShake();
 
-                        m_rigidBody.gravityScale = 0.0f;
-                        ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
-                    }
+                    m_rigidBody.gravityScale = 0.0f;
+                    ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.DASH);
                 }
             }
         }
