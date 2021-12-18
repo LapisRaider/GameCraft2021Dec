@@ -379,6 +379,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void UpdateAnimation()
     {
+        if (!Player.Instance.m_updatePlayerAnim)
+            return;
+
         m_Animator.SetBool("MovingX", m_inputDir.x != 0.0f);
         m_Animator.SetBool("MovingY", m_inputDir.y != 0.0f);
         m_Animator.SetFloat("MovingVert", m_inputDir.y);
