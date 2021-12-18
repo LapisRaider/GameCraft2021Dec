@@ -60,7 +60,7 @@ MonoBehaviour:
     m_Loop: 0
     m_Source: {fileID: 0}
   - m_Name: BackgroundMusic
-    m_Clip: {fileID: 8300000, guid: 94e13b4b34bc4f54696bf5e6541bd5c0, type: 3}
+    m_Clip: {fileID: 8300000, guid: fc02c7a863620c14e931ffc66dce2a9f, type: 3}
     m_Volume: 1
     m_Pitch: 1
     m_HearingBaseOnDist: 0
@@ -96,6 +96,20 @@ MonoBehaviour:
     m_Source: {fileID: 0}
   - m_Name: Running
     m_Clip: {fileID: 8300000, guid: 3998819025f19ee408a3ccc1b1620ce1, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: ButtonClick
+    m_Clip: {fileID: 8300000, guid: d044168d2df291548a00321af8e0d925, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_HearingBaseOnDist: 0
+    m_Loop: 0
+    m_Source: {fileID: 0}
+  - m_Name: Typing
+    m_Clip: {fileID: 8300000, guid: 240b44a9bb8d96f48b12a1ec9de7a2c4, type: 3}
     m_Volume: 1
     m_Pitch: 1
     m_HearingBaseOnDist: 0

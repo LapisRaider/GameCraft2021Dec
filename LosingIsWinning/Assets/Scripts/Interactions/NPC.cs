@@ -25,6 +25,8 @@ public class NPC : Interactiables
     [Header("HACKS")]
     public bool m_givePowerup = false;
 
+    public string m_soundName = "Talking1";
+
     public override void Start()
     {
         base.Start();
@@ -46,6 +48,8 @@ public class NPC : Interactiables
 
         m_gotAngry = false;
         m_interactionFinish = false;
+
+        SoundManager.Instance.Play(m_soundName);
     }
 
     public void DialogueFinish(int lastDialogueOption)

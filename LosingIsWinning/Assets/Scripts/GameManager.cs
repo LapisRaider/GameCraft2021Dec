@@ -17,7 +17,7 @@ public class GameManager : SingletonBase<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-
+        SoundManager.Instance.Play("BackgroundMusic");
     }
 
     // Update is called once per frame
