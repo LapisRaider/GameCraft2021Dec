@@ -180,8 +180,10 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !m_isDashing)
         {
 
-            if (PlayerData.Instance.m_isInsane)
+            if (!PlayerData.Instance.m_isInsane)
             {
+                GameManager.Instance.UseSanityAbility();
+
                 if (m_currDashes > 0)
                 {
                     if (Time.time - m_currDashCooldown > m_dashCooldown)
