@@ -474,10 +474,11 @@ public class MeleeEnemyController : MonoBehaviour
         {
             m_currState = MELEE_STATES.STATE_MORPHED_DEATH;
             m_morphedGO.GetComponent<Animator>().SetBool("Dead", true);
-
+            SoundManager.Instance.Play("MeleeDying");
         }
         else
         {
+            SoundManager.Instance.Play("MeleeHit");
             ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.ENEMY_DAMAGE);
             m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
         }

@@ -254,10 +254,12 @@ public class ProjectileEnemyController : MonoBehaviour
             m_player = null;
             EndAttack();
             m_currState = PROJECTILE_STATES.STATE_MORPHED_DEATH;
+            SoundManager.Instance.Play("ProjectileEnemyDying");
             m_morphedGO.GetComponent<Animator>().SetBool("Dead", true);
         }
         else
         {
+            SoundManager.Instance.Play("ProjectileEnemyHit");
             ParticleEffectObjectPooler.Instance.PlayParticle(transform.position, PARTICLE_EFFECT_TYPE.ENEMY_DAMAGE);
             m_morphedGO.GetComponent<Animator>().SetTrigger("Hit");
         }
