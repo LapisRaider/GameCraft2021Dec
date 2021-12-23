@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -109,6 +110,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //player got hit
+        if (m_applyKnockBack)
+            return;
+
         if (m_isDashing)
         {
             float currTime = Time.time;
@@ -138,10 +143,7 @@ public class PlayerMovement : MonoBehaviour
         //    UpdateAnimation();
         //    return;
         //}
-
-        if (m_applyKnockBack)
-            return;
-            
+         
         m_inputDir.x = Input.GetAxisRaw("Horizontal");
         m_inputDir.y = Input.GetAxisRaw("Vertical");
 
@@ -156,11 +158,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Combat();
-        if (!m_AttackAnimDone) //only when attack anim done can do this
+        if (!m_AttackAnimDone) //check if attack anim not done
         {
             if (m_isGrounded)
             {
-                m_inputDir.x = 0.0f;
+                m_inputDir.x = 0.0f; //dont let player move
             }
             CheckHitAnything();
             return;
@@ -178,19 +180,18 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Time.time - m_currDashCooldown > m_dashCooldown)
             {
-                if (Time.time - m_currDashCooldown > m_dashCooldown)
-                {
-                    m_isDashing = true;
-                    m_currDashTime = Time.time;
-                    m_currGhostTime = m_currDashTime;
+                m_isDashing = true;
+                m_currDashTime = Time.time;
+                m_currGhostTime = m_currDashTime;
 
-                    if (m_CameraShake != null)
-                        m_CameraShake.StartShake();
+                if (m_CameraShake != null)
+                    m_CameraShake.StartShake();
 
-                    m_rigidBody.gravityScale = 0.0f; //so player doesnt fall
-                }
+                m_rigidBody.gravityScale = 0.0f; //so player doesnt fall
             }
         }
+
+        UpdateVisuals();
     }
 
     private void FixedUpdate()
@@ -248,30 +249,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.white;
-
-        if (m_groundCheckPos != null)
-            Gizmos.DrawWireCube(m_groundCheckPos.position, m_groundCheckSize);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + new Vector3(m_hitOffset.x, 0.0f), new Vector3(m_attackRange.x, m_attackRange.y, 1));
-        Gizmos.DrawWireCube(transform.position + new Vector3(-m_hitOffset.x, 0.0f), new Vector3(m_attackRange.x, m_attackRange.y, 1));
-        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
-        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, -m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
-
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, -m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
-    }
-
-    public void resetJump()
-    {
-        m_isGrounded = true;
-        m_currJumps = m_maxJumps;
-    }
-
+    //-------------------------------------------------Player Combat -----------------------------------------//
     public void Combat()
     {
         if (!Input.GetKeyDown(KeyCode.Return))
@@ -325,6 +303,7 @@ public class PlayerMovement : MonoBehaviour
         m_hitSize = hitSize;
         
         m_AttackAnimDone = false;
+        UpdateAttackAnim();
     }
 
     public void CheckHitAnything()
@@ -351,7 +330,10 @@ public class PlayerMovement : MonoBehaviour
         m_lockFaceDir = false;
         m_AttackAnimDone = true;
     }
+    //------------------------------------------------- End Player Combat -----------------------------------------//
 
+
+    //------------------------------------------------- Player got hurt -----------------------------------------//
     public void PlayerKnockBack(Vector2 dir, float force = 1.0f)
     {
         if (!m_takeDamage)
@@ -389,4 +371,132 @@ public class PlayerMovement : MonoBehaviour
         m_Animator.enabled = true;
         m_applyKnockBack = false;
     }
+    //------------------------------------------------- End Player got hurt -----------------------------------------
+
+    public void UpdateAttackAnim()
+    {
+        if (Math.Abs(m_rigidBody.velocity.y) < Mathf.Epsilon) //not in air
+        {
+            if (m_inputDir.y < 0.0f) //crouch down attack
+            {
+                if (Math.Abs(m_rigidBody.velocity.y) < Mathf.Epsilon)
+                    m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Down));
+                else
+                    m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Fall_Attack_Down));
+            }
+            else if (m_inputDir.y > 0.0f)
+                m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Up));
+            else //attack normally
+                m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Hori));
+
+            return;
+        }
+    }
+
+    public void UpdateVisuals() //update animation and visuals of sprite
+    {
+        if (!m_AttackAnimDone)
+            return;
+        
+        //fall
+        if (m_rigidBody.velocity.y < 0.0f)
+        {
+            m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Fall));
+            return;
+        }
+        else if (m_rigidBody.velocity.y > 0.0f) //jump
+        {
+            if (m_currJumps > 0 && m_currJumps < m_maxJumps) //initial first jump
+                m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Jump));
+            else //double jump
+                m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_DoubleJump));
+
+            return;
+        }
+
+        //dash
+        if (m_isDashing)
+        {
+            m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Dash));
+            return;
+        }
+
+        //default movement
+        if (m_isGrounded)
+        {
+            if (Math.Abs(m_inputDir.x) > 0.0f) //moving
+            {
+                if (m_inputDir.y < 0.0f)
+                    m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Crouch_Move));
+                else
+                    m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Walk));
+            }
+            else //not moving
+            {
+                if (m_inputDir.y < 0.0f)
+                    m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Crouch));
+                else
+                    m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Idle));
+            }
+        }
+    }
+
+
+    public void ResetMoveStates()
+    {
+        //reset dashing
+        m_isDashing = false;
+        m_rigidBody.gravityScale = m_oriGravity;
+
+        //reset Movement
+        m_inputDir = Vector2.zero;
+
+        //reset attack
+        m_AttackAnimDone = true;
+        m_bounceUpAttack = false;
+        m_lockFaceDir = false;
+
+        //reset jump
+        m_currJumps = m_maxJumps;
+        m_startJump = true;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+
+        if (m_groundCheckPos != null)
+            Gizmos.DrawWireCube(m_groundCheckPos.position, m_groundCheckSize);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + new Vector3(m_hitOffset.x, 0.0f), new Vector3(m_attackRange.x, m_attackRange.y, 1));
+        Gizmos.DrawWireCube(transform.position + new Vector3(-m_hitOffset.x, 0.0f), new Vector3(m_attackRange.x, m_attackRange.y, 1));
+        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
+        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, -m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
+
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position + new Vector3(0.0f, -m_hitOffset.y), new Vector3(m_attackRange.y, m_attackRange.x, 1));
+    }
+}
+
+public enum PlayerAnimations
+{
+    Player_Idle,
+    Player_Walk,
+    Player_Crouch,
+    Player_Crouch_Move,
+
+    Player_Jump,
+    Player_DoubleJump,
+
+    Player_Attack_Down,
+    Player_Attack_Hori,
+    Player_Attack_Up,
+    Player_Fall_Attack_Down,
+
+    Player_Death,
+    Player_Fall,
+    Player_Dash,
+    Player_Hurt
 }
