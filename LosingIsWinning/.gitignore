@@ -8,6 +8,9 @@
 [Oo]bj/
 [Tt]emp/
 [Uu]nityGenerated/
+[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+.vs/
 # file on crash reports
 sysinfo.txt
 # Unity3D generated meta files
@@ -26,6 +29,7 @@ sysinfo.txt
 *.user
 *.userprefs
 *.pidb
+*.log
 .DS_Store
 
 ###
