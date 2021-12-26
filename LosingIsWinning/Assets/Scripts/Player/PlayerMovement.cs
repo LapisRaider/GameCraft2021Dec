@@ -134,6 +134,8 @@ public class PlayerMovement : MonoBehaviour
                 m_rigidBody.gravityScale = m_oriGravity;
                 m_currDashCooldown = Time.time;
             }
+
+            return;
         }
 
         //do not move when camera still moving
@@ -308,21 +310,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckHitAnything()
     {
-        //Collider2D[] attackObjs = Physics2D.OverlapBoxAll(transform.position + m_hitDir, m_hitSize, 0, m_attackObjectsMask);
-        //foreach (Collider2D objs in attackObjs)
-        //{
-        //    HitObjs hitObj = objs.GetComponent<HitObjs>();
-        //    if (hitObj == null)
-        //        continue;
-        //
-        //    if (hitObj.Hit())
-        //    {
-        //        if (m_hitDir.y < 0.0f)
-        //        {
-        //            m_bounceUpAttack = true;
-        //        }
-        //    }
-        //}
+        Collider2D[] attackObjs = Physics2D.OverlapBoxAll(transform.position + m_hitDir, m_hitSize, 0, m_attackObjectsMask);
+        foreach (Collider2D objs in attackObjs)
+        {
+            HitObjs hitObj = objs.GetComponent<HitObjs>();
+            if (hitObj == null)
+                continue;
+        
+            if (hitObj.Hit())
+            {
+                if (m_hitDir.y < 0.0f)
+                {
+                    m_bounceUpAttack = true;
+                }
+            }
+        }
     }
 
     public void FinishAttackAnim()
@@ -374,30 +376,34 @@ public class PlayerMovement : MonoBehaviour
     //------------------------------------------------- End Player got hurt -----------------------------------------
 
     public void UpdateAttackAnim()
-    {
-        if (Math.Abs(m_rigidBody.velocity.y) < Mathf.Epsilon) //not in air
-        {
-            if (m_inputDir.y < 0.0f) //crouch down attack
-            {
-                if (Math.Abs(m_rigidBody.velocity.y) < Mathf.Epsilon)
-                    m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Down));
-                else
-                    m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Fall_Attack_Down));
-            }
-            else if (m_inputDir.y > 0.0f)
-                m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Up));
-            else //attack normally
-                m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Hori));
+    { 
+         if (m_inputDir.y < 0.0f) //crouch down attack
+         {
+             if (Math.Abs(m_rigidBody.velocity.y) < Mathf.Epsilon)
+                 m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Down));
+             else
+                 m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Fall_Attack_Down));
+         }
+         else if (m_inputDir.y > 0.0f)
+             m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Up));
+         else //attack normally
+             m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Attack_Hori));
 
-            return;
-        }
+         return;
     }
 
     public void UpdateVisuals() //update animation and visuals of sprite
     {
         if (!m_AttackAnimDone)
             return;
-        
+
+        //dash
+        if (m_isDashing)
+        {
+            m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Dash));
+            return;
+        }
+
         //fall
         if (m_rigidBody.velocity.y < 0.0f)
         {
@@ -411,13 +417,6 @@ public class PlayerMovement : MonoBehaviour
             else //double jump
                 m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_DoubleJump));
 
-            return;
-        }
-
-        //dash
-        if (m_isDashing)
-        {
-            m_Animator.Play(Enum.GetName(typeof(PlayerAnimations), PlayerAnimations.Player_Dash));
             return;
         }
 
