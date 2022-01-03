@@ -9,21 +9,34 @@ public class EnemyBase : MonoBehaviour
     public static bool g_debugMode = true;
     static Color32 line_normal = new Color32(0, 0, 255, 255);
     static Color32 line_triggered = new Color32(255, 0, 0, 255);
+    #endif
 
-#endif
     protected bool m_triggered = false;
 
-    protected int maxHealth = 10;
+    
     protected int health;
     protected Vector3 m_nextPosition;
     protected Rigidbody2D m_rb;
 
+    protected bool m_isMorphed = false;
+
+    public enum EnemyStates
+    {
+        MeleePlant,
+        MeleeIdle,
+        MeleeAttack,
+        MeleeRunning,
+        MeleeDeath
+    }
+
+    [System.NonSerialized] public EnemyStates m_currState;
+    [System.NonSerialized] public EnemyStates m_targetState;
 
     float hitFlashTimer_;
 
     virtual public void Awake()
     {
-        health = maxHealth;
+       // health = maxHealth;
         Init();
     }
 
@@ -35,11 +48,26 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     virtual protected void Update()
     {
-//#if UNITY_EDITOR
-//        Debug.DrawLine(transform.position, DEBUG_TARGET.position, m_triggered ? line_triggered : line_normal);
-//#endif
+        // Changing enemy state
+        if (m_currState != m_targetState)
+        {
+            ChangeState(m_targetState);
+
+            m_currState = m_targetState;
+        }
+
+        UpdateState(m_currState);
     }
 
+    virtual protected void ChangeState(EnemyStates targetState)
+    {
+
+    }
+
+    virtual protected void UpdateState(EnemyStates currState)
+    {
+
+    }
 
     virtual public bool TakeDamage(int dmg)
     {
